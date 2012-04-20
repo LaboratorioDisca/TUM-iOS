@@ -3,10 +3,11 @@
 //  TUM
 //
 //  Created by Alejandro on 20/04/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 UNAM IIMAS Disca. All rights reserved.
 //
 
 #import "AppDelegate.h"
+#import "MapViewController.h"
 
 @implementation AppDelegate
 
@@ -17,6 +18,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    [self.window setRootViewController:[[MapViewController alloc] init]];
     [self.window makeKeyAndVisible];
     return YES;
 }

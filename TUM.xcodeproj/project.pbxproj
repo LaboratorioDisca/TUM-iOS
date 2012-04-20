@@ -18,6 +18,14 @@
 		3A8681D61541D01C00C9EE6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8681BD1541D01C00C9EE6F /* Foundation.framework */; };
 		3A8681DE1541D01C00C9EE6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A8681DC1541D01C00C9EE6F /* InfoPlist.strings */; };
 		3A8681E11541D01C00C9EE6F /* TUMTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8681E01541D01C00C9EE6F /* TUMTests.m */; };
+		3A8683421541D52900C9EE6F /* ApplicationConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8683411541D52900C9EE6F /* ApplicationConfig.m */; };
+		3A8683491541D6DF00C9EE6F /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8683481541D6DF00C9EE6F /* MapViewController.m */; };
+		3A8683551541D93B00C9EE6F /* libMapView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8683361541D21100C9EE6F /* libMapView.a */; };
+		3A8683591541D9A600C9EE6F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8683581541D9A600C9EE6F /* QuartzCore.framework */; };
+		3A86835B1541DC2800C9EE6F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A86835A1541DC2800C9EE6F /* libsqlite3.dylib */; };
+		3A86837F1541E97900C9EE6F /* UNAMCU.mbtiles in Resources */ = {isa = PBXBuildFile; fileRef = 3A86837E1541E97900C9EE6F /* UNAMCU.mbtiles */; };
+		3A8683801541EC1B00C9EE6F /* ApplicationConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8683411541D52900C9EE6F /* ApplicationConfig.m */; };
+		3A8683821541F06E00C9EE6F /* bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A8683811541F06E00C9EE6F /* bus.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +36,34 @@
 			remoteGlobalIDString = 3A8681B61541D01C00C9EE6F;
 			remoteInfo = TUM;
 		};
+		3A8683351541D21100C9EE6F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A8683251541D21100C9EE6F /* MapView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 17F31EFA1331050A00122B16;
+			remoteInfo = MapView;
+		};
+		3A8683371541D21100C9EE6F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A8683251541D21100C9EE6F /* MapView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 17157D87133BBC8300E28941;
+			remoteInfo = MapViewTests;
+		};
+		3A8683391541D21100C9EE6F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A8683251541D21100C9EE6F /* MapView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2BF3078F0F8AC5C0007014EE;
+			remoteInfo = "Unit Tests";
+		};
+		3A8683561541D94100C9EE6F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A8683251541D21100C9EE6F /* MapView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B8C974130E8A19B2007D16AD;
+			remoteInfo = MapView;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -35,18 +71,27 @@
 		3A8681BB1541D01C00C9EE6F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3A8681BD1541D01C00C9EE6F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3A8681BF1541D01C00C9EE6F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		3A8681C31541D01C00C9EE6F /* TUM-Info.plist */ = {isa = PBXFileReference; path = "TUM-Info.plist"; sourceTree = "<group>"; };
+		3A8681C31541D01C00C9EE6F /* TUM-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TUM-Info.plist"; sourceTree = "<group>"; };
 		3A8681C51541D01C00C9EE6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3A8681C71541D01C00C9EE6F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3A8681C91541D01C00C9EE6F /* TUM-Prefix.pch */ = {isa = PBXFileReference; path = "TUM-Prefix.pch"; sourceTree = "<group>"; };
-		3A8681CA1541D01C00C9EE6F /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		3A8681C91541D01C00C9EE6F /* TUM-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TUM-Prefix.pch"; sourceTree = "<group>"; };
+		3A8681CA1541D01C00C9EE6F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3A8681CB1541D01C00C9EE6F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3A8681D21541D01C00C9EE6F /* TUMTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TUMTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8681D31541D01C00C9EE6F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		3A8681DB1541D01C00C9EE6F /* TUMTests-Info.plist */ = {isa = PBXFileReference; path = "TUMTests-Info.plist"; sourceTree = "<group>"; };
+		3A8681DB1541D01C00C9EE6F /* TUMTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TUMTests-Info.plist"; sourceTree = "<group>"; };
 		3A8681DD1541D01C00C9EE6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3A8681DF1541D01C00C9EE6F /* TUMTests.h */ = {isa = PBXFileReference; path = TUMTests.h; sourceTree = "<group>"; };
+		3A8681DF1541D01C00C9EE6F /* TUMTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TUMTests.h; sourceTree = "<group>"; };
 		3A8681E01541D01C00C9EE6F /* TUMTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TUMTests.m; sourceTree = "<group>"; };
+		3A8683251541D21100C9EE6F /* MapView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MapView.xcodeproj; path = ../MapView/MapView.xcodeproj; sourceTree = "<group>"; };
+		3A8683401541D52900C9EE6F /* ApplicationConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationConfig.h; sourceTree = "<group>"; };
+		3A8683411541D52900C9EE6F /* ApplicationConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationConfig.m; sourceTree = "<group>"; };
+		3A8683471541D6DF00C9EE6F /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		3A8683481541D6DF00C9EE6F /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		3A8683581541D9A600C9EE6F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3A86835A1541DC2800C9EE6F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		3A86837E1541E97900C9EE6F /* UNAMCU.mbtiles */ = {isa = PBXFileReference; lastKnownFileType = file; path = UNAMCU.mbtiles; sourceTree = "<group>"; };
+		3A8683811541F06E00C9EE6F /* bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,9 +99,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A8683591541D9A600C9EE6F /* QuartzCore.framework in Frameworks */,
 				3A8681BC1541D01C00C9EE6F /* UIKit.framework in Frameworks */,
 				3A8681BE1541D01C00C9EE6F /* Foundation.framework in Frameworks */,
 				3A8681C01541D01C00C9EE6F /* CoreGraphics.framework in Frameworks */,
+				3A86835B1541DC2800C9EE6F /* libsqlite3.dylib in Frameworks */,
+				3A8683551541D93B00C9EE6F /* libMapView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +124,9 @@
 		3A8681AC1541D01C00C9EE6F = {
 			isa = PBXGroup;
 			children = (
+				3A86835A1541DC2800C9EE6F /* libsqlite3.dylib */,
+				3A8683581541D9A600C9EE6F /* QuartzCore.framework */,
+				3A8683251541D21100C9EE6F /* MapView.xcodeproj */,
 				3A8681C11541D01C00C9EE6F /* TUM */,
 				3A8681D91541D01C00C9EE6F /* TUMTests */,
 				3A8681BA1541D01C00C9EE6F /* Frameworks */,
@@ -106,6 +157,11 @@
 		3A8681C11541D01C00C9EE6F /* TUM */ = {
 			isa = PBXGroup;
 			children = (
+				3A86837D1541E97800C9EE6F /* Assets */,
+				3A86834A1541D6EC00C9EE6F /* Views */,
+				3A8683461541D6DF00C9EE6F /* Controllers */,
+				3A8683401541D52900C9EE6F /* ApplicationConfig.h */,
+				3A8683411541D52900C9EE6F /* ApplicationConfig.m */,
 				3A8681CA1541D01C00C9EE6F /* AppDelegate.h */,
 				3A8681CB1541D01C00C9EE6F /* AppDelegate.m */,
 				3A8681C21541D01C00C9EE6F /* Supporting Files */,
@@ -143,6 +199,41 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		3A8683261541D21100C9EE6F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3A8683361541D21100C9EE6F /* libMapView.a */,
+				3A8683381541D21100C9EE6F /* MapViewTests.octest */,
+				3A86833A1541D21100C9EE6F /* RM Unit Tests.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3A8683461541D6DF00C9EE6F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3A8683471541D6DF00C9EE6F /* MapViewController.h */,
+				3A8683481541D6DF00C9EE6F /* MapViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3A86834A1541D6EC00C9EE6F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3A86837D1541E97800C9EE6F /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				3A8683811541F06E00C9EE6F /* bus.png */,
+				3A86837E1541E97900C9EE6F /* UNAMCU.mbtiles */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -157,6 +248,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3A8683571541D94100C9EE6F /* PBXTargetDependency */,
 			);
 			name = TUM;
 			productName = TUM;
@@ -200,6 +292,12 @@
 			mainGroup = 3A8681AC1541D01C00C9EE6F;
 			productRefGroup = 3A8681B81541D01C00C9EE6F /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3A8683261541D21100C9EE6F /* Products */;
+					ProjectRef = 3A8683251541D21100C9EE6F /* MapView.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3A8681B61541D01C00C9EE6F /* TUM */,
@@ -208,12 +306,38 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		3A8683361541D21100C9EE6F /* libMapView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMapView.a;
+			remoteRef = 3A8683351541D21100C9EE6F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3A8683381541D21100C9EE6F /* MapViewTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = MapViewTests.octest;
+			remoteRef = 3A8683371541D21100C9EE6F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3A86833A1541D21100C9EE6F /* RM Unit Tests.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "RM Unit Tests.app";
+			remoteRef = 3A8683391541D21100C9EE6F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		3A8681B51541D01C00C9EE6F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3A8681C61541D01C00C9EE6F /* InfoPlist.strings in Resources */,
+				3A86837F1541E97900C9EE6F /* UNAMCU.mbtiles in Resources */,
+				3A8683821541F06E00C9EE6F /* bus.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +374,8 @@
 			files = (
 				3A8681C81541D01C00C9EE6F /* main.m in Sources */,
 				3A8681CC1541D01C00C9EE6F /* AppDelegate.m in Sources */,
+				3A8683801541EC1B00C9EE6F /* ApplicationConfig.m in Sources */,
+				3A8683491541D6DF00C9EE6F /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A8681E11541D01C00C9EE6F /* TUMTests.m in Sources */,
+				3A8683421541D52900C9EE6F /* ApplicationConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +395,11 @@
 			isa = PBXTargetDependency;
 			target = 3A8681B61541D01C00C9EE6F /* TUM */;
 			targetProxy = 3A8681D71541D01C00C9EE6F /* PBXContainerItemProxy */;
+		};
+		3A8683571541D94100C9EE6F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MapView;
+			targetProxy = 3A8683561541D94100C9EE6F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -339,10 +471,23 @@
 		3A8681E51541D01C00C9EE6F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TUM/TUM-Prefix.pch";
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = "../MapView/**";
 				INFOPLIST_FILE = "TUM/TUM-Info.plist";
+				INFOPLIST_PREPROCESS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = "";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
+				VALIDATE_PRODUCT = NO;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -350,10 +495,22 @@
 		3A8681E61541D01C00C9EE6F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TUM/TUM-Prefix.pch";
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = "../MapView/**";
 				INFOPLIST_FILE = "TUM/TUM-Info.plist";
+				INFOPLIST_PREPROCESS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
+				VALIDATE_PRODUCT = NO;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -411,6 +568,7 @@
 				3A8681E61541D01C00C9EE6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3A8681E71541D01C00C9EE6F /* Build configuration list for PBXNativeTarget "TUMTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +577,7 @@
 				3A8681E91541D01C00C9EE6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
