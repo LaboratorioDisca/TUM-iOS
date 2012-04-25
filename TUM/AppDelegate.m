@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MapViewController.h"
+#import "RemoteFetcher.h"
 
 @implementation AppDelegate
 
@@ -15,10 +16,27 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window setRootViewController:[[MapViewController alloc] init]];
+    [self.window setRootViewController:tabBarController];
+    
+    [RemoteFetcher loadRoutes];
+    
+    MapViewController *map = [[MapViewController alloc] init];
+    map.title = @"Mapa";
+    [map.tabBarItem setImage:[UIImage imageNamed:@"map.png"]];
+    
+    UIViewController *c1 = [[UIViewController alloc] init];
+    c1.title = @"Rutas";
+    [c1.tabBarItem setImage:[UIImage imageNamed:@"routes.png"]];
+    
+    UIViewController *home = [[UIViewController alloc] init];
+    home.title = @"Principal";
+    [home.tabBarItem setImage:[UIImage imageNamed:@"home.png"]];
+    
+    [tabBarController setViewControllers:[NSArray arrayWithObjects:home, map, c1, nil] animated:YES];
+
     [self.window makeKeyAndVisible];
     return YES;
 }

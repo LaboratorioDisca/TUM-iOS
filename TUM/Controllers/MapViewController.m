@@ -24,7 +24,7 @@
 - (id) init
 {
     if((self = [super init])) {
-        self.mapView = [[RMMapView alloc] initWithFrame:[ApplicationConfig mapBounds]];
+        self.mapView = [[RMMapView alloc] initWithFrame:[ApplicationConfig viewBounds]];
         [self.view addSubview:mapView];
     }
     return self;
@@ -34,10 +34,6 @@
 {
     [super viewDidLoad];
     [self mapLoad];
-    
-    UITabBar *menu = [[UITabBar alloc] initWithFrame:[ApplicationConfig menuBounds]];
-    
-    [self.view addSubview:menu];
 }
 
 
@@ -56,7 +52,7 @@
     
     RMMBTilesTileSource *source = [[RMMBTilesTileSource alloc] initWithTileSetURL:tilesURL];
     
-	RMMapContents *contents = [[RMMapContents alloc] initWithView:self.mapView 
+	mapView.contents = [[RMMapContents alloc] initWithView:self.mapView 
                                                        tilesource:source
                                                      centerLatLon:center
                                                         zoomLevel:kZOOM

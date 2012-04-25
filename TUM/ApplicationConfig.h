@@ -15,7 +15,5 @@
 + (CGPoint) coordinates;
 
 + (CGRect) viewBounds;
-+ (CGRect) mapBounds;
-+ (CGRect) menuBounds;
 
 @end

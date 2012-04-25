@@ -20,16 +20,5 @@
     return CGPointMake(19.322675, -99.192080);
 }
 
-+ (CGRect) mapBounds
-{
-    CGRect view=[self viewBounds];
-    return CGRectMake(view.origin.x, view.origin.y, view.size.width, view.size.height-kMenuHeight);
-}
-
-+ (CGRect) menuBounds
-{
-    CGRect view=[self viewBounds];
-    return CGRectMake(view.origin.x, view.size.height, view.size.width, kMenuHeight);
-}
 
 @end
