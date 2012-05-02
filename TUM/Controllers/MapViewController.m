@@ -10,7 +10,9 @@
 #import "RMMBTilesTileSource.h"
 #import "RMMarker.h"
 #import "RMMarkerManager.h"
-
+#import "Routes.h"
+#import "RMPath.h"
+#import "Route.h"
 
 @interface MapViewController ()
 
@@ -34,8 +36,28 @@
 {
     [super viewDidLoad];
     [self mapLoad];
+    [self routesLoad];
 }
 
+
+- (void) routesLoad
+{
+    NSDictionary *dictionary = [Routes collection];
+    
+    
+    for (NSNumber *index in [dictionary keyEnumerator]) {
+        RMPath *path = [[RMPath alloc] initForMap:self.mapView];
+        Route *route = [dictionary objectForKey:index];
+        [path setLineColor:nil];
+        [path setFillColor:nil];
+        [path setLineWidth:1];
+        
+        
+        //RMAnnotation *anotation = [RMAnnotation annotationWithMapView:self.mapView coordinate:nil andTitle:@""];
+        //[anotation setLayer:path];
+    }
+    
+}
 
 /*
  *  Finishes the loading of a map from the given SQLbased tileset source

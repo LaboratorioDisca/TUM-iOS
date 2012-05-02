@@ -10,5 +10,7 @@
 
 @interface Routes : NSObject
 
-+ (void) setCollection:(NSDictionary*)collection_;
++ (void) setCollection:(NSArray*)collection_;
++ (NSDictionary*) collection;
+
 @end

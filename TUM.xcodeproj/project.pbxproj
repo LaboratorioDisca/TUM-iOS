@@ -53,6 +53,7 @@
 		3A0ECF2B1548BE6000919614 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0ECF2A1548BE6000919614 /* MobileCoreServices.framework */; };
 		3A0ECF2D1548BE7000919614 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0ECF2C1548BE7000919614 /* libz.dylib */; };
 		3A0ECF301548BF8800919614 /* Routes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0ECF2F1548BF8800919614 /* Routes.m */; };
+		3A40E75D1551D0B9009A0A68 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A40E75C1551D0B9009A0A68 /* Route.m */; };
 		3A8681BC1541D01C00C9EE6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8681BB1541D01C00C9EE6F /* UIKit.framework */; };
 		3A8681BE1541D01C00C9EE6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8681BD1541D01C00C9EE6F /* Foundation.framework */; };
 		3A8681C01541D01C00C9EE6F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8681BF1541D01C00C9EE6F /* CoreGraphics.framework */; };
@@ -197,6 +198,8 @@
 		3A0ECF2C1548BE7000919614 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		3A0ECF2E1548BF8800919614 /* Routes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Routes.h; sourceTree = "<group>"; };
 		3A0ECF2F1548BF8800919614 /* Routes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Routes.m; sourceTree = "<group>"; };
+		3A40E75B1551D0B9009A0A68 /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
+		3A40E75C1551D0B9009A0A68 /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
 		3A8681B71541D01C00C9EE6F /* TUM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TUM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8681BB1541D01C00C9EE6F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3A8681BD1541D01C00C9EE6F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -266,6 +269,8 @@
 			children = (
 				3A0ECF2E1548BF8800919614 /* Routes.h */,
 				3A0ECF2F1548BF8800919614 /* Routes.m */,
+				3A40E75B1551D0B9009A0A68 /* Route.h */,
+				3A40E75C1551D0B9009A0A68 /* Route.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -675,6 +680,7 @@
 				3A0ECF111548BB1100919614 /* ASIS3Request.m in Sources */,
 				3A0ECF121548BB1100919614 /* ASIS3ServiceRequest.m in Sources */,
 				3A0ECF301548BF8800919614 /* Routes.m in Sources */,
+				3A40E75D1551D0B9009A0A68 /* Route.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

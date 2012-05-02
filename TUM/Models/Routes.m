@@ -7,15 +7,29 @@
 //
 
 #import "Routes.h"
+#import "Route.h"
 static NSDictionary* collection;
 
 @implementation Routes
 
-
-+ (void) setCollection:(NSDictionary *)collection_
++ (void) setCollection:(NSArray *)collection_
 {
-    NSLog([collection_ description]);
-    collection = collection_;
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    for (NSDictionary *routeData in dictionary) {
+        Route * route = [[Route alloc] initWithName:[routeData objectForKey:@"name"] 
+                                   withLeftTerminal:[routeData objectForKey:@"leftTerminal"] 
+                                  withRightTerminal:[routeData objectForKey:@"rightTerminal"] 
+                                             withId:[routeData objectForKey:@"id"]  
+                                          withColor:[[routeData objectForKey:@"color"] intValue] 
+                                    withCoordinates:[routeData objectForKey:@"paths"]];
+        [dictionary setObject:[routeData objectForKey:@"id"] forKey:route];
+    }
+    collection = dictionary;
+}
+
++ (NSDictionary*) collection
+{
+    return collection;
 }
 
 
