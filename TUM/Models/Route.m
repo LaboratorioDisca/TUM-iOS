@@ -11,14 +11,14 @@
 @implementation Route
 @synthesize name, color, identifier, leftTerminal, rightTerminal, coordinates;
 
-- (id) initWithName:(NSString *)name_ withLeftTerminal:(NSString *)leftTerminal_ withRightTerminal:(NSString *)rightTerminal_ withId:(NSNumber *)identifier_ withColor:(int)color_ withCoordinates:(NSDictionary *)coordinates_ {
+- (id) initWithName:(NSString *)name_ withLeftTerminal:(NSString *)leftTerminal_ withRightTerminal:(NSString *)rightTerminal_ withId:(NSNumber *)identifier_ withColor:(NSString*)color_ withCoordinates:(NSArray *)coordinates_ {
     if ((self = [super init])) {
         self.name = name_;
         self.leftTerminal = leftTerminal_;
         self.rightTerminal = rightTerminal_;
         self.identifier = identifier_;
         self.coordinates = coordinates_;
-        self.color = color_;
+        self.color = [[NSString stringWithString:@"0x"] stringByAppendingString:[color_ substringFromIndex:1]];
     }
     
     return self;

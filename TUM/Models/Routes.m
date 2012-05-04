@@ -8,29 +8,44 @@
 
 #import "Routes.h"
 #import "Route.h"
-static NSDictionary* collection;
+static Routes *singleton;
 
 @implementation Routes
+@synthesize collection;
 
-+ (void) setCollection:(NSArray *)collection_
++ (void) loadWithRoutesCollection:(NSArray *)newCollection
 {
+    Routes *routes = [[Routes alloc] initWithRoutesCollection:newCollection];
+    singleton = routes;
+}
+
++ (Routes*) currentCollection 
+{
+    return singleton;
+}
+
+- (id) initWithRoutesCollection:(NSArray *)newCollection
+{
+    if ((self = [self init])) {
+        [self applyCollection:newCollection];
+    }
+    return self;
+}
+
+- (void) applyCollection:(NSArray*)collection_ {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    for (NSDictionary *routeData in dictionary) {
+    for (NSDictionary *routeData in collection_) {
         Route * route = [[Route alloc] initWithName:[routeData objectForKey:@"name"] 
                                    withLeftTerminal:[routeData objectForKey:@"leftTerminal"] 
                                   withRightTerminal:[routeData objectForKey:@"rightTerminal"] 
                                              withId:[routeData objectForKey:@"id"]  
-                                          withColor:[[routeData objectForKey:@"color"] intValue] 
-                                    withCoordinates:[routeData objectForKey:@"paths"]];
-        [dictionary setObject:[routeData objectForKey:@"id"] forKey:route];
+                                          withColor:[routeData objectForKey:@"color"] 
+                                    withCoordinates:[[routeData objectForKey:@"paths"] objectAtIndex:0]];
+        [dictionary setObject:route forKey:[routeData objectForKey:@"id"]];
     }
-    collection = dictionary;
+    [self setCollection:dictionary];
 }
 
-+ (NSDictionary*) collection
-{
-    return collection;
-}
 
 
 @end

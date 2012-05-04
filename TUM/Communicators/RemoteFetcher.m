@@ -50,7 +50,7 @@
     [request setCompletionBlock:^{
         // Use when fetching text data
         if(resource==@"routes") {
-            [Routes setCollection:[[request responseString] JSONValue]];
+            [Routes loadWithRoutesCollection:[[request responseString] JSONValue]];
         }
     }];
     [request setFailedBlock:^{

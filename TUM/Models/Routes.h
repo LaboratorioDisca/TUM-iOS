@@ -8,9 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Routes : NSObject
+@interface Routes : NSObject {
+    NSDictionary *collection;
+}
 
-+ (void) setCollection:(NSArray*)collection_;
-+ (NSDictionary*) collection;
+@property (nonatomic, strong) NSDictionary *collection;
+
++ (void) loadWithRoutesCollection:(NSArray*)collection;
++ (Routes*) currentCollection;
+
+- (id) initWithRoutesCollection:(NSArray*)collection;
 
 @end

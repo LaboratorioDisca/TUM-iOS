@@ -13,22 +13,22 @@
     NSString *leftTerminal;
     NSString *rightTerminal;
     NSNumber *identifier;
-    NSDictionary *coordinates;
-    int color;
+    NSArray *coordinates;
+    NSString *color;
 }
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *leftTerminal;
 @property (nonatomic, strong) NSString *rightTerminal;
 @property (nonatomic, strong) NSNumber *identifier;
-@property (nonatomic, strong) NSDictionary* coordinates;
-@property int color;
+@property (nonatomic, strong) NSArray* coordinates;
+@property NSString* color;
 
 - (id) initWithName:(NSString*)name 
    withLeftTerminal:(NSString*)leftTerminal 
   withRightTerminal:(NSString*)rightTerminal 
              withId:(NSNumber*)identifier 
-          withColor:(int)color 
-    withCoordinates:(NSDictionary*)coordinates;
+          withColor:(NSString*)color 
+    withCoordinates:(NSArray*)coordinates;
 
 @end

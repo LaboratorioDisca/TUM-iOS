@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "RMMapView.h"
 #import "ApplicationConfig.h"
-#import "RMMapContents.h"
-#import "RMTileMapServiceSource.h"
+#import "RMMapViewDelegate.h"
+#import "UIColor-Expanded.h"
 
-@interface MapViewController : UIViewController
+#define zeroCoordComponent -1.0f
+
+@interface MapViewController : UIViewController<RMMapViewDelegate>
 
 @property (strong, nonatomic) RMMapView *mapView;
 @end

@@ -54,6 +54,7 @@
 		3A0ECF2D1548BE7000919614 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0ECF2C1548BE7000919614 /* libz.dylib */; };
 		3A0ECF301548BF8800919614 /* Routes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0ECF2F1548BF8800919614 /* Routes.m */; };
 		3A40E75D1551D0B9009A0A68 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A40E75C1551D0B9009A0A68 /* Route.m */; };
+		3A73E5D015546C8000279135 /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A73E5CF15546C8000279135 /* UIColor-Expanded.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3A8681BC1541D01C00C9EE6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8681BB1541D01C00C9EE6F /* UIKit.framework */; };
 		3A8681BE1541D01C00C9EE6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8681BD1541D01C00C9EE6F /* Foundation.framework */; };
 		3A8681C01541D01C00C9EE6F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8681BF1541D01C00C9EE6F /* CoreGraphics.framework */; };
@@ -71,6 +72,7 @@
 		3A86837F1541E97900C9EE6F /* UNAMCU.mbtiles in Resources */ = {isa = PBXBuildFile; fileRef = 3A86837E1541E97900C9EE6F /* UNAMCU.mbtiles */; };
 		3A8683801541EC1B00C9EE6F /* ApplicationConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8683411541D52900C9EE6F /* ApplicationConfig.m */; };
 		3A8683821541F06E00C9EE6F /* bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A8683811541F06E00C9EE6F /* bus.png */; };
+		3ADFF7B615544F8C003BACB6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADFF7B515544F8C003BACB6 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,13 +89,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 17F31EFA1331050A00122B16;
 			remoteInfo = MapView;
-		};
-		3A8683371541D21100C9EE6F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3A8683251541D21100C9EE6F /* MapView.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 17157D87133BBC8300E28941;
-			remoteInfo = MapViewTests;
 		};
 		3A8683391541D21100C9EE6F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -200,6 +195,8 @@
 		3A0ECF2F1548BF8800919614 /* Routes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Routes.m; sourceTree = "<group>"; };
 		3A40E75B1551D0B9009A0A68 /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
 		3A40E75C1551D0B9009A0A68 /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
+		3A73E5CE15546C8000279135 /* UIColor-Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-Expanded.h"; sourceTree = "<group>"; };
+		3A73E5CF15546C8000279135 /* UIColor-Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-Expanded.m"; sourceTree = "<group>"; };
 		3A8681B71541D01C00C9EE6F /* TUM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TUM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8681BB1541D01C00C9EE6F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3A8681BD1541D01C00C9EE6F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -221,6 +218,7 @@
 		3A86835A1541DC2800C9EE6F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		3A86837E1541E97900C9EE6F /* UNAMCU.mbtiles */ = {isa = PBXFileReference; lastKnownFileType = file; path = UNAMCU.mbtiles; sourceTree = "<group>"; };
 		3A8683811541F06E00C9EE6F /* bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus.png; sourceTree = "<group>"; };
+		3ADFF7B515544F8C003BACB6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +226,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ADFF7B615544F8C003BACB6 /* CoreLocation.framework in Frameworks */,
 				3A0ECF2D1548BE7000919614 /* libz.dylib in Frameworks */,
 				3A0ECF2B1548BE6000919614 /* MobileCoreServices.framework in Frameworks */,
 				3A0ECF291548BE5600919614 /* SystemConfiguration.framework in Frameworks */,
@@ -287,6 +286,7 @@
 		3A0ECE831548B62F00919614 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				3A73E5CD15546C8000279135 /* UIColor+Expanded */,
 				3A0ECEAA1548BB1100919614 /* ASIHTTPRequest */,
 				3A0ECE841548B62F00919614 /* SBJson */,
 			);
@@ -397,9 +397,19 @@
 			path = S3;
 			sourceTree = "<group>";
 		};
+		3A73E5CD15546C8000279135 /* UIColor+Expanded */ = {
+			isa = PBXGroup;
+			children = (
+				3A73E5CE15546C8000279135 /* UIColor-Expanded.h */,
+				3A73E5CF15546C8000279135 /* UIColor-Expanded.m */,
+			);
+			path = "UIColor+Expanded";
+			sourceTree = "<group>";
+		};
 		3A8681AC1541D01C00C9EE6F = {
 			isa = PBXGroup;
 			children = (
+				3ADFF7B515544F8C003BACB6 /* CoreLocation.framework */,
 				3A0ECF2C1548BE7000919614 /* libz.dylib */,
 				3A0ECF2A1548BE6000919614 /* MobileCoreServices.framework */,
 				3A0ECF281548BE5600919614 /* SystemConfiguration.framework */,
@@ -467,7 +477,6 @@
 			isa = PBXGroup;
 			children = (
 				3A8683361541D21100C9EE6F /* libMapView.a */,
-				3A8683381541D21100C9EE6F /* MapViewTests.octest */,
 				3A86833A1541D21100C9EE6F /* RM Unit Tests.app */,
 			);
 			name = Products;
@@ -579,13 +588,6 @@
 			remoteRef = 3A8683351541D21100C9EE6F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		3A8683381541D21100C9EE6F /* MapViewTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = MapViewTests.octest;
-			remoteRef = 3A8683371541D21100C9EE6F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		3A86833A1541D21100C9EE6F /* RM Unit Tests.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
@@ -681,6 +683,7 @@
 				3A0ECF121548BB1100919614 /* ASIS3ServiceRequest.m in Sources */,
 				3A0ECF301548BF8800919614 /* Routes.m in Sources */,
 				3A40E75D1551D0B9009A0A68 /* Route.m in Sources */,
+				3A73E5D015546C8000279135 /* UIColor-Expanded.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
