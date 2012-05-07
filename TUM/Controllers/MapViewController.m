@@ -17,8 +17,10 @@
 #import "RMMapTiledLayerView.h"
 
 
-@interface MapViewController ()
-
+@interface MapViewController () {
+    NSMutableArray *cachedPaths;
+}
+- (void) mapCustomization;
 @end
 
 
@@ -29,6 +31,8 @@
 - (id) init
 {
     if((self = [super init])) {
+        cachedPaths = [NSMutableArray array];
+        
         NSURL *tilesURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"UNAMCU" 
                                                                                  ofType:@"mbtiles"]];
         RMMBTilesSource *offlineSource = [[RMMBTilesSource alloc] initWithTileSetURL:tilesURL];
@@ -40,15 +44,8 @@
         self.mapView = [[RMMapView alloc] initWithFrame:self.view.bounds 
                                           andTilesource:offlineSource 
                                        centerCoordinate:center zoomLevel:16 maxZoomLevel:20 minZoomLevel:9 backgroundImage:nil];
-        
-        mapView.backgroundColor = [UIColor darkGrayColor];
-        mapView.decelerationMode = RMMapDecelerationFast;
-        mapView.boundingMask = RMMapMinHeightBound;
-        mapView.adjustTilesForRetinaDisplay = YES;
-        
-        [self.view addSubview:mapView];
         [self.mapView setDelegate:self];
-        [self.mapView setCenterCoordinate:center animated:YES];
+        [self.view addSubview:mapView];
     }
     return self;
 }
@@ -56,11 +53,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self mapLoad];    
+    [self mapCustomization];
 }
 
 
-
+/*
+ * Loads the given routes into the map
+ */
 - (void) routesLoad
 {
     NSDictionary *routes = [[Routes currentCollection] collection];
@@ -71,7 +70,7 @@
         [path setFillColor:[UIColor colorWithHexString:route.color]];
         [path setLineWidth:2];
             
-        
+        // store first coordinates for annotation positioning
         double latF = zeroCoordComponent;
         double lonF = zeroCoordComponent;
         
@@ -92,50 +91,37 @@
             
             [path addLineToCoordinate:CLLocationCoordinate2DMake(lat, lon)];
         }
-        
         [path closePath];
-         RMAnnotation *annotation = [[RMAnnotation alloc]initWithMapView:self.mapView 
+
+        RMAnnotation *annotation = [[RMAnnotation alloc]initWithMapView:self.mapView 
                                                              coordinate:CLLocationCoordinate2DMake(latF, lonF)
                                                                andTitle:@""];
-        [annotation setLayer:path];
+
+        annotation.anchorPoint = CGPointMake(0.5, 1.0);
+        [cachedPaths addObject:path];
+        [annotation setUserInfo:[NSNumber numberWithInt:[cachedPaths indexOfObject:path]]];
         
-        [self.mapView addAnnotation:annotation];
+        [self.mapView addAnnotation:annotation];        
     }
     
 
 }
 
 - (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation {
-    [annotation setPosition:CGPointMake(mapView.projectedOrigin.x, mapView.projectedOrigin.y)];
-    return [annotation layer];
+    [annotation setLayer:[cachedPaths objectAtIndex:[[annotation userInfo] intValue]]];
+    return annotation.layer;
 }
 
 /*
  *  Finishes the loading of a map from the given SQLbased tileset source
  */
-- (void) mapLoad
+- (void) mapCustomization
 {
-
+    mapView.backgroundColor = [UIColor darkGrayColor];
+    mapView.decelerationMode = RMMapDecelerationFast;
+    mapView.boundingMask = RMMapMinHeightBound;
+    mapView.adjustTilesForRetinaDisplay = YES;
     
-	/*mapView.contents = [[RMMapContents alloc] initWithView:self.mapView 
-                                                       tilesource:source
-                                                     centerLatLon:center
-                                                        zoomLevel:kZOOM
-                                                     maxZoomLevel:[source maxZoom]
-                                                     minZoomLevel:[source minZoom]
-                                                  backgroundImage:nil screenScale:0];
-    */
-    /*mapView.enableRotate = NO;
-    mapView.deceleration = NO;
-    
-    mapView.backgroundColor = [UIColor blackColor];
-    
-    mapView.contents.zoom = kZOOM;
-    
-    UIImage *bus = [UIImage imageNamed:@"bus.png"];
-    RMMarker *marker = [[RMMarker alloc] initWithUIImage:bus];
-    //[mapView.contents.markerManager addMarker:marker AtLatLong:center];
-*/
 }
 
 - (void)viewDidUnload

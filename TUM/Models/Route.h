@@ -15,6 +15,8 @@
     NSNumber *identifier;
     NSArray *coordinates;
     NSString *color;
+    
+    BOOL visibleOnMap;
 }
 
 @property (nonatomic, strong) NSString *name;
@@ -22,7 +24,8 @@
 @property (nonatomic, strong) NSString *rightTerminal;
 @property (nonatomic, strong) NSNumber *identifier;
 @property (nonatomic, strong) NSArray* coordinates;
-@property NSString* color;
+@property (nonatomic, strong) NSString* color;
+@property BOOL visibleOnMap;
 
 - (id) initWithName:(NSString*)name 
    withLeftTerminal:(NSString*)leftTerminal 
@@ -30,5 +33,7 @@
              withId:(NSNumber*)identifier 
           withColor:(NSString*)color 
     withCoordinates:(NSArray*)coordinates;
+
+- (NSString*) directions;
 
 @end

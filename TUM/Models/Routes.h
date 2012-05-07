@@ -10,9 +10,11 @@
 
 @interface Routes : NSObject {
     NSDictionary *collection;
+    NSArray *sortedCollection;
 }
 
 @property (nonatomic, strong) NSDictionary *collection;
+@property (nonatomic, strong) NSArray *sortedCollection;
 
 + (void) loadWithRoutesCollection:(NSArray*)collection;
 + (Routes*) currentCollection;

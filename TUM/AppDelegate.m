@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 #import "MapViewController.h"
+#import "RoutesViewController.h"
 #import "RemoteFetcher.h"
+#import "FrontViewController.h"
 
 @implementation AppDelegate
 
@@ -27,11 +29,11 @@
     map.title = @"Mapa";
     [map.tabBarItem setImage:[UIImage imageNamed:@"map.png"]];
     
-    UIViewController *c1 = [[UIViewController alloc] init];
+    RoutesViewController *c1 = [[RoutesViewController alloc] initWithStyle:UITableViewStylePlain];
     c1.title = @"Rutas";
     [c1.tabBarItem setImage:[UIImage imageNamed:@"routes.png"]];
     
-    UIViewController *home = [[UIViewController alloc] init];
+    UIViewController *home = [[FrontViewController alloc] init];
     home.title = @"Principal";
     [home.tabBarItem setImage:[UIImage imageNamed:@"home.png"]];
     

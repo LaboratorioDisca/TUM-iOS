@@ -10,8 +10,16 @@
 #import "Route.h"
 static Routes *singleton;
 
+@interface Routes() {
+    
+}
+
+- (void) applyCollection:(NSArray*)collection_;
+
+@end
+
 @implementation Routes
-@synthesize collection;
+@synthesize collection, sortedCollection;
 
 + (void) loadWithRoutesCollection:(NSArray *)newCollection
 {
@@ -28,6 +36,12 @@ static Routes *singleton;
 {
     if ((self = [self init])) {
         [self applyCollection:newCollection];
+        self.sortedCollection = [[[self collection] allValues] sortedArrayUsingComparator:^(id a, id b) {
+            NSString *first = [[(Route*)a name] stringByReplacingOccurrencesOfString:@"Ruta " withString:@""];
+            NSString *second = [[(Route*)b name] stringByReplacingOccurrencesOfString:@"Ruta " withString:@""];
+            
+            return [[NSNumber numberWithInteger:[first integerValue]] compare:[NSNumber numberWithInteger:[second integerValue]]];
+        }];
     }
     return self;
 }
