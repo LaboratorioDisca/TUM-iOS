@@ -15,12 +15,17 @@
 #import "ApplicationConfig.h"
 #import "RMMBTilesSource.h"
 #import "RMMapTiledLayerView.h"
-
+#import "LocalizeMeUIButton.h"
 
 @interface MapViewController () {
     NSMutableArray *cachedPaths;
+    NSMutableDictionary *cachedAnnotations;
+    LocalizeMeUIButton *localizeMeButton;
+    CLLocationManager *locationFetcher;
 }
 - (void) mapCustomization;
+- (void) displayAnnotation:(RMAnnotation*)annotation forRoute:(Route*)route;
+- (void) placeMapOnUpdatedLocation;
 @end
 
 
@@ -31,7 +36,12 @@
 - (id) init
 {
     if((self = [super init])) {
+        locationFetcher = [[CLLocationManager alloc] init];
+        [locationFetcher setDelegate:self];
+        [locationFetcher setDesiredAccuracy:kCLLocationAccuracyBest];
+        
         cachedPaths = [NSMutableArray array];
+        cachedAnnotations = [NSMutableDictionary dictionary];
         
         NSURL *tilesURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"UNAMCU" 
                                                                                  ofType:@"mbtiles"]];
@@ -46,8 +56,27 @@
                                        centerCoordinate:center zoomLevel:16 maxZoomLevel:20 minZoomLevel:9 backgroundImage:nil];
         [self.mapView setDelegate:self];
         [self.view addSubview:mapView];
+        
+        localizeMeButton = [[LocalizeMeUIButton alloc] init];
+        [self.view addSubview:localizeMeButton];
+        
+        UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(placeMapOnUpdatedLocation)];
+        [localizeMeButton addGestureRecognizer:tapGestureRecognizer];
     }
     return self;
+}
+
+- (void)placeMapOnUpdatedLocation
+{
+    [localizeMeButton blink];
+    [locationFetcher startUpdatingLocation];
+}
+
+- (void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    
+    [self.mapView setCenterCoordinate:[newLocation coordinate] animated:YES];
+    [locationFetcher stopUpdatingLocation];
 }
 
 - (void)viewDidLoad
@@ -56,6 +85,20 @@
     [self mapCustomization];
 }
 
+- (void) displayAnnotation:(RMAnnotation *)annotation forRoute:(Route *)route
+{
+    BOOL annotationIsOnMap = [[self.mapView annotations] containsObject:annotation];
+    
+    if ([route visibleOnMap]) {
+        if (!annotationIsOnMap) {
+            [self.mapView addAnnotation:annotation];
+        }
+    } else {
+        if (annotationIsOnMap) {
+            [self.mapView removeAnnotation:annotation];
+        }
+    }
+}
 
 /*
  * Loads the given routes into the map
@@ -64,44 +107,54 @@
 {
     NSDictionary *routes = [[Routes currentCollection] collection];
     for (NSNumber *index in [routes keyEnumerator]) {
-        RMPath *path = [[RMPath alloc] initWithView:self.mapView];
         Route *route = [routes objectForKey:index];
-        [path setLineColor:[UIColor colorWithHexString:route.color]];
-        [path setFillColor:[UIColor colorWithHexString:route.color]];
-        [path setLineWidth:2];
-            
-        // store first coordinates for annotation positioning
-        double latF = zeroCoordComponent;
-        double lonF = zeroCoordComponent;
         
-        double lat = zeroCoordComponent;
-        double lon = zeroCoordComponent;
-        for (NSDictionary *coordinates in [route coordinates]) {
-            if (lat != zeroCoordComponent && lon != zeroCoordComponent) {
-                [path moveToCoordinate:CLLocationCoordinate2DMake(lat, lon)];
-            }
+        if ([cachedAnnotations objectForKey:index] != nil) {
+            [self displayAnnotation:[cachedAnnotations objectForKey:index] forRoute:route];
+        } else {
+            RMPath *path = [[RMPath alloc] initWithView:self.mapView];
+            [path setLineColor:[UIColor colorWithHexString:route.color]];
+            [path setFillColor:[UIColor colorWithHexString:route.color]];
+            [path setLineWidth:3];
             
-            lat = [[coordinates objectForKey:@"lat"] doubleValue];
-            lon = [[coordinates objectForKey:@"lon"] doubleValue];
-
-            if (latF == zeroCoordComponent && lonF == zeroCoordComponent) {
-                latF = lat;
-                lonF = lon;
-            }
+            // store first coordinates for annotation positioning
+            double latF = zeroCoordComponent;
+            double lonF = zeroCoordComponent;
             
-            [path addLineToCoordinate:CLLocationCoordinate2DMake(lat, lon)];
+            double lat = zeroCoordComponent;
+            double lon = zeroCoordComponent;
+            for (NSDictionary *coordinates in [route coordinates]) {
+                if (lat != zeroCoordComponent && lon != zeroCoordComponent) {
+                    [path moveToCoordinate:CLLocationCoordinate2DMake(lat, lon)];
+                }
+                
+                lat = [[coordinates objectForKey:@"lat"] doubleValue];
+                lon = [[coordinates objectForKey:@"lon"] doubleValue];
+                
+                if (latF == zeroCoordComponent && lonF == zeroCoordComponent) {
+                    latF = lat;
+                    lonF = lon;
+                }
+                
+                [path addLineToCoordinate:CLLocationCoordinate2DMake(lat, lon)];
+            }
+            [path closePath];
+            
+            RMAnnotation *annotation = [[RMAnnotation alloc]initWithMapView:self.mapView 
+                                                                 coordinate:CLLocationCoordinate2DMake(latF, lonF)
+                                                                   andTitle:@""];
+            
+            annotation.anchorPoint = CGPointMake(10.5, 10.0);
+            [cachedPaths addObject:path];
+            [annotation setUserInfo:[NSNumber numberWithInt:[cachedPaths indexOfObject:path]]];
+            
+            
+            [self.mapView addAnnotation:annotation];
+            [cachedAnnotations setObject:annotation forKey:index];
+            [self displayAnnotation:annotation forRoute:route];
         }
-        [path closePath];
-
-        RMAnnotation *annotation = [[RMAnnotation alloc]initWithMapView:self.mapView 
-                                                             coordinate:CLLocationCoordinate2DMake(latF, lonF)
-                                                               andTitle:@""];
-
-        annotation.anchorPoint = CGPointMake(0.5, 1.0);
-        [cachedPaths addObject:path];
-        [annotation setUserInfo:[NSNumber numberWithInt:[cachedPaths indexOfObject:path]]];
         
-        [self.mapView addAnnotation:annotation];        
+
     }
     
 

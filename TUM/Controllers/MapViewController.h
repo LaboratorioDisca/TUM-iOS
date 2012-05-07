@@ -14,7 +14,7 @@
 
 #define zeroCoordComponent -1.0f
 
-@interface MapViewController : UIViewController<RMMapViewDelegate>
+@interface MapViewController : UIViewController<RMMapViewDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) RMMapView *mapView;
 @end

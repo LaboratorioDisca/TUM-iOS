@@ -30,7 +30,6 @@
     [routeLabel setBackgroundColor:[UIColor clearColor]];
     [routeLabel setShadowColor:[UIColor blackColor]];
     [routeLabel setShadowOffset:CGSizeMake(-1, 3)];
-    [self.contentView setBackgroundColor:[UIColor colorWithHexString:@"0x1C1C1C"]];
     [self.contentView addSubview:routeLabel];
     
     float leftMargin = 110;
@@ -54,7 +53,9 @@
     
     if ([route visibleOnMap]) {
         [routeLabel setTextColor:[UIColor whiteColor]];
+        [self.contentView setBackgroundColor:[UIColor colorWithHexString:@"0x333333"]];
     } else {
+        [self.contentView setBackgroundColor:[UIColor colorWithHexString:@"0x1C1C1C"]];
         [routeLabel setTextColor:[UIColor colorWithHexString:@"0x2E2E2E"]];
     }
 }

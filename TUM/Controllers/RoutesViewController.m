@@ -16,8 +16,6 @@
 }
 @property (nonatomic, retain) NSArray *cachedRoutes; 
 
-- (UITableViewCell*) retrieveCellWithIdentifier:(NSString*)identifier fromTableView:(UITableView*)tableView;
-
 @end
 
 @implementation RoutesViewController
