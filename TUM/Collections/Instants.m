@@ -43,7 +43,6 @@ static Instants *singleton;
 
 - (void) updateCollectionWithCollection:(NSArray *)collection_
 {
-
     for (NSDictionary *instantData in collection_) {
         NSNumber *vehicleId = [NSNumber numberWithInt:[[instantData objectForKey:@"vehicleId"] intValue]];
         
@@ -52,14 +51,7 @@ static Instants *singleton;
                                                withVehicleSpeed:[instantData objectForKey:@"speed"] 
                                                withMilliseconds:[[instantData objectForKey:@"createdAt"] doubleValue]];
         
-        Instant *previous = [self.collection objectForKey:vehicleId]; 
-        if (previous != NULL) {
-            if ([instant date] > [previous date]) {
-                [self.collection setObject:instant forKey:vehicleId];
-            }
-        } else {
-            [self.collection setObject:instant forKey:vehicleId];
-        }
+        [self.collection setObject:instant forKey:vehicleId];
 
     }
     [[self receiverDelegate] vehicleInstantsLoad:[self.collection allValues]];

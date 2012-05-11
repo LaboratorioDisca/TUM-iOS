@@ -20,6 +20,8 @@
 
 #import "RemoteFetcher.h"
 #import "Instant.h"
+#import "Vehicles.h"
+#import "Routes.h"
 
 @interface MapViewController () {
     NSMutableDictionary *cachedAnnotations;
@@ -31,7 +33,7 @@
 - (void) routesLoad;
 - (void) mapCustomization;
 - (void) displayAnnotation:(RMAnnotation*)annotation forRoute:(Route*)route;
-- (void) placeMapOnUpdatedLocation;
+- (void) reloadInstantsAndPlaceThemOnMap;
 @end
 
 
@@ -70,14 +72,14 @@
         localizeMeButton = [[LocalizeMeUIButton alloc] init];
         [self.view addSubview:localizeMeButton];
         
-        UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(placeMapOnUpdatedLocation)];
+        UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(reloadInstantsAndPlaceThemOnMap)];
         [localizeMeButton addGestureRecognizer:tapGestureRecognizer];
         
     }
     return self;
 }
 
-- (void)placeMapOnUpdatedLocation
+- (void) reloadInstantsAndPlaceThemOnMap
 {
     [localizeMeButton blink];
     [RemoteFetcher reloadInstants];
@@ -117,12 +119,15 @@
 - (void) routesLoad
 {
     NSDictionary *routes = [[Routes currentCollection] collection];
+    // index are the keys of the routes collection, the keys are id's on the corresponding backend database model
     for (NSNumber *index in [routes keyEnumerator]) {
         Route *route = [routes objectForKey:index];
+        // store the cached route under a namespace
+        NSString *cachedRouteId = [NSString stringWithFormat:@"Route-%d", index];
+        RMAnnotation *annotation = [cachedAnnotations objectForKey:cachedRouteId];
         
-        if ([cachedAnnotations objectForKey:index] != nil) {
-            [self displayAnnotation:[cachedAnnotations objectForKey:index] forRoute:route];
-        } else {
+        // Create an annotation if none is registered for the route with index id
+        if (annotation == nil) {
             RMPath *path = [[RMPath alloc] initWithView:self.mapView];
             [path setLineColor:[UIColor colorWithHexString:route.color]];
             [path setFillColor:[UIColor colorWithHexString:route.color]];
@@ -154,32 +159,45 @@
             }
             [path closePath];
             
-            RMAnnotation *annotation = [[RMAnnotation alloc]initWithMapView:self.mapView 
+            annotation = [[RMAnnotation alloc]initWithMapView:self.mapView 
                                                                  coordinate:CLLocationCoordinate2DMake(latF, lonF)
                                                                    andTitle:@""];
-            
             [annotation setUserInfo:path];
             [annotation setHasBoundingBox:YES];
             [annotation setBoundingBoxFromLocations:locations];
-            
-            [self.mapView addAnnotation:annotation];
-            [cachedAnnotations setObject:annotation forKey:index];
-            [self displayAnnotation:annotation forRoute:route];
+                        
+            [cachedAnnotations setObject:annotation forKey:cachedRouteId];
         }
         
-
+        [self displayAnnotation:annotation forRoute:route];
     }
 }
 
 - (void) vehicleInstantsLoad:(NSArray *)instants
 {
     for (Instant* instant in instants) {
-        RMAnnotation *annotation = [[RMAnnotation alloc]initWithMapView:self.mapView 
-                                                             coordinate:instant.coordinates
-                                                               andTitle:@""];
-        annotation.anchorPoint = CGPointMake(10, 10);
-        [annotation setUserInfo:[[RMMarker alloc] initWithUIImage:[UIImage imageNamed:@"bus.png"]]];
-        [self.mapView addAnnotation:annotation];
+        // vehicle retrieval
+        NSNumber *vehicleId = [Vehicles routeForVehicleId:instant.vehicleId];
+        // route lookup
+        Route *route = [Routes fetchRouteWithId:vehicleId];
+        // cache the vehicle id under a namespace
+        NSString *cachedVehicleId = [NSString stringWithFormat:@"Vehicle-%d", vehicleId];
+        RMAnnotation *annotation = [cachedAnnotations objectForKey:cachedVehicleId];
+        
+        if (annotation == nil) {
+            annotation = [[RMAnnotation alloc]initWithMapView:self.mapView 
+                                                   coordinate:instant.coordinates
+                                                     andTitle:@""];
+            annotation.anchorPoint = CGPointMake(10, 10);
+            RMMarker *marker = [[RMMarker alloc] initWithUIImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", route.simpleIdentifier]]];
+            [marker setAnchorPoint:CGPointMake(0.5, 1)];
+            [annotation setUserInfo:marker];
+            [cachedAnnotations setObject:annotation forKey:cachedVehicleId];
+        } else {
+            [annotation setCoordinate:instant.coordinates];
+        }
+        
+        [self displayAnnotation:annotation forRoute:route];
     }
 }
 
@@ -212,6 +230,7 @@
 {
     [self routesLoad];
     [locationFetcher startUpdatingLocation];
+    [self reloadInstantsAndPlaceThemOnMap];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

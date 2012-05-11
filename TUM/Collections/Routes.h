@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Route.h"
 
 @interface Routes : NSObject {
     NSDictionary *collection;
@@ -18,7 +19,7 @@
 
 + (void) loadWithRoutesCollection:(NSArray*)collection;
 + (Routes*) currentCollection;
-
++ (Route*) fetchRouteWithId:(NSNumber*)routeId;
 - (id) initWithRoutesCollection:(NSArray*)collection;
 
 @end

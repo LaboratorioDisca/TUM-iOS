@@ -23,8 +23,9 @@
 @property (nonatomic, strong) NSString *leftTerminal;
 @property (nonatomic, strong) NSString *rightTerminal;
 @property (nonatomic, strong) NSNumber *identifier;
-@property (nonatomic, strong) NSArray* coordinates;
-@property (nonatomic, strong) NSString* color;
+@property (nonatomic, strong) NSArray  *coordinates;
+@property (nonatomic, strong) NSString *color;
+@property (nonatomic, strong) NSString *simpleIdentifier;
 @property BOOL visibleOnMap;
 
 - (id) initWithName:(NSString*)name 

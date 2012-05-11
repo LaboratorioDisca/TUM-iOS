@@ -17,7 +17,7 @@
 @end
 
 @implementation Route
-@synthesize name, color, identifier, leftTerminal, rightTerminal, coordinates, visibleOnMap;
+@synthesize name, color, identifier, leftTerminal, rightTerminal, coordinates, visibleOnMap, simpleIdentifier;
 
 - (id) initWithName:(NSString *)name_ withLeftTerminal:(NSString *)leftTerminal_ withRightTerminal:(NSString *)rightTerminal_ withId:(NSNumber *)identifier_ withColor:(NSString*)color_ withCoordinates:(NSArray *)coordinates_ {
     if ((self = [super init])) {

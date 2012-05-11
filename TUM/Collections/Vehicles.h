@@ -9,13 +9,17 @@
 #import <Foundation/Foundation.h>
 
 @interface Vehicles : NSObject {
-    NSDictionary *collection;
+    NSDictionary *linesVehicles;
 }
 
-@property (nonatomic, strong) NSDictionary *collection;
+@property (nonatomic, strong) NSDictionary *linesVehicles;
+@property (nonatomic, strong) NSDictionary *vehicleLines;
 
 + (void) loadWithVehiclesCollection:(NSArray*)collection;
 + (NSArray*) vehiclesForLine:(NSNumber*)lineId;
++ (NSNumber*) routeForVehicleId:(NSNumber*)identifier;
+
++ (Vehicles*) all;
 
 - (id) initWithVehiclesCollection:(NSArray*)collection;
 

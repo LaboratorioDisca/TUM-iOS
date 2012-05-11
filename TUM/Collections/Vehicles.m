@@ -19,7 +19,7 @@ static Vehicles *singleton;
 @end
 
 @implementation Vehicles
-@synthesize collection;
+@synthesize linesVehicles, vehicleLines;
 
 + (void) loadWithVehiclesCollection:(NSArray *)newCollection
 {
@@ -28,7 +28,17 @@ static Vehicles *singleton;
 
 + (NSArray*) vehiclesForLine:(NSNumber *)lineId
 {
-    return [[singleton collection] objectForKey:lineId];
+    return [[singleton linesVehicles] objectForKey:lineId];
+}
+
++ (NSNumber*) routeForVehicleId:(NSNumber *)identifier
+{
+    return [[singleton vehicleLines] objectForKey:identifier];
+}
+
++ (Vehicles*) all
+{
+    return singleton;
 }
 
 - (id) initWithVehiclesCollection:(NSArray *)collection_
@@ -41,23 +51,32 @@ static Vehicles *singleton;
 }
 
 - (void) applyCollection:(NSArray*)collection_ {
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    NSMutableDictionary *dictionaryForLinesVehicles = [NSMutableDictionary dictionary];
+    NSMutableDictionary *dictionaryForVehicleLine = [NSMutableDictionary dictionary];
+
     for (NSDictionary *vehicleData in collection_) {
         NSNumber* lineId = [NSNumber numberWithInt:[[vehicleData objectForKey:@"lineId"] intValue]];
-
-        Vehicle * vehicle = [[Vehicle alloc] initWithUniqueIdentifier:[vehicleData objectForKey:@"identifier"] 
-                                                       withIdentifier:[NSNumber numberWithInt:[[vehicleData objectForKey:@"id"] intValue]]  
+        NSNumber *identifier = [NSNumber numberWithInt:[[vehicleData objectForKey:@"id"] intValue]];
+        
+        Vehicle * vehicle = [[Vehicle alloc] initWithUniqueIdentifier:[vehicleData objectForKey:@"identifier"]
+                                                       withIdentifier:identifier  
                                                            withLineId:lineId];
         
-        if ([dictionary objectForKey:lineId] == nil) {
-            [dictionary setObject:[NSMutableArray array] forKey:lineId];
+        // *** For quick lookup:
+        // Insert in lines-vehicles dictionary
+        if ([dictionaryForLinesVehicles objectForKey:lineId] == nil) {
+            [dictionaryForLinesVehicles setObject:[NSMutableArray array] forKey:lineId];
         } 
         
-        NSMutableArray * vehicles = [dictionary objectForKey:lineId];
-        [vehicles addObject:vehicle];
+        [[dictionaryForLinesVehicles objectForKey:lineId] addObject:vehicle];
+        
+        // Insert in vehicle-line dictionary
+        [dictionaryForVehicleLine setObject:lineId forKey:identifier];
+
     }
 
-    [self setCollection:dictionary];
+    [self setLinesVehicles:dictionaryForLinesVehicles];
+    [self setVehicleLines:dictionaryForVehicleLine];
 }
 
 

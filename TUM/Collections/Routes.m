@@ -32,6 +32,11 @@ static Routes *singleton;
     return singleton;
 }
 
++ (Route*) fetchRouteWithId:(NSNumber *)routeId
+{
+    return [[singleton collection] objectForKey:routeId];
+}
+
 - (id) initWithRoutesCollection:(NSArray *)newCollection
 {
     if ((self = [self init])) {
@@ -55,6 +60,7 @@ static Routes *singleton;
                                              withId:[routeData objectForKey:@"id"]  
                                           withColor:[routeData objectForKey:@"color"] 
                                     withCoordinates:[[routeData objectForKey:@"paths"] objectAtIndex:0]];
+        [route setSimpleIdentifier:[routeData objectForKey:@"simpleIdentifier"]];
         [dictionary setObject:route forKey:[routeData objectForKey:@"id"]];
     }
     [self setCollection:dictionary];
