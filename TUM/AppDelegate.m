@@ -11,6 +11,7 @@
 #import "RoutesViewController.h"
 #import "RemoteFetcher.h"
 #import "FrontViewController.h"
+#import "Instants.h"
 
 @implementation AppDelegate
 
@@ -24,11 +25,13 @@
     [self.window setRootViewController:tabBarController];
     
     [RemoteFetcher loadRoutes];
-    
+    [RemoteFetcher loadVehicles];
+
     MapViewController *map = [[MapViewController alloc] init];
     map.title = @"Mapa";
     [map.tabBarItem setImage:[UIImage imageNamed:@"map.png"]];
-    
+    [Instants initializeWithDelegate:map];
+
     RoutesViewController *c1 = [[RoutesViewController alloc] initWithStyle:UITableViewStylePlain];
     c1.title = @"Rutas";
     [c1.tabBarItem setImage:[UIImage imageNamed:@"routes.png"]];

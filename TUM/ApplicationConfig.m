@@ -15,10 +15,9 @@
     return [[UIScreen mainScreen] bounds];
 }
 
-+ (CGPoint) coordinates
++ (CLLocationCoordinate2D) coordinates
 {
-    return CGPointMake(19.322675, -99.192080);
+    return CLLocationCoordinate2DMake(19.322675, -99.192080);
 }
-
 
 @end

@@ -7,12 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
+
 #define backendURL      @"http://132.248.51.251"
 #define kZOOM           16
 #define kMenuHeight     100
+
 @interface ApplicationConfig : NSObject 
 
-+ (CGPoint) coordinates;
++ (CLLocationCoordinate2D) coordinates;
 
 + (CGRect) viewBounds;
 

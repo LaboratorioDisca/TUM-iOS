@@ -16,13 +16,19 @@
 #import "RMMBTilesSource.h"
 #import "RMMapTiledLayerView.h"
 #import "LocalizeMeUIButton.h"
+#import <AVFoundation/AVFoundation.h>
+
+#import "RemoteFetcher.h"
+#import "Instant.h"
 
 @interface MapViewController () {
-    NSMutableArray *cachedPaths;
     NSMutableDictionary *cachedAnnotations;
     LocalizeMeUIButton *localizeMeButton;
     CLLocationManager *locationFetcher;
+    AVAudioPlayer *player;
 }
+
+- (void) routesLoad;
 - (void) mapCustomization;
 - (void) displayAnnotation:(RMAnnotation*)annotation forRoute:(Route*)route;
 - (void) placeMapOnUpdatedLocation;
@@ -36,24 +42,28 @@
 - (id) init
 {
     if((self = [super init])) {
+        
         locationFetcher = [[CLLocationManager alloc] init];
         [locationFetcher setDelegate:self];
         [locationFetcher setDesiredAccuracy:kCLLocationAccuracyBest];
         
-        cachedPaths = [NSMutableArray array];
+        NSError * err;
+        NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"pull.caf"];
+        player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:path] 
+                                                         error:&err];
+        [player prepareToPlay];
+        
         cachedAnnotations = [NSMutableDictionary dictionary];
         
         NSURL *tilesURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"UNAMCU" 
                                                                                  ofType:@"mbtiles"]];
         RMMBTilesSource *offlineSource = [[RMMBTilesSource alloc] initWithTileSetURL:tilesURL];
-
-        CLLocationCoordinate2D center;
-        center.latitude = [ApplicationConfig coordinates].x;
-        center.longitude = [ApplicationConfig coordinates].y;
         
         self.mapView = [[RMMapView alloc] initWithFrame:self.view.bounds 
                                           andTilesource:offlineSource 
-                                       centerCoordinate:center zoomLevel:16 maxZoomLevel:20 minZoomLevel:9 backgroundImage:nil];
+                                       centerCoordinate:[ApplicationConfig coordinates] zoomLevel:16 maxZoomLevel:20 minZoomLevel:9
+                                        backgroundImage:nil];
+        
         [self.mapView setDelegate:self];
         [self.view addSubview:mapView];
         
@@ -62,6 +72,7 @@
         
         UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(placeMapOnUpdatedLocation)];
         [localizeMeButton addGestureRecognizer:tapGestureRecognizer];
+        
     }
     return self;
 }
@@ -69,12 +80,12 @@
 - (void)placeMapOnUpdatedLocation
 {
     [localizeMeButton blink];
-    [locationFetcher startUpdatingLocation];
+    [RemoteFetcher reloadInstants];
+    [player play];
 }
 
 - (void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    
     [self.mapView setCenterCoordinate:[newLocation coordinate] animated:YES];
     [locationFetcher stopUpdatingLocation];
 }
@@ -123,6 +134,8 @@
             
             double lat = zeroCoordComponent;
             double lon = zeroCoordComponent;
+            
+            NSMutableArray *locations = [NSMutableArray array];
             for (NSDictionary *coordinates in [route coordinates]) {
                 if (lat != zeroCoordComponent && lon != zeroCoordComponent) {
                     [path moveToCoordinate:CLLocationCoordinate2DMake(lat, lon)];
@@ -137,6 +150,7 @@
                 }
                 
                 [path addLineToCoordinate:CLLocationCoordinate2DMake(lat, lon)];
+                [locations addObject:[[CLLocation alloc] initWithLatitude:lat longitude:lon]];
             }
             [path closePath];
             
@@ -144,10 +158,9 @@
                                                                  coordinate:CLLocationCoordinate2DMake(latF, lonF)
                                                                    andTitle:@""];
             
-            annotation.anchorPoint = CGPointMake(10.5, 10.0);
-            [cachedPaths addObject:path];
-            [annotation setUserInfo:[NSNumber numberWithInt:[cachedPaths indexOfObject:path]]];
-            
+            [annotation setUserInfo:path];
+            [annotation setHasBoundingBox:YES];
+            [annotation setBoundingBoxFromLocations:locations];
             
             [self.mapView addAnnotation:annotation];
             [cachedAnnotations setObject:annotation forKey:index];
@@ -156,13 +169,22 @@
         
 
     }
-    
+}
 
+- (void) vehicleInstantsLoad:(NSArray *)instants
+{
+    for (Instant* instant in instants) {
+        RMAnnotation *annotation = [[RMAnnotation alloc]initWithMapView:self.mapView 
+                                                             coordinate:instant.coordinates
+                                                               andTitle:@""];
+        annotation.anchorPoint = CGPointMake(10, 10);
+        [annotation setUserInfo:[[RMMarker alloc] initWithUIImage:[UIImage imageNamed:@"bus.png"]]];
+        [self.mapView addAnnotation:annotation];
+    }
 }
 
 - (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation {
-    [annotation setLayer:[cachedPaths objectAtIndex:[[annotation userInfo] intValue]]];
-    return annotation.layer;
+    return annotation.userInfo;
 }
 
 /*
@@ -174,7 +196,6 @@
     mapView.decelerationMode = RMMapDecelerationFast;
     mapView.boundingMask = RMMapMinHeightBound;
     mapView.adjustTilesForRetinaDisplay = YES;
-    
 }
 
 - (void)viewDidUnload
@@ -190,6 +211,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self routesLoad];
+    [locationFetcher startUpdatingLocation];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

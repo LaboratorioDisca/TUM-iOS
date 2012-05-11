@@ -11,10 +11,11 @@
 #import "ApplicationConfig.h"
 #import "RMMapViewDelegate.h"
 #import "UIColor-Expanded.h"
+#import "InstantsReceiverDelegate.h"
 
 #define zeroCoordComponent -1.0f
 
-@interface MapViewController : UIViewController<RMMapViewDelegate, CLLocationManagerDelegate>
+@interface MapViewController : UIViewController<RMMapViewDelegate, CLLocationManagerDelegate, InstantsReceiverDelegate>
 
 @property (strong, nonatomic) RMMapView *mapView;
 @end

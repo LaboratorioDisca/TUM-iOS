@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface RemoteFetcher : NSObject
-@property (strong, atomic) NSMutableData *responseData;
+@property (assign, atomic) NSMutableData *responseData;
 
 + (void) loadVehicles;
 + (void) loadRoutes;
-+ (void) loadInstants;
++ (void) reloadInstants;
+
 @end

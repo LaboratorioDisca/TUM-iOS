@@ -9,7 +9,10 @@
 #import "RemoteFetcher.h"
 #import "SBJson.h"
 #import "ASIHTTPRequest.h"
+
 #import "Routes.h"
+#import "Vehicles.h"
+#import "Instants.h"
 
 @interface RemoteFetcher() {
     
@@ -27,14 +30,14 @@
     [RemoteFetcher performFetchForResource:@"routes"];
 }
 
-+ (void) loadInstants
++ (void) reloadInstants
 {
-    
+    [RemoteFetcher performFetchForResource:@"instants"];
 }
 
 + (void) loadVehicles
 {
-    
+    [RemoteFetcher performFetchForResource:@"vehicles"];
 }
 
 + (void) performFetchForResource:(NSString*) resource
@@ -46,16 +49,20 @@
     NSString *stringURL = [[NSString stringWithString:[routes objectForKey:@"url"]] 
                               stringByAppendingString:[routes objectForKey:resource]];
     
-    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:stringURL]];
+    __block ASIHTTPRequest *_request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:stringURL]];
+    __weak ASIHTTPRequest *request = _request;
+    
     [request setCompletionBlock:^{
         // Use when fetching text data
         if(resource==@"routes") {
             [Routes loadWithRoutesCollection:[[request responseString] JSONValue]];
+        } else if(resource==@"vehicles") {
+            [Vehicles loadWithVehiclesCollection:[[request responseString] JSONValue]];
+        } else if(resource==@"instants") {
+            [Instants loadWithInstantsCollection:[[request responseString] JSONValue]];
         }
     }];
-    [request setFailedBlock:^{
-        NSError *error = [request error];
-    }];
+    [request setFailedBlock:nil];
     [request startAsynchronous];
 
 }
