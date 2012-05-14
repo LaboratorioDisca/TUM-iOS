@@ -10,7 +10,7 @@
 #import "ApplicationConfig.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define dimension 40
+#define dimension 44
 
 @implementation RoundedOvermapButton
 
@@ -37,13 +37,13 @@
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          [self.layer setOpacity:0.4];
-                         self.transform = CGAffineTransformRotate(self.transform, 45);
+                         self.transform = CGAffineTransformRotate(self.transform, 360);
                      } completion:^(BOOL finished) {
                          [UIView animateWithDuration:0.8
                                                delay:0
                                              options:UIViewAnimationOptionCurveEaseInOut
                                           animations:^{
-                                              self.transform = CGAffineTransformRotate(self.transform, -45);
+                                              self.transform = CGAffineTransformRotate(self.transform, 360);
                                               [self.layer setOpacity:1];
                                           } completion:nil];
                      }];

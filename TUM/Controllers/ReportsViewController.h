@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ReportsViewController : UIViewController
+@interface ReportsViewController : UIViewController {
+    UISegmentedControl *segmentedControl;
+}
+
+@property (nonatomic, strong) UISegmentedControl *segmentedControl;
 
 @end
