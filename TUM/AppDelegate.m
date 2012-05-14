@@ -11,6 +11,7 @@
 #import "RoutesViewController.h"
 #import "RemoteFetcher.h"
 #import "FrontViewController.h"
+#import "ReportsViewController.h"
 #import "Instants.h"
 
 @implementation AppDelegate
@@ -32,15 +33,19 @@
     [map.tabBarItem setImage:[UIImage imageNamed:@"map.png"]];
     [Instants initializeWithDelegate:map];
 
-    RoutesViewController *c1 = [[RoutesViewController alloc] initWithStyle:UITableViewStylePlain];
-    c1.title = @"Rutas";
-    [c1.tabBarItem setImage:[UIImage imageNamed:@"routes.png"]];
+    RoutesViewController *routes = [[RoutesViewController alloc] initWithStyle:UITableViewStylePlain];
+    routes.title = @"Rutas";
+    [routes.tabBarItem setImage:[UIImage imageNamed:@"routes.png"]];
     
+    ReportsViewController *reports = [[ReportsViewController alloc]  init];
+    reports.title = @"Auxilio";
+    [reports.tabBarItem setImage:[UIImage imageNamed:@"alert.png"]];
+
     UIViewController *home = [[FrontViewController alloc] init];
     home.title = @"Principal";
     [home.tabBarItem setImage:[UIImage imageNamed:@"home.png"]];
     
-    [tabBarController setViewControllers:[NSArray arrayWithObjects:home, map, c1, nil] animated:YES];
+    [tabBarController setViewControllers:[NSArray arrayWithObjects:home, map, routes, reports, nil] animated:YES];
 
     [self.window makeKeyAndVisible];
     return YES;

@@ -1,5 +1,5 @@
 //
-//  LocalizeMeUIButton.h
+//  RoundedOvermapButton.h
 //  TUM
 //
 //  Created by Alejandro on 07/05/12.
@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LocalizeMeUIButton : UIButton
+@interface RoundedOvermapButton : UIButton
+
+- (id) initWithImageNamed:(NSString*)imageName;
 
 - (void) blink;
 

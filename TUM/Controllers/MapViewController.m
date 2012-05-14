@@ -15,17 +15,18 @@
 #import "ApplicationConfig.h"
 #import "RMMBTilesSource.h"
 #import "RMMapTiledLayerView.h"
-#import "LocalizeMeUIButton.h"
+#import "RoundedOvermapButton.h"
 #import <AVFoundation/AVFoundation.h>
 
 #import "RemoteFetcher.h"
 #import "Instant.h"
 #import "Vehicles.h"
 #import "Routes.h"
+#import "InstantRMMarker.h"
 
 @interface MapViewController () {
     NSMutableDictionary *cachedAnnotations;
-    LocalizeMeUIButton *localizeMeButton;
+    RoundedOvermapButton *reloadVehicles;
     CLLocationManager *locationFetcher;
     AVAudioPlayer *player;
 }
@@ -34,6 +35,7 @@
 - (void) mapCustomization;
 - (void) displayAnnotation:(RMAnnotation*)annotation forRoute:(Route*)route;
 - (void) reloadInstantsAndPlaceThemOnMap;
+
 @end
 
 
@@ -44,19 +46,16 @@
 - (id) init
 {
     if((self = [super init])) {
-        
+        // annotations cache
+        cachedAnnotations = [NSMutableDictionary dictionary];
+
+        // retrieve a new location
         locationFetcher = [[CLLocationManager alloc] init];
         [locationFetcher setDelegate:self];
         [locationFetcher setDesiredAccuracy:kCLLocationAccuracyBest];
-        
-        NSError * err;
-        NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"pull.caf"];
-        player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:path] 
-                                                         error:&err];
-        [player prepareToPlay];
-        
-        cachedAnnotations = [NSMutableDictionary dictionary];
-        
+                
+                
+        // load tiles from SQLlite db
         NSURL *tilesURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"UNAMCU" 
                                                                                  ofType:@"mbtiles"]];
         RMMBTilesSource *offlineSource = [[RMMBTilesSource alloc] initWithTileSetURL:tilesURL];
@@ -69,19 +68,38 @@
         [self.mapView setDelegate:self];
         [self.view addSubview:mapView];
         
-        localizeMeButton = [[LocalizeMeUIButton alloc] init];
-        [self.view addSubview:localizeMeButton];
+        // load a reload button
+        reloadVehicles = [[RoundedOvermapButton alloc] initWithImageNamed:@"refresh.png"];
         
+        [self.view addSubview:reloadVehicles];
         UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(reloadInstantsAndPlaceThemOnMap)];
-        [localizeMeButton addGestureRecognizer:tapGestureRecognizer];
+        [reloadVehicles addGestureRecognizer:tapGestureRecognizer];
         
+        // load a sound for the previous button
+        NSError * err;
+        NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"pull.caf"];
+        player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:path] 
+                                                        error:&err];
+        [player prepareToPlay];
+
     }
     return self;
 }
 
+/*
+ *  Finishes the loading of a map from the given SQLbased tileset source
+ */
+- (void) mapCustomization
+{
+    mapView.backgroundColor = [UIColor darkGrayColor];
+    mapView.decelerationMode = RMMapDecelerationFast;
+    mapView.boundingMask = RMMapMinHeightBound;
+    mapView.adjustTilesForRetinaDisplay = YES;
+}
+
 - (void) reloadInstantsAndPlaceThemOnMap
 {
-    [localizeMeButton blink];
+    [reloadVehicles blink];
     [RemoteFetcher reloadInstants];
     [player play];
 }
@@ -98,6 +116,9 @@
     [self mapCustomization];
 }
 
+/*
+ * Decides if an annotation should be displayed or not
+ */
 - (void) displayAnnotation:(RMAnnotation *)annotation forRoute:(Route *)route
 {
     BOOL annotationIsOnMap = [[self.mapView annotations] containsObject:annotation];
@@ -173,6 +194,14 @@
     }
 }
 
+- (void) tapOnAnnotation:(RMAnnotation *)annotation onMap:(RMMapView *)map
+{
+    if ([[annotation userInfo] class] == [InstantRMMarker class]) {
+        //Instant* storedInstant = [annotation.userInfo instant];
+        //NSLog([NSString stringWithFormat:@"Velocidad: %f y hora %@", [[storedInstant vehicleSpeed] floatValue], [storedInstant date]]);
+    }
+}
+
 - (void) vehicleInstantsLoad:(NSArray *)instants
 {
     for (Instant* instant in instants) {
@@ -189,31 +218,23 @@
                                                    coordinate:instant.coordinates
                                                      andTitle:@""];
             annotation.anchorPoint = CGPointMake(10, 10);
-            RMMarker *marker = [[RMMarker alloc] initWithUIImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", route.simpleIdentifier]]];
-            [marker setAnchorPoint:CGPointMake(0.5, 1)];
+            
+            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", route.simpleIdentifier]];
+            InstantRMMarker *marker = [[InstantRMMarker alloc] initWithUIImage:image anchorPoint:CGPointMake(0.5, 1)];
             [annotation setUserInfo:marker];
             [cachedAnnotations setObject:annotation forKey:cachedVehicleId];
+
         } else {
             [annotation setCoordinate:instant.coordinates];
         }
         
+        [[annotation userInfo] setInstant:instant];
         [self displayAnnotation:annotation forRoute:route];
     }
 }
 
 - (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation {
     return annotation.userInfo;
-}
-
-/*
- *  Finishes the loading of a map from the given SQLbased tileset source
- */
-- (void) mapCustomization
-{
-    mapView.backgroundColor = [UIColor darkGrayColor];
-    mapView.decelerationMode = RMMapDecelerationFast;
-    mapView.boundingMask = RMMapMinHeightBound;
-    mapView.adjustTilesForRetinaDisplay = YES;
 }
 
 - (void)viewDidUnload

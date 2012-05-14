@@ -18,6 +18,9 @@
     if (self) {
         self.view = [[UIView alloc] initWithFrame:[ApplicationConfig viewBounds]];
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.jpg"]]];
+        UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"muevete.png"]];
+        [imgView setCenter:CGPointMake([ApplicationConfig viewBounds].size.width/2, 20+[[imgView image] size].height/2)];
+        [self.view addSubview:imgView];
     }
     return self;
 }
@@ -32,14 +35,6 @@
 
 #pragma mark - View lifecycle
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
-
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
@@ -50,8 +45,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

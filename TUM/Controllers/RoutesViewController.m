@@ -10,11 +10,15 @@
 #import "Routes.h"
 #import "Route.h"
 #import "UITableViewCellForRouteRow.h"
+#import "ApplicationConfig.h"
+#import "UIColor-Expanded.h"
 
 @interface RoutesViewController() {
     NSArray *cachedRoutes;
 }
 @property (nonatomic, retain) NSArray *cachedRoutes; 
+
+- (void) configureToolbar;
 
 @end
 
@@ -69,14 +73,29 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - View lifecycle
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
+- (void) configureToolbar
 {
+    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0 , 11.0f, self.view.frame.size.width, 21.0f)];
+    [titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
+    [titleLabel setBackgroundColor:[UIColor clearColor]];
+    [titleLabel setTextColor:[UIColor colorWithRed:157.0/255.0 green:157.0/255.0 blue:157.0/255.0 alpha:1.0]];
+    [titleLabel setText:@"Rutas"];
+    [titleLabel setTextAlignment:UITextAlignmentCenter];
+    
+    UIBarButtonItem *spacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+
+    
+    UIBarButtonItem *title = [[UIBarButtonItem alloc] initWithCustomView:titleLabel];
+
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, [ApplicationConfig viewBounds].size.width, 40)];
+    [toolbar setTintColor:[UIColor blackColor]];
+    [self.tableView setTableHeaderView:toolbar];
+    [toolbar setItems:[NSArray arrayWithObjects:spacer, title, spacer2, nil] animated:YES];
 }
-*/
+
+#pragma mark - View lifecycle
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -84,8 +103,11 @@
     [super viewDidLoad];
     cachedRoutes = [[Routes currentCollection] sortedCollection];
     self.navigationItem.title = @"Rutas";
+    
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"linen.png"]]];
+    
+    [self configureToolbar];
 }
 
 - (void)viewDidUnload
@@ -94,6 +116,7 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

@@ -1,20 +1,20 @@
 //
-//  LocalizeMeUIButton.m
+//  RoundedOvermapButton.m
 //  TUM
 //
 //  Created by Alejandro on 07/05/12.
 //  Copyright (c) 2012 UNAM IIMAS Disca. All rights reserved.
 //
 
-#import "LocalizeMeUIButton.h"
+#import "RoundedOvermapButton.h"
 #import "ApplicationConfig.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define dimension 40
 
-@implementation LocalizeMeUIButton
+@implementation RoundedOvermapButton
 
-- (id) init
+- (id) initWithImageNamed:(NSString *)imageName
 {
     self = [super initWithFrame:CGRectMake([ApplicationConfig viewBounds].size.width-30-dimension/2, 20, dimension, dimension)];
     if (self) {
@@ -23,8 +23,7 @@
         [self.layer setShadowColor:[UIColor blackColor].CGColor];
         [self.layer setShadowOffset:CGSizeMake(1, 1)];
         [self.layer setShadowOpacity:1.7];
-        
-        UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"localize.png"]];
+        UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
         [image setCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)];
         [self addSubview:image];
     }
