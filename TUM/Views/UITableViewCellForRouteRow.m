@@ -58,6 +58,7 @@
         [self.contentView setBackgroundColor:[UIColor colorWithHexString:@"0x1C1C1C"]];
         [routeLabel setTextColor:[UIColor colorWithHexString:@"0x2E2E2E"]];
     }
+    [self setSelectionStyle:UITableViewCellSelectionStyleNone];
 }
 
 - (void) applyStyleToDirectionLabel:(UILabel *)label

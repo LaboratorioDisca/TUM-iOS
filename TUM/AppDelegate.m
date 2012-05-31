@@ -28,20 +28,20 @@
     [RemoteFetcher loadRoutes];
     [RemoteFetcher loadVehicles];
 
+    RoutesViewController *routes = [[RoutesViewController alloc] initWithStyle:UITableViewStylePlain];
+    routes.title = @"Rutas";
+    [routes.tabBarItem setImage:[UIImage imageNamed:@"routes.png"]];
+    
     MapViewController *map = [[MapViewController alloc] init];
     map.title = @"Mapa";
     [map.tabBarItem setImage:[UIImage imageNamed:@"map.png"]];
     [Instants initializeWithDelegate:map];
-
-    RoutesViewController *routes = [[RoutesViewController alloc] initWithStyle:UITableViewStylePlain];
-    routes.title = @"Rutas";
-    [routes.tabBarItem setImage:[UIImage imageNamed:@"routes.png"]];
     
     ReportsViewController *reports = [[ReportsViewController alloc]  init];
     reports.title = @"Auxilio";
     [reports.tabBarItem setImage:[UIImage imageNamed:@"alert.png"]];
 
-    UIViewController *home = [[FrontViewController alloc] init];
+    FrontViewController *home = [[FrontViewController alloc] init];
     home.title = @"Principal";
     [home.tabBarItem setImage:[UIImage imageNamed:@"home.png"]];
     

@@ -34,8 +34,7 @@
 - (void) routesLoad;
 - (void) mapCustomization;
 - (void) displayAnnotation:(RMAnnotation*)annotation forRoute:(Route*)route;
-- (void) reloadInstantsAndPlaceThemOnMap;
-
+- (void) vehiclePositionContinuousUpdateActivate;
 @end
 
 
@@ -68,19 +67,8 @@
         [self.mapView setDelegate:self];
         [self.view addSubview:mapView];
         
-        // load a reload button
-        reloadVehicles = [[RoundedOvermapButton alloc] initWithImageNamed:@"refresh.png"];
-        
-        [self.view addSubview:reloadVehicles];
-        UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(reloadInstantsAndPlaceThemOnMap)];
-        [reloadVehicles addGestureRecognizer:tapGestureRecognizer];
-        
-        // load a sound for the previous button
-        NSError * err;
-        NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"pull.caf"];
-        player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:path] 
-                                                        error:&err];
-        [player prepareToPlay];
+        [self vehiclePositionContinuousUpdateActivate];
+        [self mapCustomization];
 
     }
     return self;
@@ -97,23 +85,10 @@
     mapView.adjustTilesForRetinaDisplay = YES;
 }
 
-- (void) reloadInstantsAndPlaceThemOnMap
-{
-    [reloadVehicles blink];
-    [RemoteFetcher reloadInstants];
-    [player play];
-}
-
 - (void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     [self.mapView setCenterCoordinate:[newLocation coordinate] animated:YES];
     [locationFetcher stopUpdatingLocation];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self mapCustomization];
 }
 
 /*
@@ -132,6 +107,13 @@
             [self.mapView removeAnnotation:annotation];
         }
     }
+}
+
+- (void) vehiclePositionContinuousUpdateActivate
+{
+    [RemoteFetcher reloadInstants];
+    [self performSelector:@selector(vehiclePositionContinuousUpdateActivate) withObject:nil afterDelay:10];
+    NSLog(@"Just reloaded vehicle positions");
 }
 
 /*
@@ -243,15 +225,13 @@
     // Release any retained subviews of the main view.
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void) viewWillAppear:(BOOL)animated
 {
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
+    [super viewWillAppear:animated];
+    
     [self routesLoad];
+    [RemoteFetcher reloadInstants];
     [locationFetcher startUpdatingLocation];
-    [self reloadInstantsAndPlaceThemOnMap];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
