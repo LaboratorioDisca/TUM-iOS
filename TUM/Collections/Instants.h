@@ -7,17 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "InstantsReceiverDelegate.h"
 
 @interface Instants : NSObject {
     NSMutableDictionary *collection;
-    id<InstantsReceiverDelegate> receiverDelegate;
 }
 
 @property (atomic, strong) NSMutableDictionary *collection;
-@property (nonatomic, strong) id<InstantsReceiverDelegate> receiverDelegate;
 
-+ (void) initializeWithDelegate:(id<InstantsReceiverDelegate>)delegate;
 + (void) loadWithInstantsCollection:(NSArray*)collection_;
 + (id) currentCollection;
 

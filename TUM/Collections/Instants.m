@@ -12,19 +12,13 @@
 static Instants *singleton;
 
 @implementation Instants
-@synthesize collection, receiverDelegate;
+@synthesize collection;
 
-
-+ (void) initializeWithDelegate:(id<InstantsReceiverDelegate>)delegate
++ (void) loadWithInstantsCollection:(NSArray *)collection_
 {
     if (singleton == NULL) {
         singleton = [[Instants alloc] init];
     }
-    [singleton setReceiverDelegate:delegate];
-}
-
-+ (void) loadWithInstantsCollection:(NSArray *)collection_
-{
     [singleton updateCollectionWithCollection:collection_];
 }
 
@@ -54,7 +48,6 @@ static Instants *singleton;
         [self.collection setObject:instant forKey:vehicleId];
 
     }
-    [[self receiverDelegate] vehicleInstantsLoad:[self.collection allValues]];
 }
 
 

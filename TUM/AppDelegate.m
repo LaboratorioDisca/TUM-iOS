@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "MapViewController.h"
 #import "RoutesViewController.h"
-#import "RemoteFetcher.h"
 #import "FrontViewController.h"
 #import "ReportsViewController.h"
 #import "Instants.h"
@@ -25,9 +24,6 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:tabBarController];
     
-    [RemoteFetcher loadRoutes];
-    [RemoteFetcher loadVehicles];
-
     RoutesViewController *routes = [[RoutesViewController alloc] initWithStyle:UITableViewStylePlain];
     routes.title = @"Rutas";
     [routes.tabBarItem setImage:[UIImage imageNamed:@"routes.png"]];
@@ -35,7 +31,6 @@
     MapViewController *map = [[MapViewController alloc] init];
     map.title = @"Mapa";
     [map.tabBarItem setImage:[UIImage imageNamed:@"map.png"]];
-    [Instants initializeWithDelegate:map];
     
     ReportsViewController *reports = [[ReportsViewController alloc]  init];
     reports.title = @"Auxilio";

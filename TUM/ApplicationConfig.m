@@ -7,6 +7,13 @@
 //
 
 #import "ApplicationConfig.h"
+#define routesDefinitionFile    @"routes.plist"
+
+
+static NSDictionary* routes;
+@interface ApplicationConfig()
++ (void) loadRoutes;
+@end
 
 @implementation ApplicationConfig
 
@@ -19,5 +26,26 @@
 {
     return CLLocationCoordinate2DMake(19.322675, -99.192080);
 }
+
++ (NSString*) backendURL
+{
+    return [routes objectForKey:@"backendURL"];
+}
+
++ (NSString*) urlForResource:(NSString *)resource
+{
+    [self loadRoutes];
+    return [[self backendURL] stringByAppendingString:[routes objectForKey:resource]];
+}
+
++ (void) loadRoutes
+{
+    if(routes == NULL) {
+        NSString *path = [[NSBundle mainBundle] bundlePath];
+        NSString *finalPath = [path stringByAppendingPathComponent:routesDefinitionFile];
+        routes = [NSDictionary dictionaryWithContentsOfFile:finalPath];
+    }
+}
+
 
 @end

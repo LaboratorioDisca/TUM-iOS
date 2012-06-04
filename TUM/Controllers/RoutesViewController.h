@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASIHTTPRequestDelegate.h"
 
-@interface RoutesViewController : UITableViewController
+@interface RoutesViewController : UITableViewController<ASIHTTPRequestDelegate>
 
+- (void) fetchRoutes;
 @end

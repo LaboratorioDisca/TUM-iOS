@@ -12,6 +12,8 @@
 #import "UITableViewCellForRouteRow.h"
 #import "ApplicationConfig.h"
 #import "UIColor-Expanded.h"
+#import "ASIHTTPRequest.h"
+#import "SBJson.h"
 
 @interface RoutesViewController() {
     NSArray *cachedRoutes;
@@ -28,16 +30,36 @@
 - (id) initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
+    if (self) {
+        [self fetchRoutes];
+    }
     return self;
 }
 
-- (void)didReceiveMemoryWarning
+/* Start requests section */
+
+- (void) fetchRoutes
 {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[ApplicationConfig urlForResource:@"routes"]]];
+    [request setDelegate:self];
+    [request startAsynchronous];
+} 
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    // Insert the recently loaded data from Backend
+    [Routes loadWithRoutesCollection:[[request responseString] JSONValue]];
 }
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    // Retrieve from local storage (TODO)
+    //NSError *error = [request error];
+}
+
+/* End requests section */
+
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section { 
     return self.cachedRoutes.count; 

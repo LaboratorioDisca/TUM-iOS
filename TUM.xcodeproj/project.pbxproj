@@ -10,8 +10,6 @@
 		3A0ECDE0154895F700919614 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0ECDDD154895F700919614 /* home.png */; };
 		3A0ECDE1154895F700919614 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0ECDDE154895F700919614 /* map.png */; };
 		3A0ECDE2154895F700919614 /* routes.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0ECDDF154895F700919614 /* routes.png */; };
-		3A0ECE1115489F5A00919614 /* RemoteFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0ECE1015489F5A00919614 /* RemoteFetcher.m */; };
-		3A0ECE121548A14100919614 /* RemoteFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0ECE1015489F5A00919614 /* RemoteFetcher.m */; };
 		3A0ECE5B1548AAE500919614 /* routes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A0ECE5A1548AAE500919614 /* routes.plist */; };
 		3A0ECE9E1548B62F00919614 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0ECE861548B62F00919614 /* NSObject+SBJson.m */; };
 		3A0ECE9F1548B62F00919614 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0ECE891548B62F00919614 /* SBJsonParser.m */; };
@@ -150,8 +148,6 @@
 		3A0ECDDD154895F700919614 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		3A0ECDDE154895F700919614 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 		3A0ECDDF154895F700919614 /* routes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = routes.png; sourceTree = "<group>"; };
-		3A0ECE0F15489F5A00919614 /* RemoteFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteFetcher.h; sourceTree = "<group>"; };
-		3A0ECE1015489F5A00919614 /* RemoteFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteFetcher.m; sourceTree = "<group>"; };
 		3A0ECE5A1548AAE500919614 /* routes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = routes.plist; sourceTree = "<group>"; };
 		3A0ECE851548B62F00919614 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		3A0ECE861548B62F00919614 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
@@ -251,7 +247,6 @@
 		3A7A9263155D8E6A002B4B57 /* Instant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instant.m; sourceTree = "<group>"; };
 		3A7A9264155D8E6A002B4B57 /* Vehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vehicle.h; sourceTree = "<group>"; };
 		3A7A9265155D8E6A002B4B57 /* Vehicle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vehicle.m; sourceTree = "<group>"; };
-		3A7A9269155D8E7F002B4B57 /* InstantsReceiverDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstantsReceiverDelegate.h; sourceTree = "<group>"; };
 		3A7A926B155D8E92002B4B57 /* Instants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instants.h; sourceTree = "<group>"; };
 		3A7A926C155D8E92002B4B57 /* Instants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instants.m; sourceTree = "<group>"; };
 		3A7A926D155D8E92002B4B57 /* Routes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Routes.h; sourceTree = "<group>"; };
@@ -380,15 +375,6 @@
 				3A40E75C1551D0B9009A0A68 /* Route.m */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		3A0ECE0B15489F2400919614 /* Communicators */ = {
-			isa = PBXGroup;
-			children = (
-				3A0ECE0F15489F5A00919614 /* RemoteFetcher.h */,
-				3A0ECE1015489F5A00919614 /* RemoteFetcher.m */,
-			);
-			path = Communicators;
 			sourceTree = "<group>";
 		};
 		3A0ECE831548B62F00919614 /* Libraries */ = {
@@ -547,7 +533,6 @@
 		3A7A9268155D8E7F002B4B57 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
-				3A7A9269155D8E7F002B4B57 /* InstantsReceiverDelegate.h */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -611,7 +596,6 @@
 				3A68A04515583154004C7D36 /* Controllers */,
 				3A68A0351558303A004C7D36 /* Views */,
 				3A0ECE831548B62F00919614 /* Libraries */,
-				3A0ECE0B15489F2400919614 /* Communicators */,
 				3A86837D1541E97800C9EE6F /* Assets */,
 				3A0ECDE3154899C000919614 /* Models */,
 				3A8683401541D52900C9EE6F /* ApplicationConfig.h */,
@@ -814,7 +798,6 @@
 				3A8681C81541D01C00C9EE6F /* main.m in Sources */,
 				3A8681CC1541D01C00C9EE6F /* AppDelegate.m in Sources */,
 				3A8683801541EC1B00C9EE6F /* ApplicationConfig.m in Sources */,
-				3A0ECE121548A14100919614 /* RemoteFetcher.m in Sources */,
 				3A0ECE9E1548B62F00919614 /* NSObject+SBJson.m in Sources */,
 				3A0ECE9F1548B62F00919614 /* SBJsonParser.m in Sources */,
 				3A0ECEA01548B62F00919614 /* SBJsonStreamParser.m in Sources */,
@@ -871,7 +854,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A8683421541D52900C9EE6F /* ApplicationConfig.m in Sources */,
-				3A0ECE1115489F5A00919614 /* RemoteFetcher.m in Sources */,
 				3A0ECF261548BDFC00919614 /* Reachability.m in Sources */,
 				3A7A9266155D8E6A002B4B57 /* Instant.m in Sources */,
 				3A7A9267155D8E6A002B4B57 /* Vehicle.m in Sources */,

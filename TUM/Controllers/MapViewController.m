@@ -18,33 +18,42 @@
 #import "RoundedOvermapButton.h"
 #import <AVFoundation/AVFoundation.h>
 
-#import "RemoteFetcher.h"
 #import "Instant.h"
 #import "Vehicles.h"
 #import "Routes.h"
 #import "InstantRMMarker.h"
+
+#import "ASIHTTPRequest.h"
+#import "SBJson.h"
+#import "Instants.h"
 
 @interface MapViewController () {
     NSMutableDictionary *cachedAnnotations;
     RoundedOvermapButton *reloadVehicles;
     CLLocationManager *locationFetcher;
     AVAudioPlayer *player;
+    BOOL automaticInstantsFetch;
 }
 
-- (void) routesLoad;
+@property (nonatomic, assign) BOOL automaticInstantsFetch;
+
+- (void) drawRoutesOnMap;
 - (void) mapCustomization;
 - (void) displayAnnotation:(RMAnnotation*)annotation forRoute:(Route*)route;
-- (void) vehiclePositionContinuousUpdateActivate;
+- (void) updateVehiclesInstants;
 @end
 
 
 @implementation MapViewController
 
-@synthesize mapView;
+@synthesize mapView, automaticInstantsFetch;
 
 - (id) init
 {
     if((self = [super init])) {
+        automaticInstantsFetch = YES;
+        [self fetchVehicles];
+        
         // annotations cache
         cachedAnnotations = [NSMutableDictionary dictionary];
 
@@ -67,7 +76,6 @@
         [self.mapView setDelegate:self];
         [self.view addSubview:mapView];
         
-        [self vehiclePositionContinuousUpdateActivate];
         [self mapCustomization];
 
     }
@@ -109,17 +117,56 @@
     }
 }
 
-- (void) vehiclePositionContinuousUpdateActivate
+/* Start requests section */
+
+- (void) fetchInstants
 {
-    [RemoteFetcher reloadInstants];
-    [self performSelector:@selector(vehiclePositionContinuousUpdateActivate) withObject:nil afterDelay:10];
-    NSLog(@"Just reloaded vehicle positions");
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[ApplicationConfig urlForResource:@"instants"]]];
+    [request setTag:1];
+    [request setDelegate:self];
+    [request startAsynchronous];
+} 
+
+- (void) fetchVehicles
+{
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[ApplicationConfig urlForResource:@"vehicles"]]];
+    [request setTag:2];
+    [request setDelegate:self];
+    [request startAsynchronous];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    // Insert the recently loaded data from Backend
+    if ([request tag] == 1) {
+        [Instants loadWithInstantsCollection:[[request responseString] JSONValue]];
+    } else if ([request tag] == 2) {
+        [Vehicles loadWithVehiclesCollection:[[request responseString] JSONValue]];
+    }
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    // Retrieve from local storage (TODO)
+    //NSError *error = [request error];
+}
+
+/* End requests section */
+
+- (void) updateVehiclesInstants
+{
+    [self fetchInstants];
+    if ([self automaticInstantsFetch]) {
+        [self performSelector:@selector(updateVehiclesInstants) withObject:nil afterDelay:10];
+        NSLog(@"Just reloaded vehicle positions");
+        [self drawVehiclesInstantsOnMap];
+    }
 }
 
 /*
  * Loads the given routes into the map
  */
-- (void) routesLoad
+- (void) drawRoutesOnMap
 {
     NSDictionary *routes = [[Routes currentCollection] collection];
     // index are the keys of the routes collection, the keys are id's on the corresponding backend database model
@@ -184,9 +231,9 @@
     }
 }
 
-- (void) vehicleInstantsLoad:(NSArray *)instants
+- (void) drawVehiclesInstantsOnMap
 {
-    for (Instant* instant in instants) {
+    for (Instant* instant in [[[Instants currentCollection] collection] allValues]) {
         // vehicle retrieval
         NSNumber *vehicleId = [Vehicles routeForVehicleId:instant.vehicleId];
         // route lookup
@@ -228,10 +275,19 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    [self routesLoad];
-    [RemoteFetcher reloadInstants];
+    [self setAutomaticInstantsFetch:YES];
+    [self updateVehiclesInstants];
+
+    [self drawRoutesOnMap];
+    [self drawVehiclesInstantsOnMap];
+    [self fetchInstants];
     [locationFetcher startUpdatingLocation];
+}
+
+- (void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self setAutomaticInstantsFetch:NO];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
