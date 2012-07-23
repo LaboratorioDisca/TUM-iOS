@@ -25,7 +25,7 @@
     [self.window setRootViewController:tabBarController];
     
     RoutesViewController *routes = [[RoutesViewController alloc] initWithStyle:UITableViewStylePlain];
-    routes.title = @"Rutas";
+    routes.title = @"Rutas";    
     [routes.tabBarItem setImage:[UIImage imageNamed:@"routes.png"]];
     
     MapViewController *map = [[MapViewController alloc] init];
@@ -40,7 +40,7 @@
     home.title = @"Principal";
     [home.tabBarItem setImage:[UIImage imageNamed:@"home.png"]];
     
-    [tabBarController setViewControllers:[NSArray arrayWithObjects:home, map, routes, reports, nil] animated:YES];
+    [tabBarController setViewControllers:[NSArray arrayWithObjects:home, map, routes, nil] animated:YES];
 
     [self.window makeKeyAndVisible];
     return YES;

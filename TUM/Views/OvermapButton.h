@@ -1,5 +1,5 @@
 //
-//  RoundedOvermapButton.h
+//  OvermapButton.h
 //  TUM
 //
 //  Created by Alejandro on 07/05/12.
@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ApplicationConfig.h"
+#import <QuartzCore/QuartzCore.h>
+#import "ActionButton.h"
 
-@interface RoundedOvermapButton : UIButton
+@interface OvermapButton : UIButton<ActionButton>
 
 - (id) initWithImageNamed:(NSString*)imageName;
 

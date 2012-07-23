@@ -47,14 +47,18 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+    NSString *routes = [request responseString];
     // Insert the recently loaded data from Backend
-    [Routes loadWithRoutesCollection:[[request responseString] JSONValue]];
+    [Routes loadWithRoutesCollection:[routes JSONValue]];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
-    // Retrieve from local storage (TODO)
-    //NSError *error = [request error];
+    NSError *error;
+
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"routes" ofType:@"json"]; 
+    NSString *routes = [[NSString alloc] initWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+    [Routes loadWithRoutesCollection:[routes JSONValue]];
 }
 
 /* End requests section */

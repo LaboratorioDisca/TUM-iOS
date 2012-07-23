@@ -18,4 +18,8 @@
 @interface MapViewController : UIViewController<RMMapViewDelegate, CLLocationManagerDelegate, ASIHTTPRequestDelegate>
 
 @property (strong, nonatomic) RMMapView *mapView;
+
+- (void) fetchVehicles;
+- (void) drawVehiclesInstantsOnMap;
+- (void) instructionsDisplay;
 @end

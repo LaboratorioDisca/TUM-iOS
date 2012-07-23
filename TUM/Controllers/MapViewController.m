@@ -15,7 +15,7 @@
 #import "ApplicationConfig.h"
 #import "RMMBTilesSource.h"
 #import "RMMapTiledLayerView.h"
-#import "RoundedOvermapButton.h"
+#import "OvermapButton.h"
 #import <AVFoundation/AVFoundation.h>
 
 #import "Instant.h"
@@ -26,10 +26,12 @@
 #import "ASIHTTPRequest.h"
 #import "SBJson.h"
 #import "Instants.h"
+#import "OverlayLegend.h"
 
 @interface MapViewController () {
     NSMutableDictionary *cachedAnnotations;
-    RoundedOvermapButton *reloadVehicles;
+    OvermapButton *mapInstructions;
+    OverlayLegend *legend;
     CLLocationManager *locationFetcher;
     AVAudioPlayer *player;
     BOOL automaticInstantsFetch;
@@ -70,13 +72,20 @@
         
         self.mapView = [[RMMapView alloc] initWithFrame:self.view.bounds 
                                           andTilesource:offlineSource 
-                                       centerCoordinate:[ApplicationConfig coordinates] zoomLevel:16 maxZoomLevel:20 minZoomLevel:9
+                                       centerCoordinate:[ApplicationConfig coordinates] zoomLevel:18 maxZoomLevel:20 minZoomLevel:9
                                         backgroundImage:nil];
         
         [self.mapView setDelegate:self];
         [self.view addSubview:mapView];
         
         [self mapCustomization];
+
+        mapInstructions = [[OvermapButton alloc] initWithImageNamed:@"grid.png"];
+        [self.view addSubview:mapInstructions];
+        [mapInstructions addTarget:self action:@selector(instructionsDisplay) forControlEvents:UIControlEventTouchUpInside];
+        legend = [[OverlayLegend alloc] initWithFrame:CGRectMake(35, 45, 250, 320) withImageNamed:@"legend.png"];
+        [self.view addSubview:legend];
+        [legend setDelegate:mapInstructions];
 
     }
     return self;
@@ -288,6 +297,11 @@
 {
     [super viewDidDisappear:animated];
     [self setAutomaticInstantsFetch:NO];
+}
+     
+- (void) instructionsDisplay
+{
+    [legend show];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
