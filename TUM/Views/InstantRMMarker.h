@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RMMarker.h"
+#import <MapBox/MapBox.h>
 #import "Instant.h"
 
 @interface InstantRMMarker : RMMarker {

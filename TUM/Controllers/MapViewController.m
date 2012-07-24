@@ -7,14 +7,10 @@
 //
 
 #import "MapViewController.h"
-#import "RMMarker.h"
+#import <MapBox/MapBox.h>
 #import "Routes.h"
-#import "RMPath.h"
-#import "RMAnnotation.h"
 #import "Route.h"
 #import "ApplicationConfig.h"
-#import "RMMBTilesSource.h"
-#import "RMMapTiledLayerView.h"
 #import "OvermapButton.h"
 #import <AVFoundation/AVFoundation.h>
 
@@ -289,7 +285,7 @@
 
     [self drawRoutesOnMap];
     [self drawVehiclesInstantsOnMap];
-    [self fetchInstants];
+    [self updateVehiclesInstants];
     [locationFetcher startUpdatingLocation];
 }
 

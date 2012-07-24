@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RMMapView.h"
+#import <MapBox/MapBox.h>
 #import "ApplicationConfig.h"
-#import "RMMapViewDelegate.h"
 #import "UIColor-Expanded.h"
 #import "ASIHTTPRequestDelegate.h"
 
