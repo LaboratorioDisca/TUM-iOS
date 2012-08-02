@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASIHTTPRequestDelegate.h"
+#import "ASIHTTPRequest.h"
 
-@interface FrontViewController : UIViewController
+@interface FrontViewController : UIViewController<ASIHTTPRequestDelegate>
+
+- (void) updateStatusMessageWithValue:(NSInteger)value;
+- (void) fetchServiceStatus;
 
 @end

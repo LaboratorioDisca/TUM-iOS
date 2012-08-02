@@ -8,21 +8,94 @@
 
 #import "FrontViewController.h"
 #import "ApplicationConfig.h"
+#import "Gradients.h"
+#import <QuartzCore/QuartzCore.h>
+#import "UIColor-Expanded.h"
 
-@implementation FrontViewController
+@implementation FrontViewController {
 
+    UILabel *statusLabel; 
+    UILabel *statusValue; 
+    UIActivityIndicatorView *indicator; 
+}
 
 - (id) init
 {
     self = [super init];
     if (self) {
         self.view = [[UIView alloc] initWithFrame:[ApplicationConfig viewBounds]];
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.jpg"]]];
-        UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"muevete.png"]];
-        [imgView setCenter:CGPointMake([ApplicationConfig viewBounds].size.width/2, 20+[[imgView image] size].height/2)];
+                
+        CAGradientLayer *bgLayer = [Gradients blueGradient];
+        bgLayer.frame = self.view.bounds;
+        [self.view.layer insertSublayer:bgLayer atIndex:0];
+        
+        UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
+        [imgView setCenter:CGPointMake([ApplicationConfig viewBounds].size.width/2, 150)];
         [self.view addSubview:imgView];
+        
+        indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        indicator.center = CGPointMake(250, 25);
+        [indicator startAnimating];
+        
+        UIView *statusView = [[UIView alloc] initWithFrame:CGRectMake(-2, 320, [ApplicationConfig viewBounds].size.width+4, 50)];
+        [statusView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.4]];
+        
+        [statusView addSubview:indicator];
+
+        statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 5, 200, 40)];
+        [statusLabel setText:@"Estado actual del servicio:"];
+        [statusLabel setFont:[UIFont systemFontOfSize:14]];
+        [statusLabel setTextColor:[UIColor colorWithWhite:1 alpha:0.6]];
+        [statusLabel setBackgroundColor:[UIColor clearColor]];
+
+        statusValue = [[UILabel alloc] initWithFrame:CGRectMake(220, 5, 100, 40)];
+        [statusValue setTextColor:[UIColor colorWithWhite:1 alpha:0.6]];
+        [statusValue setBackgroundColor:[UIColor clearColor]];
+        [statusValue setFont:[UIFont systemFontOfSize:14]];
+
+        [statusView addSubview:statusLabel];
+        [statusView addSubview:statusValue];
+
+        [self.view addSubview:statusView];
     }
     return self;
+}
+
+- (void) updateStatusMessageWithValue:(NSInteger)value
+{
+    NSDate *date = [NSDate date];
+    
+    NSCalendar *sysCalendar = [NSCalendar currentCalendar];
+    unsigned int unitFlags = NSHourCalendarUnit;  
+    NSDateComponents *breakdownInfo = [sysCalendar components:unitFlags fromDate:date];
+    int hour = [breakdownInfo hour]; 
+    if (hour >= 21) {
+        if(value > 8) {
+            [statusValue setText:@"Normal"];
+            [statusValue setTextColor:[UIColor colorWithString:@"#0E870C"]];
+        } else if(value <= 8 && value >= 3) {
+            [statusValue setText:@"Escaso"];
+            [statusValue setTextColor:[UIColor colorWithString:@"#E8CE2D"]];
+        } else if(value == 0) {
+            [statusValue setText:@"No hay"];
+            [statusValue setTextColor:[UIColor blackColor]];
+        }
+        
+    } else {
+        [statusLabel setText:@"Precisión de los vehículos:"];
+        if(value > 8) {
+            [statusValue setText:@"Alta"];
+            [statusValue setTextColor:[UIColor colorWithString:@"#0E870C"]];
+        } else if(value <= 8 && value >= 3) {
+            [statusValue setText:@"Media"];
+            [statusValue setTextColor:[UIColor colorWithString:@"#E8CE2D"]];
+        } else if(value == 0) {
+            [statusValue setText:@"Baja"];
+            [statusValue setTextColor:[UIColor blackColor]];
+        }
+    }
+
+    [indicator stopAnimating];
 }
 
 - (void)didReceiveMemoryWarning
@@ -33,18 +106,35 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - View lifecycle
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
+- (void) fetchServiceStatus
 {
-    [super viewDidLoad];
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[ApplicationConfig urlForResource:@"serviceStatus"]]];
+    [request setDelegate:self];
+    [request startAsynchronous];
 }
 
-
-- (void)viewDidUnload
+- (void)requestFinished:(ASIHTTPRequest *)request
 {
-    [super viewDidUnload];
+    [self updateStatusMessageWithValue:[[request responseString] integerValue]];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    // Retrieve from local storage (TODO)
+    //NSError *error = [request error];
+}
+
+#pragma mark - View lifecycle
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [indicator startAnimating];
+    [self fetchServiceStatus];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [indicator stopAnimating];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
