@@ -103,6 +103,9 @@
 		3A86835B1541DC2800C9EE6F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A86835A1541DC2800C9EE6F /* libsqlite3.dylib */; };
 		3A86837F1541E97900C9EE6F /* UNAMCU.mbtiles in Resources */ = {isa = PBXBuildFile; fileRef = 3A86837E1541E97900C9EE6F /* UNAMCU.mbtiles */; };
 		3A8683801541EC1B00C9EE6F /* ApplicationConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8683411541D52900C9EE6F /* ApplicationConfig.m */; };
+		3AD230A815CC6A7A0081434C /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD230A715CC6A7A0081434C /* InformationViewController.m */; };
+		3AD230AA15CC6B1E0081434C /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD230A915CC6B1E0081434C /* info.png */; };
+		3AD230AD15CC8FE20081434C /* VehicleOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD230AC15CC8FE20081434C /* VehicleOverlay.m */; };
 		3ADFF7B615544F8C003BACB6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADFF7B515544F8C003BACB6 /* CoreLocation.framework */; };
 		3AE25A1515CB0267000A7262 /* Gradients.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE25A1415CB0267000A7262 /* Gradients.m */; };
 		3AE25A1715CB0BC4000A7262 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AE25A1615CB0BC4000A7262 /* logo.png */; };
@@ -274,6 +277,11 @@
 		3A8683581541D9A600C9EE6F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3A86835A1541DC2800C9EE6F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		3A86837E1541E97900C9EE6F /* UNAMCU.mbtiles */ = {isa = PBXFileReference; lastKnownFileType = file; path = UNAMCU.mbtiles; sourceTree = "<group>"; };
+		3AD230A615CC6A7A0081434C /* InformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationViewController.h; sourceTree = "<group>"; };
+		3AD230A715CC6A7A0081434C /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewController.m; sourceTree = "<group>"; };
+		3AD230A915CC6B1E0081434C /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
+		3AD230AB15CC8FE20081434C /* VehicleOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VehicleOverlay.h; sourceTree = "<group>"; };
+		3AD230AC15CC8FE20081434C /* VehicleOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VehicleOverlay.m; sourceTree = "<group>"; };
 		3ADFF7B515544F8C003BACB6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3AE25A1315CB0267000A7262 /* Gradients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gradients.h; sourceTree = "<group>"; };
 		3AE25A1415CB0267000A7262 /* Gradients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gradients.m; sourceTree = "<group>"; };
@@ -336,6 +344,8 @@
 				17A817F715BC699000E2E773 /* OverlayLegend.m */,
 				3AE25A1315CB0267000A7262 /* Gradients.h */,
 				3AE25A1415CB0267000A7262 /* Gradients.m */,
+				3AD230AB15CC8FE20081434C /* VehicleOverlay.h */,
+				3AD230AC15CC8FE20081434C /* VehicleOverlay.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -364,6 +374,7 @@
 		3A0ECDDC154895F700919614 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3AD230A915CC6B1E0081434C /* info.png */,
 				3AE25A1615CB0BC4000A7262 /* logo.png */,
 				17A817F915BC6B7B00E2E773 /* close.png */,
 				17A817F415BC632500E2E773 /* grid.png */,
@@ -608,6 +619,8 @@
 				17A166ED15563A3C006CBD0D /* FrontViewController.m */,
 				17A28A07155F433200CEBAC1 /* ReportsViewController.h */,
 				17A28A08155F433200CEBAC1 /* ReportsViewController.m */,
+				3AD230A615CC6A7A0081434C /* InformationViewController.h */,
+				3AD230A715CC6A7A0081434C /* InformationViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -720,6 +733,7 @@
 				17A817FA15BC6B7B00E2E773 /* close.png in Resources */,
 				17A817FC15BC73E400E2E773 /* legend.png in Resources */,
 				3AE25A1715CB0BC4000A7262 /* logo.png in Resources */,
+				3AD230AA15CC6B1E0081434C /* info.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -807,6 +821,8 @@
 				17D6C98315B9E3D4008FD431 /* HelpButton.m in Sources */,
 				17A817F815BC699000E2E773 /* OverlayLegend.m in Sources */,
 				3AE25A1515CB0267000A7262 /* Gradients.m in Sources */,
+				3AD230A815CC6A7A0081434C /* InformationViewController.m in Sources */,
+				3AD230AD15CC8FE20081434C /* VehicleOverlay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

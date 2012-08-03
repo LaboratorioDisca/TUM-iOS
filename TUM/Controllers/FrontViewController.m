@@ -48,8 +48,7 @@
         [statusLabel setTextColor:[UIColor colorWithWhite:1 alpha:0.6]];
         [statusLabel setBackgroundColor:[UIColor clearColor]];
 
-        statusValue = [[UILabel alloc] initWithFrame:CGRectMake(220, 5, 100, 40)];
-        [statusValue setTextColor:[UIColor colorWithWhite:1 alpha:0.6]];
+        statusValue = [[UILabel alloc] initWithFrame:CGRectMake(230, 5, 100, 40)];
         [statusValue setBackgroundColor:[UIColor clearColor]];
         [statusValue setFont:[UIFont systemFontOfSize:14]];
 
@@ -61,28 +60,33 @@
     return self;
 }
 
-- (void) updateStatusMessageWithValue:(NSInteger)value
+- (void) updateStatusMessageWithValue:(NSString*)message
 {
     NSDate *date = [NSDate date];
     
+    NSInteger value = [message integerValue];
     NSCalendar *sysCalendar = [NSCalendar currentCalendar];
     unsigned int unitFlags = NSHourCalendarUnit;  
     NSDateComponents *breakdownInfo = [sysCalendar components:unitFlags fromDate:date];
     int hour = [breakdownInfo hour]; 
-    if (hour >= 21) {
-        if(value > 8) {
-            [statusValue setText:@"Normal"];
-            [statusValue setTextColor:[UIColor colorWithString:@"#0E870C"]];
-        } else if(value <= 8 && value >= 3) {
-            [statusValue setText:@"Escaso"];
-            [statusValue setTextColor:[UIColor colorWithString:@"#E8CE2D"]];
-        } else if(value == 0) {
-            [statusValue setText:@"No hay"];
-            [statusValue setTextColor:[UIColor blackColor]];
-        }
-        
+    //if (hour >= 21) {
+
+    if(value > 8) {
+        [statusValue setText:@"Normal"];
+        [statusValue setTextColor:[UIColor colorWithRGBHex:0x0E870C]];
+    } else if(value <= 8 && value >= 3) {
+        [statusValue setText:@"Escaso"];
+        [statusValue setTextColor:[UIColor colorWithRGBHex:0xE8CE2D]];
+    } else if(value > 0 && value < 3) {
+        [statusValue setText:@"Muy poco"];
+        [statusValue setTextColor:[UIColor redColor]];
+    } else if(value == 0 && hour >= 21) {
+        [statusValue setText:@"Detenido"];
+        [statusValue setTextColor:[UIColor blackColor]];
+    }
+    /*    
     } else {
-        [statusLabel setText:@"Precisión de los vehículos:"];
+        [statusLabel setText:@"Precisión en pumabuses:"];
         if(value > 8) {
             [statusValue setText:@"Alta"];
             [statusValue setTextColor:[UIColor colorWithString:@"#0E870C"]];
@@ -94,11 +98,12 @@
             [statusValue setTextColor:[UIColor blackColor]];
         }
     }
-
+    */
     [indicator stopAnimating];
+    [statusValue setHidden:NO];
 }
 
-- (void)didReceiveMemoryWarning
+- (void) didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -115,7 +120,7 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    [self updateStatusMessageWithValue:[[request responseString] integerValue]];
+    [self performSelector:@selector(updateStatusMessageWithValue:) withObject:[request responseString] afterDelay:2];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -135,6 +140,7 @@
 - (void) viewWillDisappear:(BOOL)animated
 {
     [indicator stopAnimating];
+    [statusValue setHidden:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

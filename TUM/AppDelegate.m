@@ -12,6 +12,7 @@
 #import "FrontViewController.h"
 #import "ReportsViewController.h"
 #import "Instants.h"
+#import "InformationViewController.h"
 
 @implementation AppDelegate
 
@@ -40,7 +41,11 @@
     home.title = @"Principal";
     [home.tabBarItem setImage:[UIImage imageNamed:@"home.png"]];
     
-    [tabBarController setViewControllers:[NSArray arrayWithObjects:home, map, routes, nil] animated:YES];
+    InformationViewController *info = [[InformationViewController alloc] init];
+    info.title = @"Información";
+    [info.tabBarItem setImage:[UIImage imageNamed:@"info.png"]];
+    
+    [tabBarController setViewControllers:[NSArray arrayWithObjects:home, map, routes, info, nil] animated:YES];
 
     [self.window makeKeyAndVisible];
     return YES;

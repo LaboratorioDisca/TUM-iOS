@@ -11,6 +11,7 @@
 #import "ApplicationConfig.h"
 #import "UIColor-Expanded.h"
 #import "ASIHTTPRequestDelegate.h"
+#import "VehicleOverlay.h"
 
 #define zeroCoordComponent -1.0f
 

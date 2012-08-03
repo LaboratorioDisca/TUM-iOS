@@ -231,8 +231,9 @@
 - (void) tapOnAnnotation:(RMAnnotation *)annotation onMap:(RMMapView *)map
 {
     if ([[annotation userInfo] class] == [InstantRMMarker class]) {
-        //Instant* storedInstant = [annotation.userInfo instant];
-        //NSLog([NSString stringWithFormat:@"Velocidad: %f y hora %@", [[storedInstant vehicleSpeed] floatValue], [storedInstant date]]);
+        Instant* storedInstant = [annotation.userInfo instant];
+        
+        [VehicleOverlay overlayWithVehicleId:@"29" withSpeed:[storedInstant vehicleSpeed] withDate:[storedInstant date] forView:self.view];
     }
 }
 

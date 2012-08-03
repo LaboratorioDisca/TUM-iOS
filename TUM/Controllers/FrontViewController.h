@@ -12,7 +12,7 @@
 
 @interface FrontViewController : UIViewController<ASIHTTPRequestDelegate>
 
-- (void) updateStatusMessageWithValue:(NSInteger)value;
+- (void) updateStatusMessageWithValue:(NSString*)message;
 - (void) fetchServiceStatus;
 
 @end
