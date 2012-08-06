@@ -9,15 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @interface Vehicle : NSObject {
-    NSNumber *uniqueIdentifier;
+    NSString *number;
     NSNumber *identifier;
     NSNumber *lineId;
 }
 
-@property (strong, atomic) NSNumber *uniqueIdentifier;
+@property (strong, atomic) NSString *number;
 @property (strong, atomic) NSNumber *identifier;
 @property (strong, atomic) NSNumber *lineId;
 
-- (id) initWithUniqueIdentifier:(NSString*)uid withIdentifier:(NSNumber*)identifier withLineId:(NSNumber*)lineId;
+- (id) initWithNumber:(NSString*)number withIdentifier:(NSNumber*)identifier withLineId:(NSNumber*)lineId;
 
 @end

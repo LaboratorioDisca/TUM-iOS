@@ -58,9 +58,9 @@ static Vehicles *singleton;
         NSNumber* lineId = [NSNumber numberWithInt:[[vehicleData objectForKey:@"lineId"] intValue]];
         NSNumber *identifier = [NSNumber numberWithInt:[[vehicleData objectForKey:@"id"] intValue]];
         
-        Vehicle * vehicle = [[Vehicle alloc] initWithUniqueIdentifier:[vehicleData objectForKey:@"identifier"]
-                                                       withIdentifier:identifier  
-                                                           withLineId:lineId];
+        Vehicle * vehicle = [[Vehicle alloc] initWithNumber:[vehicleData objectForKey:@"identifier"]
+                                             withIdentifier:identifier  
+                                                 withLineId:lineId];
         
         // *** For quick lookup:
         // Insert in lines-vehicles dictionary

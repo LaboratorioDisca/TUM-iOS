@@ -23,6 +23,7 @@
 #import "SBJson.h"
 #import "Instants.h"
 #import "OverlayLegend.h"
+#import "Vehicle.h"
 
 @interface MapViewController () {
     NSMutableDictionary *cachedAnnotations;
@@ -232,8 +233,12 @@
 {
     if ([[annotation userInfo] class] == [InstantRMMarker class]) {
         Instant* storedInstant = [annotation.userInfo instant];
-        
-        [VehicleOverlay overlayWithVehicleId:@"29" withSpeed:[storedInstant vehicleSpeed] withDate:[storedInstant date] forView:self.view];
+                
+        [VehicleOverlay overlayWithVehicleId:[annotation.userInfo vehicleNumber] 
+                                   withSpeed:[storedInstant vehicleSpeed] 
+                                    withDate:[storedInstant date] 
+                                   withColor:[annotation.userInfo routeColor] 
+                                     forView:self.view];
     }
 }
 
@@ -263,7 +268,7 @@
             [annotation setCoordinate:instant.coordinates];
         }
         
-        [[annotation userInfo] setInstant:instant];
+        [[annotation userInfo] setInstant:instant color:[route color] andVehicleNumber:[vehicleId stringValue]];
         [self displayAnnotation:annotation forRoute:route];
     }
 }
@@ -298,6 +303,7 @@
      
 - (void) instructionsDisplay
 {
+    [VehicleOverlay destroy];
     [legend show];
 }
 

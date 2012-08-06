@@ -44,13 +44,14 @@
 
         statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 5, 200, 40)];
         [statusLabel setText:@"Estado actual del servicio:"];
-        [statusLabel setFont:[UIFont systemFontOfSize:14]];
+        [statusLabel setFont:[UIFont fontWithName:@"GillSans" size:14]];
         [statusLabel setTextColor:[UIColor colorWithWhite:1 alpha:0.6]];
         [statusLabel setBackgroundColor:[UIColor clearColor]];
 
-        statusValue = [[UILabel alloc] initWithFrame:CGRectMake(230, 5, 100, 40)];
+        statusValue = [[UILabel alloc] initWithFrame:CGRectMake(220, 5, 100, 40)];
         [statusValue setBackgroundColor:[UIColor clearColor]];
-        [statusValue setFont:[UIFont systemFontOfSize:14]];
+        [statusValue setFont:[UIFont fontWithName:@"GillSans" size:14]];
+
 
         [statusView addSubview:statusLabel];
         [statusView addSubview:statusValue];

@@ -9,15 +9,15 @@
 #import "Vehicle.h"
 
 @implementation Vehicle
-@synthesize identifier, uniqueIdentifier, lineId;
+@synthesize identifier, number, lineId;
 
-- (id) initWithUniqueIdentifier:(NSNumber *)uid withIdentifier:(NSNumber *)identifier_ withLineId:(NSNumber *)lineId_
+- (id) initWithNumber:(NSString *)number_ withIdentifier:(NSNumber *)identifier_ withLineId:(NSNumber *)lineId_
 {
     self = [self init];
     if (self) {
         [self setLineId:lineId_];
         [self setIdentifier:identifier_];
-        [self setUniqueIdentifier:uid];
+        [self setNumber:number_];
     }
     return self;
 }
