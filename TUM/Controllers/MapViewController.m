@@ -109,18 +109,12 @@
  * Decides if an annotation should be displayed or not
  */
 - (void) displayAnnotation:(RMAnnotation *)annotation forRoute:(Route *)route
-{
-    BOOL annotationIsOnMap = [[self.mapView annotations] containsObject:annotation];
+{    
+    [self.mapView removeAnnotation:annotation];
     
     if ([route visibleOnMap]) {
-        if (!annotationIsOnMap) {
-            [self.mapView addAnnotation:annotation];
-        }
-    } else {
-        if (annotationIsOnMap) {
-            [self.mapView removeAnnotation:annotation];
-        }
-    }
+        [self.mapView addAnnotation:annotation];
+    } 
 }
 
 /* Start requests section */

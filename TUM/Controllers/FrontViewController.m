@@ -43,7 +43,7 @@
         [statusView addSubview:indicator];
 
         statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 5, 200, 40)];
-        [statusLabel setText:@"Estado actual del servicio:"];
+        [statusLabel setText:NSLocalizedString(@"service_status_legend", @"")];
         [statusLabel setFont:[UIFont fontWithName:@"GillSans" size:14]];
         [statusLabel setTextColor:[UIColor colorWithWhite:1 alpha:0.6]];
         [statusLabel setBackgroundColor:[UIColor clearColor]];
@@ -73,16 +73,19 @@
     //if (hour >= 21) {
 
     if(value > 8) {
-        [statusValue setText:@"Normal"];
+        [statusValue setText:NSLocalizedString(@"service_status_normal", @"")];
         [statusValue setTextColor:[UIColor colorWithRGBHex:0x0E870C]];
     } else if(value <= 8 && value >= 3) {
-        [statusValue setText:@"Escaso"];
+        [statusValue setText:NSLocalizedString(@"service_status_few", @"")];
         [statusValue setTextColor:[UIColor colorWithRGBHex:0xE8CE2D]];
     } else if(value > 0 && value < 3) {
-        [statusValue setText:@"Muy poco"];
+        [statusValue setText:NSLocalizedString(@"service_status_very_few", @"")];
         [statusValue setTextColor:[UIColor redColor]];
     } else if(value == 0 && hour >= 21) {
-        [statusValue setText:@"Detenido"];
+        [statusValue setText:NSLocalizedString(@"service_status_stopped", @"")];
+        [statusValue setTextColor:[UIColor blackColor]];
+    } else {
+        [statusValue setText:NSLocalizedString(@"service_status_unknown", @"")];
         [statusValue setTextColor:[UIColor blackColor]];
     }
     /*    

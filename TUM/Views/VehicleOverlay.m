@@ -23,15 +23,15 @@ static VehicleOverlay* currentOverlay;
         [VehicleOverlay destroy];
     }
     
-    currentOverlay = [[self alloc] initWithFrame:CGRectMake(0, 340, [ApplicationConfig viewBounds].size.width, 50)];
+    currentOverlay = [[self alloc] initWithFrame:CGRectMake(0, 0, [ApplicationConfig viewBounds].size.width, 55)];
     [view addSubview:currentOverlay];
 
-    UIView *banFlag = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [ApplicationConfig viewBounds].size.width, 3)];
+    UIView *banFlag = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [ApplicationConfig viewBounds].size.width, 5)];
     [banFlag setBackgroundColor:[UIColor colorWithHexString:color]];
     [currentOverlay addSubview:banFlag];
     
     [currentOverlay setHumanizedDate:date];
-    [[currentOverlay speedLabel] setText:[NSString stringWithFormat:@"Velocidad %d km/h", [speed intValue]]];
+    [[currentOverlay speedLabel] setText:[NSString stringWithFormat:[NSLocalizedString(@"speed", @"") stringByAppendingString:@" %d km/h"], [speed intValue]]];
     [[currentOverlay identifierLabel] setText:identifier];
     
     [currentOverlay fadeIn];
@@ -52,28 +52,28 @@ static VehicleOverlay* currentOverlay;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        UILabel *vehicle = [[UILabel alloc] initWithFrame:CGRectMake(15, -5, 170, self.frame.size.height-10)];
-        [vehicle setText:@"VEHICULO"];
+        UILabel *vehicle = [[UILabel alloc] initWithFrame:CGRectMake(20, -5, 170, self.frame.size.height-10)];
+        [vehicle setText:NSLocalizedString(@"vehicle", @"")];
         [vehicle setFont:[UIFont fontWithName:@"GillSans" size:12]];
         [vehicle setTextColor:[UIColor whiteColor]];
         
         [vehicle setBackgroundColor:[UIColor clearColor]];
         [self addSubview:vehicle];
         
-        identifierLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 22, 170, self.frame.size.height-30)];
+        identifierLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 22, 170, self.frame.size.height-30)];
         [identifierLabel setFont:[UIFont fontWithName:@"GillSans-Bold" size:18]];
         [identifierLabel setBackgroundColor:[UIColor clearColor]];
         [identifierLabel setTextColor:[UIColor whiteColor]];
         [self addSubview:identifierLabel];
         
-        dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(130, -5, 180, self.frame.size.height-10)];
+        dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, -5, 180, self.frame.size.height-10)];
         [dateLabel setBackgroundColor:[UIColor clearColor]];
         [dateLabel setTextColor:[UIColor whiteColor]];
         [dateLabel setFont:[UIFont fontWithName:@"GillSans" size:14]];
 
         [self addSubview:dateLabel];
         
-        speedLabel = [[UILabel alloc] initWithFrame:CGRectMake(130, 24, 180, self.frame.size.height-30)];
+        speedLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, 24, 180, self.frame.size.height-30)];
         [speedLabel setFont:[UIFont fontWithName:@"GillSans" size:14]];
         [speedLabel setBackgroundColor:[UIColor clearColor]];
         [speedLabel setTextColor:[UIColor whiteColor]];

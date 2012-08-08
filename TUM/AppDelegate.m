@@ -12,7 +12,8 @@
 #import "FrontViewController.h"
 #import "ReportsViewController.h"
 #import "Instants.h"
-#import "InformationViewController.h"
+#import "HelpViewController.h"
+#import "SchedulesViewController.h"
 
 @implementation AppDelegate
 
@@ -26,26 +27,30 @@
     [self.window setRootViewController:tabBarController];
     
     RoutesViewController *routes = [[RoutesViewController alloc] initWithStyle:UITableViewStylePlain];
-    routes.title = @"Rutas";    
+    routes.title = NSLocalizedString(@"routes", @"");    
     [routes.tabBarItem setImage:[UIImage imageNamed:@"routes.png"]];
     
     MapViewController *map = [[MapViewController alloc] init];
-    map.title = @"Mapa";
+    map.title = NSLocalizedString(@"map", @"");
     [map.tabBarItem setImage:[UIImage imageNamed:@"map.png"]];
     
     ReportsViewController *reports = [[ReportsViewController alloc]  init];
-    reports.title = @"Auxilio";
+    reports.title = NSLocalizedString(@"report", @"");
     [reports.tabBarItem setImage:[UIImage imageNamed:@"alert.png"]];
 
     FrontViewController *home = [[FrontViewController alloc] init];
-    home.title = @"Principal";
+    home.title = NSLocalizedString(@"home", @"");
     [home.tabBarItem setImage:[UIImage imageNamed:@"home.png"]];
     
-    InformationViewController *info = [[InformationViewController alloc] init];
-    info.title = @"Información";
-    [info.tabBarItem setImage:[UIImage imageNamed:@"info.png"]];
+    HelpViewController *help = [[HelpViewController alloc] init];
+    help.title = NSLocalizedString(@"help", @"");
+    [help.tabBarItem setImage:[UIImage imageNamed:@"info.png"]];
     
-    [tabBarController setViewControllers:[NSArray arrayWithObjects:home, map, routes, info, nil] animated:YES];
+    SchedulesViewController *schedules = [[SchedulesViewController alloc] init];
+    schedules.title =NSLocalizedString(@"schedules", @"");
+    [schedules.tabBarItem setImage:[UIImage imageNamed:@"info.png"]];
+    
+    [tabBarController setViewControllers:[NSArray arrayWithObjects:home, map, routes, help, schedules, nil] animated:YES];
 
     [self.window makeKeyAndVisible];
     return YES;

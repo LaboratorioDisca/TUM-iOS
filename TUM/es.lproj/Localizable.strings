@@ -1,0 +1,42 @@
+/* 
+  Localizable.strings
+
+  Created by Alejandro on 5/21/12.
+  Copyright (c) 2012 UNAM IIMAS Disca. All rights reserved.
+*/
+
+// Menu entries
+"home" = "Inicio";
+"map" = "Mapa";
+"routes" = "Rutas";
+"help" = "¿Cómo usar esta app?";
+"schedules" = "Horarios";
+"report" = "Reporta";
+
+// Landing view
+"service_status_legend" = "Estado del Servicio";
+"service_status_normal" = "Normal";
+"service_status_few" = "Escaso";
+"service_status_very_few" = "Muy escaso";
+"service_status_stopped" = "Detenido";
+"service_status_unknown" = "Desconocido";
+
+// Schedules view
+"timetables_weekdays_routes" = "Todas las rutas de 6:00 a 22:00 hrs";
+"timetables_saturdays_routes_one" = "Rutas 1, 2, 4, 5 y 9 de 6:00 a 15:00 hrs";
+"timetables_saturdays_routes_two" = "Rutas 3 y 10 de 6:00 a 23:00 hrs";
+"timetables_sundays_routes" = "Rutas 3 y 10 de 6:00 a 23:00 hrs";
+
+"timetables_weekdays" = "Lunes a Viernes";
+"timetables_saturdays" = "Sábados";
+"timetables_sundays" = "Domingos";
+
+// Help view
+"help_instruction_one" = "Ir a la sección de rutas y seleccionar la ruta o rutas deseadas";
+"help_instruction_two" = "Ir al mapa y observar la posición en tiempo real de los pumabuses de la ruta o rutas que hayas seleccionado";
+"help_instruction_three" = "Localiza el pumabus más cercano a tu ubicación (círculo azul). Al hacer tap en alguno, se mostrará información adicional";
+
+
+"vehicle" = "PUMABUS";
+"received" = "Recibido el";
+"speed" = "Velocidad";

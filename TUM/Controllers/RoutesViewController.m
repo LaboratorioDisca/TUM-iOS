@@ -55,7 +55,6 @@
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     NSError *error;
-
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"routes" ofType:@"json"]; 
     NSString *routes = [[NSString alloc] initWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
     [Routes loadWithRoutesCollection:[routes JSONValue]];
@@ -106,8 +105,8 @@
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0 , 11.0f, self.view.frame.size.width, 21.0f)];
     [titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
-    [titleLabel setTextColor:[UIColor colorWithRed:157.0/255.0 green:157.0/255.0 blue:157.0/255.0 alpha:1.0]];
-    [titleLabel setText:@"Rutas"];
+    [titleLabel setTextColor:[UIColor whiteColor]];
+    [titleLabel setText:NSLocalizedString(@"routes", @"")];
     [titleLabel setTextAlignment:UITextAlignmentCenter];
     
     UIBarButtonItem *spacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
