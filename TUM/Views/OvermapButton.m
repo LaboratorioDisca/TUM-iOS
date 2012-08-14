@@ -14,7 +14,7 @@
 
 - (id) initWithImageNamed:(NSString *)imageName
 {
-    self = [super initWithFrame:CGRectMake([ApplicationConfig viewBounds].size.width-30-dimension/2, [ApplicationConfig viewBounds].size.height-120, dimension, dimension)];
+    self = [super initWithFrame:CGRectMake([ApplicationConfig viewBounds].size.width-30-dimension/2, [ApplicationConfig viewBounds].size.height-60, dimension, dimension)];
     if (self) {
         [self.layer setCornerRadius:4];
         [self.layer setBackgroundColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.8].CGColor];

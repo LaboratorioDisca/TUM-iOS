@@ -17,22 +17,26 @@
 static VehicleOverlay* currentOverlay;
 @synthesize speedLabel, identifierLabel, dateLabel;
 
-+ (void) overlayWithVehicleId:(NSString*)identifier withSpeed:(NSNumber*)speed withDate :(NSDate*)date withColor:(NSString*)color forView:(UIView *)view
++ (void) overlayWithAnnotation:(InstantRMMarker*) annotation forView:(UIView *)view
 {
+    Instant* storedInstant = [annotation.userInfo instant];
+    
+    [annotation.userInfo setBadgeIcon:[UIImage imageNamed:@"bus.png"]];
+    
     if(currentOverlay != nil) {
         [VehicleOverlay destroy];
     }
-    
     currentOverlay = [[self alloc] initWithFrame:CGRectMake(0, 0, [ApplicationConfig viewBounds].size.width, 55)];
     [view addSubview:currentOverlay];
-
+    
     UIView *banFlag = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [ApplicationConfig viewBounds].size.width, 5)];
-    [banFlag setBackgroundColor:[UIColor colorWithHexString:color]];
+    [banFlag setBackgroundColor:[UIColor colorWithHexString:[annotation.userInfo routeColor]]];
     [currentOverlay addSubview:banFlag];
     
-    [currentOverlay setHumanizedDate:date];
-    [[currentOverlay speedLabel] setText:[NSString stringWithFormat:[NSLocalizedString(@"speed", @"") stringByAppendingString:@" %d km/h"], [speed intValue]]];
-    [[currentOverlay identifierLabel] setText:identifier];
+    [currentOverlay setHumanizedDate:[storedInstant date]];
+    [[currentOverlay speedLabel] setText:[NSString stringWithFormat:[NSLocalizedString(@"speed", @"") 
+                                                                     stringByAppendingString:@" %d km/h"], [[storedInstant vehicleSpeed] intValue]]];
+    [[currentOverlay identifierLabel] setText:[annotation.userInfo vehicleNumber]];
     
     [currentOverlay fadeIn];
 }
@@ -85,9 +89,12 @@ static VehicleOverlay* currentOverlay;
         [self.layer setShadowOffset:CGSizeMake(1, 1)];
         [self.layer setShadowOpacity:1.7];
         
-        UITapGestureRecognizer *tapToHide = [[UITapGestureRecognizer alloc]
-                                             initWithTarget:self action:@selector(fadeOut)];
-        [self addGestureRecognizer:tapToHide];
+        UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [closeButton setFrame:CGRectMake([ApplicationConfig viewBounds].size.width-50, 10, 35, 35)];
+        [closeButton setImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
+        [closeButton addTarget:self action:@selector(fadeOut) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:closeButton];
+
     }
     return self;
 }

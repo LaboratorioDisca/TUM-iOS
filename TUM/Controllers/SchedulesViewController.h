@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TabBarViewController.h"
+#import "IIViewDeckController.h"
 
 @interface SchedulesViewController : TabBarViewController
 

@@ -19,6 +19,7 @@
     self = [super init];
     if (self) {
         [self.view setBackgroundColor:[UIColor grayColor]];
+        [self setLeftButtonEnabled:YES];
     }
     return self;
 }
@@ -26,6 +27,12 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.viewDeckController setPanningMode:IIViewDeckNoPanning];
+}
+
+- (void) onLeftControlActivate
+{
+    [self.viewDeckController openLeftView];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

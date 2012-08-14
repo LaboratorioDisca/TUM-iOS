@@ -7,28 +7,19 @@
 //
 
 #import "AppDelegate.h"
-#import "MapViewController.h"
-#import "RoutesViewController.h"
-#import "FrontViewController.h"
-#import "ReportsViewController.h"
-#import "Instants.h"
-#import "HelpViewController.h"
-#import "SchedulesViewController.h"
 
 @implementation AppDelegate
 
+@synthesize controllerManager;
 @synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    //UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [self.window setRootViewController:tabBarController];
     
-    RoutesViewController *routes = [[RoutesViewController alloc] initWithStyle:UITableViewStylePlain];
-    routes.title = NSLocalizedString(@"routes", @"");    
-    [routes.tabBarItem setImage:[UIImage imageNamed:@"routes.png"]];
+    [RoutesViewController controller];
     
     MapViewController *map = [[MapViewController alloc] init];
     map.title = NSLocalizedString(@"map", @"");
@@ -50,7 +41,14 @@
     schedules.title =NSLocalizedString(@"schedules", @"");
     [schedules.tabBarItem setImage:[UIImage imageNamed:@"info.png"]];
     
-    [tabBarController setViewControllers:[NSArray arrayWithObjects:home, map, routes, help, schedules, nil] animated:YES];
+    //[tabBarController setViewControllers:[NSArray arrayWithObjects:home, map, routes, help, schedules, nil] animated:YES];
+
+    
+    MenuViewController *menu = [[MenuViewController alloc] initWithControllers:[NSArray arrayWithObjects:home, map, help, schedules, nil]];
+    controllerManager = [[IIViewDeckController alloc] initWithCenterViewController:home 
+                                                                leftViewController:menu 
+                                                               rightViewController:nil];
+    [self.window setRootViewController:controllerManager];
 
     [self.window makeKeyAndVisible];
     return YES;

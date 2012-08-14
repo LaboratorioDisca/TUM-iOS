@@ -14,6 +14,7 @@
 "report" = "Reporta";
 
 // Landing view
+"start_legend" = "Menú";
 "service_status_legend" = "Estado del Servicio";
 "service_status_normal" = "Normal";
 "service_status_few" = "Escaso";

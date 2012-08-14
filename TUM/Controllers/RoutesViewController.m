@@ -25,7 +25,19 @@
 @end
 
 @implementation RoutesViewController
+
+static RoutesViewController* current;
 @synthesize cachedRoutes;
+
++(id) controller
+{
+    if (current == NULL) {
+        RoutesViewController *routes = [[RoutesViewController alloc] initWithStyle:UITableViewStylePlain];
+        routes.title = NSLocalizedString(@"routes", @""); 
+        current = routes;
+    }
+    return current;
+}
 
 - (id) initWithStyle:(UITableViewStyle)style
 {

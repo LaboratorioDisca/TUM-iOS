@@ -16,10 +16,16 @@
     UIButton *rightButton;
     UIButton *leftButton;
     UILabel *navigationBarTitle;
+    
+    BOOL rightButtonEnabled;
+    BOOL leftButtonEnabled;
 }
 
 @property (nonatomic, strong) UILabel *navigationBarTitle;
+@property (nonatomic, assign) BOOL rightButtonEnabled;
+@property (nonatomic, assign) BOOL leftButtonEnabled;
 
 - (void) navBarCustomization;
-
+- (void) onLeftControlActivate;
+- (void) onRightControlActivate;
 @end

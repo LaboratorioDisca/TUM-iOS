@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "ApplicationConfig.h"
 #import "TabBarViewController.h"
+#import "UIColor-Expanded.h"
+#import "IIViewDeckController.h"
 
 @interface HelpViewController : TabBarViewController 
 

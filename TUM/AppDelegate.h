@@ -7,9 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MapViewController.h"
+#import "RoutesViewController.h"
+#import "FrontViewController.h"
+#import "ReportsViewController.h"
+#import "Instants.h"
+#import "HelpViewController.h"
+#import "SchedulesViewController.h"
+#import "MenuViewController.h"
+#import "IIViewDeckController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) IIViewDeckController *controllerManager;
 
 @end

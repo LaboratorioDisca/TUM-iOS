@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "ASIHTTPRequestDelegate.h"
 #import "ASIHTTPRequest.h"
+#import "ApplicationConfig.h"
+#import "Gradients.h"
+#import <QuartzCore/QuartzCore.h>
+#import "UIColor-Expanded.h"
+#import "IIViewDeckController.h"
 
 @interface FrontViewController : UIViewController<ASIHTTPRequestDelegate>
 

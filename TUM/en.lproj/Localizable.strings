@@ -13,6 +13,7 @@
 "schedules" = "Schedules";
 
 // Landing view
+"start_legend" = "Menu";
 "service_status_legend" = "Service status";
 "service_status_normal" = "Normal";
 "service_status_few" = "Few";

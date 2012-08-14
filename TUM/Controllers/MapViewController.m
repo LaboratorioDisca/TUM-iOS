@@ -7,23 +7,6 @@
 //
 
 #import "MapViewController.h"
-#import <MapBox/MapBox.h>
-#import "Routes.h"
-#import "Route.h"
-#import "ApplicationConfig.h"
-#import "OvermapButton.h"
-#import <AVFoundation/AVFoundation.h>
-
-#import "Instant.h"
-#import "Vehicles.h"
-#import "Routes.h"
-#import "InstantRMMarker.h"
-
-#import "ASIHTTPRequest.h"
-#import "SBJson.h"
-#import "Instants.h"
-#import "OverlayLegend.h"
-#import "Vehicle.h"
 
 @interface MapViewController () {
     NSMutableDictionary *cachedAnnotations;
@@ -80,10 +63,12 @@
         mapInstructions = [[OvermapButton alloc] initWithImageNamed:@"grid.png"];
         [self.view addSubview:mapInstructions];
         [mapInstructions addTarget:self action:@selector(instructionsDisplay) forControlEvents:UIControlEventTouchUpInside];
-        legend = [[OverlayLegend alloc] initWithFrame:CGRectMake(35, 45, 250, 320) withImageNamed:@"legend.png"];
+        legend = [[OverlayLegend alloc] initWithFrame:CGRectMake(35, 80, 250, 320) withImageNamed:@"legend.png"];
         [self.view addSubview:legend];
         [legend setDelegate:mapInstructions];
-
+        
+        [self setLeftButtonEnabled:YES];
+        [self setRightButtonEnabled:YES];
     }
     return self;
 }
@@ -226,13 +211,7 @@
 - (void) tapOnAnnotation:(RMAnnotation *)annotation onMap:(RMMapView *)map
 {
     if ([[annotation userInfo] class] == [InstantRMMarker class]) {
-        Instant* storedInstant = [annotation.userInfo instant];
-                
-        [VehicleOverlay overlayWithVehicleId:[annotation.userInfo vehicleNumber] 
-                                   withSpeed:[storedInstant vehicleSpeed] 
-                                    withDate:[storedInstant date] 
-                                   withColor:[annotation.userInfo routeColor] 
-                                     forView:self.view];
+        [VehicleOverlay overlayWithAnnotation:(InstantRMMarker*) annotation forView:self.view];
     }
 }
 
@@ -271,6 +250,17 @@
     return annotation.userInfo;
 }
 
+- (void) prepareDrawables
+{
+    [self setAutomaticInstantsFetch:YES];
+    [self updateVehiclesInstants];
+    
+    [self drawRoutesOnMap];
+    [self drawVehiclesInstantsOnMap];
+    [self updateVehiclesInstants];
+    [locationFetcher startUpdatingLocation];
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -280,13 +270,8 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self setAutomaticInstantsFetch:YES];
-    [self updateVehiclesInstants];
-
-    [self drawRoutesOnMap];
-    [self drawVehiclesInstantsOnMap];
-    [self updateVehiclesInstants];
-    [locationFetcher startUpdatingLocation];
+    [self.viewDeckController setPanningMode:IIViewDeckFullViewPanning];
+    [self prepareDrawables];
 }
 
 - (void) viewDidDisappear:(BOOL)animated
@@ -304,6 +289,21 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void) onLeftControlActivate
+{
+    [self.viewDeckController openLeftView];
+}
+
+- (void) onRightControlActivate
+{
+    self.viewDeckController.rightController = [RoutesViewController controller];
+    [self.viewDeckController toggleRightViewAnimated:YES];
+}
+
+- (void) viewDeckControllerDidCloseRightView:(IIViewDeckController *)viewDeckController animated:(BOOL)animated {
+    [self prepareDrawables];
 }
 
 @end

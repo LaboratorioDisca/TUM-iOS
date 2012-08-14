@@ -11,5 +11,6 @@
 
 @interface RoutesViewController : UITableViewController<ASIHTTPRequestDelegate>
 
++ (id) controller;
 - (void) fetchRoutes;
 @end

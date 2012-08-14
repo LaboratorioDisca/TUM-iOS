@@ -10,6 +10,7 @@
 #import "UIColor-Expanded.h"
 #import <QuartzCore/QuartzCore.h>
 
+#define kLeftMargin 100
 @interface UITableViewCellForRouteRow() {
 }
 
@@ -22,7 +23,7 @@
 - (void) drawRouteDataWith:(Route *)route
 {
     NSString *routeNumber = [[route name] stringByReplacingOccurrencesOfString:@"Ruta " withString:@""];
-    UILabel *routeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 20, 60, 60)];
+    UILabel *routeLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftMargin*2+40, 20, 60, 60)];
 
     [routeLabel setText:routeNumber];
     [routeLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:50]];
@@ -32,13 +33,13 @@
     [routeLabel setShadowOffset:CGSizeMake(-1, 3)];
     [self.contentView addSubview:routeLabel];
     
-    float leftMargin = 110;
     
-    UILabel *leftDirectionLabel = [[UILabel alloc] initWithFrame:CGRectMake(leftMargin, 35, 300, 20)];
+    
+    UILabel *leftDirectionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftMargin-40, 35, 300, 20)];
     [leftDirectionLabel setText:route.leftTerminal];
     [self applyStyleToDirectionLabel:leftDirectionLabel];
 
-    UILabel *rightDirectionLabel = [[UILabel alloc] initWithFrame:CGRectMake(leftMargin, 50, 300, 20)];
+    UILabel *rightDirectionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftMargin-40, 50, 300, 20)];
     [rightDirectionLabel setText:route.rightTerminal];
     [self applyStyleToDirectionLabel:rightDirectionLabel];
     

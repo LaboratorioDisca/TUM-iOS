@@ -14,7 +14,7 @@
 
 @implementation TabBarViewController
 
-@synthesize navigationBarTitle;
+@synthesize navigationBarTitle, leftButtonEnabled, rightButtonEnabled;
 
 - (id) init
 {
@@ -30,6 +30,9 @@
 
         [navigationBarTitle setTextAlignment:UITextAlignmentCenter];
         [navigationBarTitle setTextColor:[UIColor whiteColor]];
+        
+        rightButtonEnabled = NO;
+        leftButtonEnabled = NO;
     }
     return self;
 }
@@ -66,22 +69,38 @@
     [rightButton setImage:[UIImage imageNamed:@"location.png"] forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(onRightControlActivate) forControlEvents:UIControlEventTouchUpInside];
     
-    //[navigationBar addSubview:rightButton];
-    
     leftButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 2.1, 40, 36)];
     [leftButton setImage:[UIImage imageNamed:@"list.png"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(onLeftControlActivate) forControlEvents:UIControlEventTouchUpInside];
     
     [navigationBarTitle setText:self.title];
     [navigationBar addSubview:navigationBarTitle];
-    //[navigationBar addSubview:leftButton];
+    
     [self.view addSubview:navigationBar];
+    
+    if (leftButtonEnabled) {
+        [navigationBar addSubview:leftButton];
+    }
+    
+    if (rightButtonEnabled) {
+        [navigationBar addSubview:rightButton];
+    }
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [navigationBar removeFromSuperview];
+}
+
+- (void) onLeftControlActivate
+{
+    
+}
+
+- (void) onRightControlActivate
+{
+    
 }
 
 @end
