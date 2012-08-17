@@ -20,6 +20,7 @@
 #import "ASIHTTPRequest.h"
 
 #import "VehicleOverlay.h"
+#import "VehicleAnnotation.h"
 
 #import "Routes.h"
 #import "Route.h"
@@ -32,6 +33,9 @@
 #import "Instants.h"
 #import "OverlayLegend.h"
 #import "Vehicle.h"
+#import "VehicleOverlay.h"
+
+#import "SelectedVehicleTuple.h"
 
 #define zeroCoordComponent -1.0f
 
@@ -43,4 +47,5 @@
 - (void) drawVehiclesInstantsOnMap;
 - (void) instructionsDisplay;
 - (void) prepareDrawables;
+- (void) addOrUpdateVehicleOverlay:(RMAnnotation*)annotation;
 @end

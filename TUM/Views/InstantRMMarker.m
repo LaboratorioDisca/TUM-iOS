@@ -10,12 +10,27 @@
 
 @implementation InstantRMMarker
 
-@synthesize instant, vehicleNumber, routeColor;
+/*@synthesize instant, vehicleNumber, routeColor;
 
-- (void) setInstant:(Instant *)instant_ color:(NSString*)color_ andVehicleNumber:(NSString*)vehicleNumber_
+- (id) initWithUIImage:(UIImage *)image
+{
+    self = [super initWithUIImage:image anchorPoint:CGPointMake(0.5, 1)];
+    if (self) {
+        defaultImage = image;
+    }
+    return self;
+}
+
+- (void) setInstant:(Instant *)instant_ color:(NSString*)color_
 {
     [self setInstant:instant_];
     [self setRouteColor:color_];
-    [self setVehicleNumber:vehicleNumber_];
 }
+
+- (void) resetToDefaultImage
+{
+    [self replaceUIImage:defaultImage anchorPoint:CGPointMake(0.5, 1)];
+    NSLog(@"Resetting image");
+}
+*/
 @end

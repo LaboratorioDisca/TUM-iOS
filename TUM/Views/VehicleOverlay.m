@@ -14,48 +14,38 @@
 
 @implementation VehicleOverlay
 
-static VehicleOverlay* currentOverlay;
-@synthesize speedLabel, identifierLabel, dateLabel;
+@synthesize speedLabel, identifierLabel, dateLabel, defaultImage, annotation;
 
-+ (void) overlayWithAnnotation:(InstantRMMarker*) annotation forView:(UIView *)view
++ (id) overlayForAnnotation:(VehicleAnnotation *)annotation
 {
-    Instant* storedInstant = [annotation.userInfo instant];
-    
-    [annotation.userInfo setBadgeIcon:[UIImage imageNamed:@"bus.png"]];
-    
-    if(currentOverlay != nil) {
-        [VehicleOverlay destroy];
-    }
-    currentOverlay = [[self alloc] initWithFrame:CGRectMake(0, 0, [ApplicationConfig viewBounds].size.width, 55)];
-    [view addSubview:currentOverlay];
+    VehicleOverlay *overlay = [[self alloc] initWithFrame:CGRectMake(0, 40, [ApplicationConfig viewBounds].size.width, 55) 
+                                    withVehicleAnnotation:annotation];
     
     UIView *banFlag = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [ApplicationConfig viewBounds].size.width, 5)];
-    [banFlag setBackgroundColor:[UIColor colorWithHexString:[annotation.userInfo routeColor]]];
-    [currentOverlay addSubview:banFlag];
+    [banFlag setBackgroundColor:[UIColor colorWithHexString:[annotation.route color]]];
+    [overlay addSubview:banFlag];
     
-    [currentOverlay setHumanizedDate:[storedInstant date]];
-    [[currentOverlay speedLabel] setText:[NSString stringWithFormat:[NSLocalizedString(@"speed", @"") 
-                                                                     stringByAppendingString:@" %d km/h"], [[storedInstant vehicleSpeed] intValue]]];
-    [[currentOverlay identifierLabel] setText:[annotation.userInfo vehicleNumber]];
+    [overlay setHumanizedDate:[annotation.instant date]];
+    [[overlay speedLabel] setText:[NSString stringWithFormat:[NSLocalizedString(@"speed", @"") 
+                                                                     stringByAppendingString:@" %d km/h"], [[annotation.instant vehicleSpeed] intValue]]];
+    [[overlay identifierLabel] setText:[annotation.instant vehicleId].stringValue];
     
-    [currentOverlay fadeIn];
+    [annotation markAsSelected];
+    NSLog(@"Registrados");
+    return overlay;
 }
 
-+ (VehicleOverlay*) current
+- (void) destroy
 {
-    return currentOverlay;
+    [annotation markAsDeselected];
+    [self removeFromSuperview];
 }
 
-+ (void) destroy
-{
-    [currentOverlay removeFromSuperview];
-    currentOverlay = nil;
-}
-
-- (id) initWithFrame:(CGRect)frame
+- (id) initWithFrame:(CGRect)frame withVehicleAnnotation:(VehicleAnnotation*)annotation_
 {
     self = [super initWithFrame:frame];
     if (self) {
+        annotation = annotation_;
         UILabel *vehicle = [[UILabel alloc] initWithFrame:CGRectMake(20, -5, 170, self.frame.size.height-10)];
         [vehicle setText:NSLocalizedString(@"vehicle", @"")];
         [vehicle setFont:[UIFont fontWithName:@"GillSans" size:12]];
@@ -89,14 +79,19 @@ static VehicleOverlay* currentOverlay;
         [self.layer setShadowOffset:CGSizeMake(1, 1)];
         [self.layer setShadowOpacity:1.7];
         
-        UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [closeButton setFrame:CGRectMake([ApplicationConfig viewBounds].size.width-50, 10, 35, 35)];
-        [closeButton setImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
-        [closeButton addTarget:self action:@selector(fadeOut) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:closeButton];
+
 
     }
     return self;
+}
+
+- (void) wireDestroyActionTo:(id)object
+{
+    UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [closeButton setFrame:CGRectMake([ApplicationConfig viewBounds].size.width-50, 10, 35, 35)];
+    [closeButton setImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
+    [closeButton addTarget:object action:@selector(destroyVehicleOverlay) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:closeButton];
 }
 
 - (void) setHumanizedDate:(NSDate *)date
@@ -112,19 +107,21 @@ static VehicleOverlay* currentOverlay;
     [[self dateLabel] setText:[dateFormatter stringFromDate:date]];
 }
 
-- (void) fadeIn
+- (NSNumber*) associatedVehicleId
 {
-    [self setAlpha:1];
-    [self setHidden:NO];
+    return [NSNumber numberWithInt:1];
+    //return [annotation.userInfo instant].vehicleId;
 }
 
-- (void) fadeOut
+- (void) resetToDefaultIcon
 {
-    [UIView animateWithDuration:1 animations:^{
-        [self setAlpha:0];
-    } completion:^(BOOL finished) {
-        [self setHidden:YES];
-    }];
+    //[annotation.userInfo resetToDefaultImage];
+}
+
+- (CLLocationCoordinate2D) associatedVehicleCoordinate
+{
+    return CLLocationCoordinate2DMake(-99.2232, 19.232);
+    //return [[annotation.userInfo instant] coordinates];
 }
 
 @end

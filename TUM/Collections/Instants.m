@@ -38,8 +38,7 @@ static Instants *singleton;
 - (void) updateCollectionWithCollection:(NSArray *)collection_
 {
     for (NSDictionary *instantData in collection_) {
-        NSNumber *vehicleId = [NSNumber numberWithInt:[[instantData objectForKey:@"vehicleId"] intValue]];
-        
+        NSNumber *vehicleId = [instantData objectForKey:@"vehicleId"];
         Instant *instant = [[Instant alloc] initWithCoordinates:[instantData objectForKey:@"coordinate"] 
                                                   withVehicleId:vehicleId
                                                withVehicleSpeed:[instantData objectForKey:@"speed"] 

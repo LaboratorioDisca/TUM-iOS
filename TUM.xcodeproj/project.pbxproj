@@ -113,6 +113,8 @@
 		3AD230AD15CC8FE20081434C /* VehicleOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD230AC15CC8FE20081434C /* VehicleOverlay.m */; };
 		3AD2B5F915D9CC2C003C6745 /* arrow_right_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD2B5F715D9CC2C003C6745 /* arrow_right_2.png */; };
 		3AD2B5FA15D9CC2C003C6745 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD2B5F815D9CC2C003C6745 /* back.png */; };
+		3AD78C5615DD9FB60067A27E /* SelectedVehicleTuple.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD78C5515DD9FB60067A27E /* SelectedVehicleTuple.m */; };
+		3AD78C5B15DDA6080067A27E /* VehicleAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD78C5A15DDA6080067A27E /* VehicleAnnotation.m */; };
 		3AD92B5D15D96EC60033204F /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD92B5C15D96EC60033204F /* close.png */; };
 		3AD92B5F15D9776C0033204F /* bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD92B5E15D9776C0033204F /* bus.png */; };
 		3AD92B6515D97DF70033204F /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD92B6215D97DF70033204F /* IIViewDeckController.m */; };
@@ -307,6 +309,10 @@
 		3AD230AC15CC8FE20081434C /* VehicleOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VehicleOverlay.m; sourceTree = "<group>"; };
 		3AD2B5F715D9CC2C003C6745 /* arrow_right_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_right_2.png; sourceTree = "<group>"; };
 		3AD2B5F815D9CC2C003C6745 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		3AD78C5415DD9FB60067A27E /* SelectedVehicleTuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectedVehicleTuple.h; path = ../Delegates/SelectedVehicleTuple.h; sourceTree = "<group>"; };
+		3AD78C5515DD9FB60067A27E /* SelectedVehicleTuple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectedVehicleTuple.m; path = ../Delegates/SelectedVehicleTuple.m; sourceTree = "<group>"; };
+		3AD78C5915DDA6080067A27E /* VehicleAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VehicleAnnotation.h; sourceTree = "<group>"; };
+		3AD78C5A15DDA6080067A27E /* VehicleAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VehicleAnnotation.m; sourceTree = "<group>"; };
 		3AD92B5C15D96EC60033204F /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		3AD92B5E15D9776C0033204F /* bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus.png; sourceTree = "<group>"; };
 		3AD92B6115D97DF70033204F /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
@@ -386,6 +392,8 @@
 				3AD230AC15CC8FE20081434C /* VehicleOverlay.m */,
 				3AD92B6A15D97F5A0033204F /* UITableViewCellMenu.h */,
 				3AD92B6B15D97F5A0033204F /* UITableViewCellMenu.m */,
+				3AD78C5915DDA6080067A27E /* VehicleAnnotation.h */,
+				3AD78C5A15DDA6080067A27E /* VehicleAnnotation.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -628,6 +636,7 @@
 		3A8681C11541D01C00C9EE6F /* TUM */ = {
 			isa = PBXGroup;
 			children = (
+				3AD78C5815DDA0000067A27E /* Helpers */,
 				17406682155C963000E2DE86 /* Delegates */,
 				17D9F80E1558E95100737392 /* Collections */,
 				1786B9941557B5CA004082C7 /* Views */,
@@ -689,6 +698,15 @@
 				3A86837E1541E97900C9EE6F /* UNAMCU.mbtiles */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		3AD78C5815DDA0000067A27E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3AD78C5415DD9FB60067A27E /* SelectedVehicleTuple.h */,
+				3AD78C5515DD9FB60067A27E /* SelectedVehicleTuple.m */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		3AD92B6015D97DF70033204F /* ViewDeck */ = {
@@ -907,6 +925,8 @@
 				3AD92B6615D97DF70033204F /* WrapController.m in Sources */,
 				3AD92B6915D97EF30033204F /* MenuViewController.m in Sources */,
 				3AD92B6C15D97F5A0033204F /* UITableViewCellMenu.m in Sources */,
+				3AD78C5615DD9FB60067A27E /* SelectedVehicleTuple.m in Sources */,
+				3AD78C5B15DDA6080067A27E /* VehicleAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

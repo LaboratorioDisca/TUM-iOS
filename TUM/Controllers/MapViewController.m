@@ -15,6 +15,8 @@
     CLLocationManager *locationFetcher;
     AVAudioPlayer *player;
     BOOL automaticInstantsFetch;
+    
+    VehicleOverlay* currentVehicleOverlay;
 }
 
 @property (nonatomic, assign) BOOL automaticInstantsFetch;
@@ -125,6 +127,7 @@
     // Insert the recently loaded data from Backend
     if ([request tag] == 1) {
         [Instants loadWithInstantsCollection:[[request responseString] JSONValue]];
+        [self drawVehiclesInstantsOnMap];
     } else if ([request tag] == 2) {
         [Vehicles loadWithVehiclesCollection:[[request responseString] JSONValue]];
     }
@@ -144,7 +147,6 @@
     if ([self automaticInstantsFetch]) {
         [self performSelector:@selector(updateVehiclesInstants) withObject:nil afterDelay:10];
         NSLog(@"Just reloaded vehicle positions");
-        [self drawVehiclesInstantsOnMap];
     }
 }
 
@@ -158,7 +160,7 @@
     for (NSNumber *index in [routes keyEnumerator]) {
         Route *route = [routes objectForKey:index];
         // store the cached route under a namespace
-        NSString *cachedRouteId = [NSString stringWithFormat:@"Route-%d", index];
+        NSString *cachedRouteId = [NSString stringWithFormat:@"R-%d", route.identifier];
         RMAnnotation *annotation = [cachedAnnotations objectForKey:cachedRouteId];
         
         // Create an annotation if none is registered for the route with index id
@@ -195,8 +197,8 @@
             [path closePath];
             
             annotation = [[RMAnnotation alloc]initWithMapView:self.mapView 
-                                                                 coordinate:CLLocationCoordinate2DMake(latF, lonF)
-                                                                   andTitle:@""];
+                                                   coordinate:CLLocationCoordinate2DMake(latF, lonF)
+                                                     andTitle:@""];
             [annotation setUserInfo:path];
             [annotation setHasBoundingBox:YES];
             [annotation setBoundingBoxFromLocations:locations];
@@ -206,43 +208,75 @@
         
         [self displayAnnotation:annotation forRoute:route];
     }
+    
+    if(currentVehicleOverlay != nil) {
+        NSNumber *routeId = [[[currentVehicleOverlay annotation] route] identifier];
+        RMAnnotation *annotation = [cachedAnnotations objectForKey:[NSString stringWithFormat:@"R-%d", [routeId intValue]]];
+        if(annotation != nil && ![[mapView annotations] containsObject:annotation]) {
+            [self destroyVehicleOverlay];
+        }
+    }
 }
 
 - (void) tapOnAnnotation:(RMAnnotation *)annotation onMap:(RMMapView *)map
 {
-    if ([[annotation userInfo] class] == [InstantRMMarker class]) {
-        [VehicleOverlay overlayWithAnnotation:(InstantRMMarker*) annotation forView:self.view];
-    }
+    [self addOrUpdateVehicleOverlay:annotation];
 }
 
 - (void) drawVehiclesInstantsOnMap
 {
     for (Instant* instant in [[[Instants currentCollection] collection] allValues]) {
-        // vehicle retrieval
-        NSNumber *vehicleId = [Vehicles routeForVehicleId:instant.vehicleId];
-        // route lookup
-        Route *route = [Routes fetchRouteWithId:vehicleId];
-        // cache the vehicle id under a namespace
-        NSString *cachedVehicleId = [NSString stringWithFormat:@"Vehicle-%d", vehicleId];
-        RMAnnotation *annotation = [cachedAnnotations objectForKey:cachedVehicleId];
+        // vehicle and route retrieval
+        Route *route = [Routes fetchRouteWithId:[Vehicles routeForVehicleId:instant.vehicleId]];
         
-        if (annotation == nil) {
-            annotation = [[RMAnnotation alloc]initWithMapView:self.mapView 
-                                                   coordinate:instant.coordinates
-                                                     andTitle:@""];
-            annotation.anchorPoint = CGPointMake(10, 10);
-            
-            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", route.simpleIdentifier]];
-            InstantRMMarker *marker = [[InstantRMMarker alloc] initWithUIImage:image anchorPoint:CGPointMake(0.5, 1)];
-            [annotation setUserInfo:marker];
-            [cachedAnnotations setObject:annotation forKey:cachedVehicleId];
+        // cache the vehicle id under a namespace
+        NSString *cachedVehicleId = [NSString stringWithFormat:@"V-%d", [instant.vehicleId intValue]];
+        VehicleAnnotation *annotation = [cachedAnnotations objectForKey:cachedVehicleId];
 
+        if (annotation == nil) {
+            annotation = [[VehicleAnnotation alloc]initWithMapView:self.mapView instant:instant andRoute:route];
         } else {
             [annotation setCoordinate:instant.coordinates];
         }
-        
-        [[annotation userInfo] setInstant:instant color:[route color] andVehicleNumber:[vehicleId stringValue]];
+        [cachedAnnotations setObject:annotation forKey:cachedVehicleId];
+
         [self displayAnnotation:annotation forRoute:route];
+        
+    }
+    
+    if (currentVehicleOverlay != nil) {
+        
+        int vehicleId = [[[currentVehicleOverlay annotation].instant vehicleId] intValue];
+        VehicleAnnotation *annotation = [cachedAnnotations objectForKey:[NSString stringWithFormat:@"V-%d", vehicleId]];
+        if ([[mapView annotations] containsObject:annotation]) {
+
+            [self.mapView setZoom:18.0f];
+            [self.mapView setCenterCoordinate:annotation.instant.coordinates animated:YES];
+            [self addOrUpdateVehicleOverlay:annotation];
+        } else {
+            [self destroyVehicleOverlay];
+        }
+    }
+    
+}
+
+- (void) addOrUpdateVehicleOverlay:(RMAnnotation *)annotation
+{
+    [self destroyVehicleOverlay];
+    
+    if ([annotation class] == [VehicleAnnotation class]) {
+        currentVehicleOverlay = [VehicleOverlay overlayForAnnotation: (VehicleAnnotation*) annotation];
+        [currentVehicleOverlay wireDestroyActionTo:self];
+        [self.view addSubview:currentVehicleOverlay];
+        
+    }
+}
+
+- (void) destroyVehicleOverlay
+{
+    if (currentVehicleOverlay != NULL) {
+        [currentVehicleOverlay destroy];
+        currentVehicleOverlay = NULL;
     }
 }
 
@@ -256,8 +290,6 @@
     [self updateVehiclesInstants];
     
     [self drawRoutesOnMap];
-    [self drawVehiclesInstantsOnMap];
-    [self updateVehiclesInstants];
     [locationFetcher startUpdatingLocation];
 }
 
@@ -282,7 +314,7 @@
      
 - (void) instructionsDisplay
 {
-    [VehicleOverlay destroy];
+    [self destroyVehicleOverlay];
     [legend show];
 }
 

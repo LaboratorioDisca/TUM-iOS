@@ -10,16 +10,6 @@
 #import <MapBox/MapBox.h>
 #import "Instant.h"
 
-@interface InstantRMMarker : RMMarker {
-    Instant *instant; 
-    NSString *routeColor;
-    NSString *vehicleNumber;
-}
-
-@property (nonatomic, strong) Instant* instant;
-@property (nonatomic, strong) NSString *routeColor;
-@property (nonatomic, strong) NSString *vehicleNumber;
-
-- (void) setInstant:(Instant *)instant color:(NSString*)color andVehicleNumber:(NSString*)vehicleNumber;
+@interface InstantRMMarker : RMMarker 
 
 @end
