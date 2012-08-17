@@ -57,4 +57,10 @@ static NSMutableDictionary *markers;
     [self.userInfo replaceUIImage:[VehicleAnnotation getOrRegisterMarkerWith:route.simpleIdentifier] anchorPoint:CGPointMake(0.5, 1)];
 }
 
+- (void) setInstant:(Instant *)instant_
+{
+    instant = instant_;
+    self.coordinate = instant.coordinates;
+}
+
 @end

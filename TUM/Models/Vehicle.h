@@ -12,12 +12,14 @@
     NSString *number;
     NSNumber *identifier;
     NSNumber *lineId;
+    NSString *vehicleNumber;
 }
 
 @property (strong, atomic) NSString *number;
 @property (strong, atomic) NSNumber *identifier;
 @property (strong, atomic) NSNumber *lineId;
+@property (strong, atomic) NSString *vehicleNumber;
 
-- (id) initWithNumber:(NSString*)number withIdentifier:(NSNumber*)identifier withLineId:(NSNumber*)lineId;
+- (id) initWithNumber:(NSString*)number withIdentifier:(NSNumber*)identifier withLineId:(NSNumber*)lineId withVehicleNumber:(NSString*)vehicleNumber;
 
 @end

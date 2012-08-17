@@ -88,7 +88,9 @@
 
 - (void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    [self.mapView setCenterCoordinate:[newLocation coordinate] animated:YES];
+    if (currentVehicleOverlay != NULL) {
+        [self.mapView setCenterCoordinate:[newLocation coordinate] animated:YES];
+    }
     [locationFetcher stopUpdatingLocation];
 }
 
@@ -220,7 +222,10 @@
 
 - (void) tapOnAnnotation:(RMAnnotation *)annotation onMap:(RMMapView *)map
 {
-    [self addOrUpdateVehicleOverlay:annotation];
+    if ([annotation class] == [VehicleAnnotation class]) {
+        [self destroyVehicleOverlay];
+        [self addOrUpdateVehicleOverlay:(VehicleAnnotation*) annotation];
+    }
 }
 
 - (void) drawVehiclesInstantsOnMap
@@ -236,7 +241,7 @@
         if (annotation == nil) {
             annotation = [[VehicleAnnotation alloc]initWithMapView:self.mapView instant:instant andRoute:route];
         } else {
-            [annotation setCoordinate:instant.coordinates];
+            [annotation setInstant:instant];
         }
         [cachedAnnotations setObject:annotation forKey:cachedVehicleId];
 
@@ -248,28 +253,23 @@
         
         int vehicleId = [[[currentVehicleOverlay annotation].instant vehicleId] intValue];
         VehicleAnnotation *annotation = [cachedAnnotations objectForKey:[NSString stringWithFormat:@"V-%d", vehicleId]];
+        [self destroyVehicleOverlay];
         if ([[mapView annotations] containsObject:annotation]) {
-
-            [self.mapView setZoom:18.0f];
-            [self.mapView setCenterCoordinate:annotation.instant.coordinates animated:YES];
             [self addOrUpdateVehicleOverlay:annotation];
-        } else {
-            [self destroyVehicleOverlay];
-        }
+        } 
     }
     
 }
 
-- (void) addOrUpdateVehicleOverlay:(RMAnnotation *)annotation
+- (void) addOrUpdateVehicleOverlay:(VehicleAnnotation *)annotation
 {
     [self destroyVehicleOverlay];
     
-    if ([annotation class] == [VehicleAnnotation class]) {
-        currentVehicleOverlay = [VehicleOverlay overlayForAnnotation: (VehicleAnnotation*) annotation];
-        [currentVehicleOverlay wireDestroyActionTo:self];
-        [self.view addSubview:currentVehicleOverlay];
-        
-    }
+    currentVehicleOverlay = [VehicleOverlay overlayForAnnotation:annotation];
+    [currentVehicleOverlay wireDestroyActionTo:self];
+    [self.view addSubview:currentVehicleOverlay];
+    [self.mapView setZoom:18.0f];
+    [self.mapView setCenterCoordinate:[annotation instant].coordinates animated:YES];
 }
 
 - (void) destroyVehicleOverlay
@@ -277,6 +277,7 @@
     if (currentVehicleOverlay != NULL) {
         [currentVehicleOverlay destroy];
         currentVehicleOverlay = NULL;
+        [self.mapView setZoom:15.0f];
     }
 }
 

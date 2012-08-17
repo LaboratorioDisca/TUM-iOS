@@ -7,18 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vehicle.h"
 
 @interface Vehicles : NSObject {
     NSDictionary *linesVehicles;
+    NSDictionary *vehicles;
 }
 
-@property (nonatomic, strong) NSDictionary *linesVehicles;
-@property (nonatomic, strong) NSDictionary *vehicleLines;
+@property (nonatomic, readonly) NSDictionary *linesVehicles;
+@property (nonatomic, readonly) NSDictionary *vehicleLines;
+@property (nonatomic, readonly) NSDictionary *vehicles;
 
 + (void) loadWithVehiclesCollection:(NSArray*)collection;
 + (NSArray*) vehiclesForLine:(NSNumber*)lineId;
 + (NSNumber*) routeForVehicleId:(NSNumber*)identifier;
-
++ (Vehicle*) getVehicleById:(NSNumber*)vehicleId;
 + (Vehicles*) all;
 
 - (id) initWithVehiclesCollection:(NSArray*)collection;

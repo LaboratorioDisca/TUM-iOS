@@ -13,6 +13,7 @@
 #import <MapBox/MapBox.h>
 #import "InstantRMMarker.h"
 #import "VehicleAnnotation.h"
+#import "Vehicles.h"
 
 @interface VehicleOverlay : UIView {
     UILabel *speedLabel;
@@ -34,6 +35,5 @@
 
 - (NSNumber*) associatedVehicleId;
 - (CLLocationCoordinate2D) associatedVehicleCoordinate;
-- (void) destroyVehicleOverlay;
 - (void) wireDestroyActionTo:(id)object;
 @end

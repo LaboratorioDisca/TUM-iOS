@@ -47,5 +47,5 @@
 - (void) drawVehiclesInstantsOnMap;
 - (void) instructionsDisplay;
 - (void) prepareDrawables;
-- (void) addOrUpdateVehicleOverlay:(RMAnnotation*)annotation;
+- (void) addOrUpdateVehicleOverlay:(VehicleAnnotation*)annotation;
 @end

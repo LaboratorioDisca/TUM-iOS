@@ -28,7 +28,8 @@
     [overlay setHumanizedDate:[annotation.instant date]];
     [[overlay speedLabel] setText:[NSString stringWithFormat:[NSLocalizedString(@"speed", @"") 
                                                                      stringByAppendingString:@" %d km/h"], [[annotation.instant vehicleSpeed] intValue]]];
-    [[overlay identifierLabel] setText:[annotation.instant vehicleId].stringValue];
+    Vehicle *vehicle = [Vehicles getVehicleById:annotation.instant.vehicleId];
+    [[overlay identifierLabel] setText:[vehicle vehicleNumber]];
     
     [annotation markAsSelected];
     NSLog(@"Registrados");

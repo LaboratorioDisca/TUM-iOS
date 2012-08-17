@@ -15,7 +15,7 @@
     Route *route;
 }
 
-@property (nonatomic, strong) Instant* instant;
+@property (nonatomic, readonly) Instant* instant;
 @property (nonatomic, strong) Route* route;
 
 + (UIImage*) getOrRegisterMarkerWith:(NSString*)markerName;
@@ -24,4 +24,5 @@
 - (id) initWithMapView:(RMMapView *)aMapView instant:(Instant*)instant andRoute:(Route*)route;
 - (void) markAsSelected;
 - (void) markAsDeselected;
+- (void) setInstant:(Instant *)instant;
 @end
