@@ -21,6 +21,8 @@
     
     [RoutesViewController controller];
     
+    [Stations loadStationsFromFile];
+    
     MapViewController *map = [[MapViewController alloc] init];
     map.title = NSLocalizedString(@"map", @"");
     [map.tabBarItem setImage:[UIImage imageNamed:@"map.png"]];

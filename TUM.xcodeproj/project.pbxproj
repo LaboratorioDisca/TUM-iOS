@@ -84,6 +84,10 @@
 		3A0ECF291548BE5600919614 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0ECF281548BE5600919614 /* SystemConfiguration.framework */; };
 		3A0ECF2B1548BE6000919614 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0ECF2A1548BE6000919614 /* MobileCoreServices.framework */; };
 		3A0ECF2D1548BE7000919614 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0ECF2C1548BE7000919614 /* libz.dylib */; };
+		3A17CA7415E4049F00B0AEAD /* stations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A17CA7315E4049F00B0AEAD /* stations.plist */; };
+		3A17CA7715E404AF00B0AEAD /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A17CA7615E404AF00B0AEAD /* stop.png */; };
+		3A17CA7A15E4064400B0AEAD /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A17CA7915E4064400B0AEAD /* Station.m */; };
+		3A17CA7D15E4070F00B0AEAD /* Stations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A17CA7C15E4070F00B0AEAD /* Stations.m */; };
 		3A40E75D1551D0B9009A0A68 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A40E75C1551D0B9009A0A68 /* Route.m */; };
 		3A7382D015BF0D9E00E3E87A /* MapBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7382CF15BF0D9E00E3E87A /* MapBox.framework */; };
 		3A73E5D015546C8000279135 /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A73E5CF15546C8000279135 /* UIColor-Expanded.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -270,6 +274,12 @@
 		3A0ECF281548BE5600919614 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3A0ECF2A1548BE6000919614 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3A0ECF2C1548BE7000919614 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		3A17CA7315E4049F00B0AEAD /* stations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = stations.plist; sourceTree = "<group>"; };
+		3A17CA7615E404AF00B0AEAD /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
+		3A17CA7815E4064400B0AEAD /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
+		3A17CA7915E4064400B0AEAD /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
+		3A17CA7B15E4070F00B0AEAD /* Stations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stations.h; sourceTree = "<group>"; };
+		3A17CA7C15E4070F00B0AEAD /* Stations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stations.m; sourceTree = "<group>"; };
 		3A40E75B1551D0B9009A0A68 /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
 		3A40E75C1551D0B9009A0A68 /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
 		3A7382CF15BF0D9E00E3E87A /* MapBox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapBox.framework; path = TUM/Libraries/MapBox.framework; sourceTree = "<group>"; };
@@ -415,6 +425,8 @@
 				17D9F8131558E97C00737392 /* Vehicles.m */,
 				1740667C155C43EB00E2DE86 /* Instants.h */,
 				1740667D155C43EB00E2DE86 /* Instants.m */,
+				3A17CA7B15E4070F00B0AEAD /* Stations.h */,
+				3A17CA7C15E4070F00B0AEAD /* Stations.m */,
 			);
 			path = Collections;
 			sourceTree = "<group>";
@@ -422,6 +434,7 @@
 		3A0ECDDC154895F700919614 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3A17CA7615E404AF00B0AEAD /* stop.png */,
 				3ABFF71E15D9D1C100608A9A /* location.png */,
 				3ABFF71F15D9D1C100608A9A /* list.png */,
 				3AD2B5F715D9CC2C003C6745 /* arrow_right_2.png */,
@@ -467,6 +480,8 @@
 				1740667A155C356D00E2DE86 /* Vehicle.m */,
 				1740667F155C4AC500E2DE86 /* Instant.h */,
 				17406680155C4AC500E2DE86 /* Instant.m */,
+				3A17CA7815E4064400B0AEAD /* Station.h */,
+				3A17CA7915E4064400B0AEAD /* Station.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -656,6 +671,7 @@
 		3A8681C21541D01C00C9EE6F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3A17CA7315E4049F00B0AEAD /* stations.plist */,
 				3ABC795C15D2F73600364C5A /* Localizable.strings */,
 				17D6C98615BA0177008FD431 /* DefaultFiles */,
 				3A8681C31541D01C00C9EE6F /* TUM-Info.plist */,
@@ -830,6 +846,8 @@
 				3AD2B5FA15D9CC2C003C6745 /* back.png in Resources */,
 				3ABFF72015D9D1C100608A9A /* location.png in Resources */,
 				3ABFF72115D9D1C100608A9A /* list.png in Resources */,
+				3A17CA7415E4049F00B0AEAD /* stations.plist in Resources */,
+				3A17CA7715E404AF00B0AEAD /* stop.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -927,6 +945,8 @@
 				3AD92B6C15D97F5A0033204F /* UITableViewCellMenu.m in Sources */,
 				3AD78C5615DD9FB60067A27E /* SelectedVehicleTuple.m in Sources */,
 				3AD78C5B15DDA6080067A27E /* VehicleAnnotation.m in Sources */,
+				3A17CA7A15E4064400B0AEAD /* Station.m in Sources */,
+				3A17CA7D15E4070F00B0AEAD /* Stations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

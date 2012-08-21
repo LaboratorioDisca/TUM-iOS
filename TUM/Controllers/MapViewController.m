@@ -21,10 +21,11 @@
 
 @property (nonatomic, assign) BOOL automaticInstantsFetch;
 
-- (void) drawRoutesOnMap;
+- (void) drawRoutes;
 - (void) mapCustomization;
 - (void) displayAnnotation:(RMAnnotation*)annotation forRoute:(Route*)route;
 - (void) updateVehiclesInstants;
+- (void) drawStations;
 @end
 
 
@@ -71,6 +72,8 @@
         
         [self setLeftButtonEnabled:YES];
         [self setRightButtonEnabled:YES];
+        
+        [self drawStations];
     }
     return self;
 }
@@ -152,10 +155,23 @@
     }
 }
 
+- (void) drawStations
+{
+    UIImage *image = [UIImage imageNamed:@"stop.png"];
+    NSDictionary *stations = [[Stations currentCollection] collection];
+    for (NSNumber *key in [stations allKeys]) {
+        Station *station = [stations objectForKey:key];
+        
+        RMAnnotation *annotation = [[RMAnnotation alloc] initWithMapView:self.mapView coordinate:station.coordinate andTitle:@""];
+        [annotation setUserInfo:[[RMMarker alloc] initWithUIImage:image]];
+        [self.mapView addAnnotation:annotation];
+    }
+}
+
 /*
  * Loads the given routes into the map
  */
-- (void) drawRoutesOnMap
+- (void) drawRoutes
 {
     NSDictionary *routes = [[Routes currentCollection] collection];
     // index are the keys of the routes collection, the keys are id's on the corresponding backend database model
@@ -290,7 +306,7 @@
     [self setAutomaticInstantsFetch:YES];
     [self updateVehiclesInstants];
     
-    [self drawRoutesOnMap];
+    [self drawRoutes];
     [locationFetcher startUpdatingLocation];
 }
 

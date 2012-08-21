@@ -16,6 +16,7 @@
 #import "SchedulesViewController.h"
 #import "MenuViewController.h"
 #import "IIViewDeckController.h"
+#import "Stations.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
