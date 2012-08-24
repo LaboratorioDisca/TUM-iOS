@@ -17,6 +17,7 @@
     BOOL automaticInstantsFetch;
     
     VehicleOverlay* currentVehicleOverlay;
+    UIViewPopover *popover;
 }
 
 @property (nonatomic, assign) BOOL automaticInstantsFetch;
@@ -26,6 +27,7 @@
 - (void) displayAnnotation:(RMAnnotation*)annotation forRoute:(Route*)route;
 - (void) updateVehiclesInstants;
 - (void) drawStations;
+
 @end
 
 
@@ -73,7 +75,13 @@
         [self setLeftButtonEnabled:YES];
         [self setRightButtonEnabled:YES];
         
-        [self drawStations];
+        //[self drawStations];
+        popover = [[UIViewPopover alloc] initOnRightPositionWithItems:[NSArray arrayWithObjects:@"routes", @"places", nil]];
+        
+        ReactiveFocusView *viewReact = [[ReactiveFocusView alloc] initWithFrame:[ApplicationConfig viewBounds]];
+        [viewReact setDelegate:popover];
+        [popover setDelegate:self];
+        [self.view addSubview:viewReact];
     }
     return self;
 }
@@ -319,7 +327,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.viewDeckController setPanningMode:IIViewDeckFullViewPanning];
+    [self.viewDeckController setPanningMode:IIViewDeckNoPanning];
     [self prepareDrawables];
 }
 
@@ -343,16 +351,38 @@
 - (void) onLeftControlActivate
 {
     [self.viewDeckController openLeftView];
+    [popover disappearAnimated:NO];
 }
 
 - (void) onRightControlActivate
 {
-    self.viewDeckController.rightController = [RoutesViewController controller];
-    [self.viewDeckController toggleRightViewAnimated:YES];
+    if ([popover superview] == NULL) {
+        [self.view addSubview:popover];
+        [popover appearAnimated:YES];
+    } else {
+        [popover disappearAnimated:YES];
+    }
+    
 }
 
 - (void) viewDeckControllerDidCloseRightView:(IIViewDeckController *)viewDeckController animated:(BOOL)animated {
     [self prepareDrawables];
+}
+
+- (void) reactToPopoverItemSelectedWith:(int)number
+{
+    // routes
+    if (number == 1) {
+        self.viewDeckController.rightController = [RoutesViewController controller];
+        [self.viewDeckController toggleRightViewAnimated:YES];
+    } else if (number == 2) {
+        NSLog(@"Places list show");
+    }
+}
+
+- (void) clearViewForPopover
+{
+    [self destroyVehicleOverlay];
 }
 
 @end

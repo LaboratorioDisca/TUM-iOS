@@ -37,10 +37,14 @@
 
 #import "SelectedVehicleTuple.h"
 #import "Stations.h"
+#import "UIViewPopover.h"
+#import "ReactiveFocusView.h"
+#import "PopoverFocusDelegate.h"
+#import "PopoverActionMenuItemDelegate.h"
 
 #define zeroCoordComponent -1.0f
 
-@interface MapViewController : TabBarViewController<RMMapViewDelegate, CLLocationManagerDelegate, ASIHTTPRequestDelegate>
+@interface MapViewController : TabBarViewController<RMMapViewDelegate, CLLocationManagerDelegate, ASIHTTPRequestDelegate, PopoverActionMenuItemDelegate>
 
 @property (strong, nonatomic) RMMapView *mapView;
 - (void) fetchVehicles;
