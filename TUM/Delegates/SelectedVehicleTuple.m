@@ -10,7 +10,7 @@
 
 @implementation SelectedVehicleTuple
 
-@synthesize instant, route, marker, overlay;
+@synthesize instant, route, overlay;
 
 + (id) newWithVehicle:(Vehicle*)vehicle route:(Route*)route andCoordinate:(CLLocationCoordinate2D)coordinate
 {

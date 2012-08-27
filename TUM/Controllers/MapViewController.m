@@ -63,6 +63,9 @@
         [self.mapView setDelegate:self];
         [self.view addSubview:mapView];
         
+        [self.mapView setShowsUserLocation:YES];
+        [self.mapView setUserTrackingMode:RMUserTrackingModeFollowWithHeading animated:YES];
+
         [self mapCustomization];
 
         mapInstructions = [[OvermapButton alloc] initWithImageNamed:@"grid.png"];
@@ -99,9 +102,7 @@
 
 - (void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    if (currentVehicleOverlay != NULL) {
-        [self.mapView setCenterCoordinate:[newLocation coordinate] animated:YES];
-    }
+    [self.mapView setCenterCoordinate:[newLocation coordinate] animated:YES];
     [locationFetcher stopUpdatingLocation];
 }
 
@@ -191,9 +192,8 @@
         
         // Create an annotation if none is registered for the route with index id
         if (annotation == nil) {
-            RMPath *path = [[RMPath alloc] initWithView:self.mapView];
+            RMShape *path = [[RMShape alloc] initWithView:self.mapView];
             [path setLineColor:[UIColor colorWithHexString:route.color]];
-            [path setFillColor:[UIColor colorWithHexString:route.color]];
             [path setLineWidth:3];
             
             // store first coordinates for annotation positioning

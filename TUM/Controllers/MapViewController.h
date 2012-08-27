@@ -27,7 +27,6 @@
 #import "OvermapButton.h"
 #import "Instant.h"
 #import "Vehicles.h"
-#import "InstantRMMarker.h"
 
 #import "SBJson.h"
 #import "Instants.h"
@@ -41,6 +40,7 @@
 #import "ReactiveFocusView.h"
 #import "PopoverFocusDelegate.h"
 #import "PopoverActionMenuItemDelegate.h"
+
 
 #define zeroCoordComponent -1.0f
 

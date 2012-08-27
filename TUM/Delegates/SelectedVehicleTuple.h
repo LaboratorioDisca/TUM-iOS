@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "InstantRMMarker.h"
 #import "Instant.h"
 #import "Route.h"
 #import "VehicleOverlay.h"
@@ -19,10 +18,8 @@
     CLLocationCoordinate2D coordinate;
     
     VehicleOverlay *overlay;
-    InstantRMMarker *marker;
 }
 
-@property (readonly, nonatomic) InstantRMMarker *marker;
 @property (readonly, nonatomic) Instant *instant;
 @property (readonly, nonatomic) Route *route;
 @property (readonly, nonatomic) VehicleOverlay *overlay;

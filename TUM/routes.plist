@@ -9,7 +9,7 @@
 	<key>vehicles</key>
 	<string>vehicles</string>
 	<key>instants</key>
-	<string>instants/lastminute</string>
+	<string>instants/minutesago/3</string>
 	<key>serviceStatus</key>
 	<string>service/status</string>
 </dict>

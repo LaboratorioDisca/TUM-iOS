@@ -11,7 +11,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIColor-Expanded.h"
 #import <MapBox/MapBox.h>
-#import "InstantRMMarker.h"
 #import "VehicleAnnotation.h"
 #import "Vehicles.h"
 

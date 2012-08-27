@@ -26,7 +26,6 @@
 		1786B9971557B5CA004082C7 /* UITableViewCellForRouteRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1786B9961557B5CA004082C7 /* UITableViewCellForRouteRow.m */; };
 		17A166EE15563A3C006CBD0D /* FrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A166ED15563A3C006CBD0D /* FrontViewController.m */; };
 		17A166F015563CFE006CBD0D /* front.png in Resources */ = {isa = PBXBuildFile; fileRef = 17A166EF15563CFE006CBD0D /* front.png */; };
-		17A289F6155F24CD00CEBAC1 /* InstantRMMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A289F5155F24CD00CEBAC1 /* InstantRMMarker.m */; };
 		17A28A09155F433300CEBAC1 /* ReportsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A28A08155F433200CEBAC1 /* ReportsViewController.m */; };
 		17A28A0B155F440800CEBAC1 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 17A28A0A155F440800CEBAC1 /* refresh.png */; };
 		17A28A0D155F447E00CEBAC1 /* alert.png in Resources */ = {isa = PBXBuildFile; fileRef = 17A28A0C155F447E00CEBAC1 /* alert.png */; };
@@ -174,8 +173,6 @@
 		17A166EC15563A3C006CBD0D /* FrontViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontViewController.h; sourceTree = "<group>"; };
 		17A166ED15563A3C006CBD0D /* FrontViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontViewController.m; sourceTree = "<group>"; };
 		17A166EF15563CFE006CBD0D /* front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = front.png; sourceTree = "<group>"; };
-		17A289F4155F24CC00CEBAC1 /* InstantRMMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstantRMMarker.h; sourceTree = "<group>"; };
-		17A289F5155F24CD00CEBAC1 /* InstantRMMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstantRMMarker.m; sourceTree = "<group>"; };
 		17A28A07155F433200CEBAC1 /* ReportsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportsViewController.h; sourceTree = "<group>"; };
 		17A28A08155F433200CEBAC1 /* ReportsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportsViewController.m; sourceTree = "<group>"; };
 		17A28A0A155F440800CEBAC1 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
@@ -410,8 +407,6 @@
 				17DF31F31558B657002B1DBD /* OvermapButton.m */,
 				1786B9951557B5CA004082C7 /* UITableViewCellForRouteRow.h */,
 				1786B9961557B5CA004082C7 /* UITableViewCellForRouteRow.m */,
-				17A289F4155F24CC00CEBAC1 /* InstantRMMarker.h */,
-				17A289F5155F24CD00CEBAC1 /* InstantRMMarker.m */,
 				17A817F615BC699000E2E773 /* OverlayLegend.h */,
 				17A817F715BC699000E2E773 /* OverlayLegend.m */,
 				3AE25A1315CB0267000A7262 /* Gradients.h */,
@@ -960,7 +955,6 @@
 				1740667B155C356D00E2DE86 /* Vehicle.m in Sources */,
 				1740667E155C43EB00E2DE86 /* Instants.m in Sources */,
 				17406681155C4AC500E2DE86 /* Instant.m in Sources */,
-				17A289F6155F24CD00CEBAC1 /* InstantRMMarker.m in Sources */,
 				17A28A09155F433300CEBAC1 /* ReportsViewController.m in Sources */,
 				17D6C98315B9E3D4008FD431 /* HelpButton.m in Sources */,
 				17A817F815BC699000E2E773 /* OverlayLegend.m in Sources */,
