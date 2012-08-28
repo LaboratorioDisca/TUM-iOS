@@ -32,7 +32,6 @@
     [[overlay identifierLabel] setText:[vehicle vehicleNumber]];
     
     [annotation markAsSelected];
-    NSLog(@"Registrados");
     return overlay;
 }
 
@@ -49,14 +48,14 @@
         annotation = annotation_;
         UILabel *vehicle = [[UILabel alloc] initWithFrame:CGRectMake(20, -5, 170, self.frame.size.height-10)];
         [vehicle setText:NSLocalizedString(@"vehicle", @"")];
-        [vehicle setFont:[UIFont fontWithName:@"GillSans" size:12]];
+        [vehicle setFont:[UIFont fontWithName:@"Helvetica" size:12]];
         [vehicle setTextColor:[UIColor whiteColor]];
         
         [vehicle setBackgroundColor:[UIColor clearColor]];
         [self addSubview:vehicle];
         
         identifierLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 22, 170, self.frame.size.height-30)];
-        [identifierLabel setFont:[UIFont fontWithName:@"GillSans-Bold" size:18]];
+        [identifierLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
         [identifierLabel setBackgroundColor:[UIColor clearColor]];
         [identifierLabel setTextColor:[UIColor whiteColor]];
         [self addSubview:identifierLabel];
@@ -64,12 +63,12 @@
         dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, -5, 180, self.frame.size.height-10)];
         [dateLabel setBackgroundColor:[UIColor clearColor]];
         [dateLabel setTextColor:[UIColor whiteColor]];
-        [dateLabel setFont:[UIFont fontWithName:@"GillSans" size:14]];
+        [dateLabel setFont:[UIFont fontWithName:@"Helvetica" size:12]];
 
         [self addSubview:dateLabel];
         
         speedLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, 24, 180, self.frame.size.height-30)];
-        [speedLabel setFont:[UIFont fontWithName:@"GillSans" size:14]];
+        [speedLabel setFont:[UIFont fontWithName:@"Helvetica" size:12]];
         [speedLabel setBackgroundColor:[UIColor clearColor]];
         [speedLabel setTextColor:[UIColor whiteColor]];
         [self addSubview:speedLabel];

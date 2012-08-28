@@ -15,6 +15,13 @@
 "searches" = "Places";
 "dismiss_search" = "Close";
 
+// Submenu entries
+"bookLegend" = "Legend";
+
+
+// Search view
+"stop" = "Stop";
+
 // Landing view
 "start_legend" = "Menu";
 "service_status_legend" = "Service status";

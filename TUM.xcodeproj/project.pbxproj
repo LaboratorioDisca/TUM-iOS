@@ -86,7 +86,6 @@
 		3A17CA7D15E4070F00B0AEAD /* Places.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A17CA7C15E4070F00B0AEAD /* Places.m */; };
 		3A40E75D1551D0B9009A0A68 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A40E75C1551D0B9009A0A68 /* Route.m */; };
 		3A7035EE15EBFD3E00084F0F /* LegendOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7035E715EBFD3E00084F0F /* LegendOverlay.m */; };
-		3A7035EF15EBFD3E00084F0F /* OvermapButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7035E915EBFD3E00084F0F /* OvermapButton.m */; };
 		3A7035F015EBFD3E00084F0F /* VehicleAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7035EB15EBFD3E00084F0F /* VehicleAnnotation.m */; };
 		3A7035F115EBFD3E00084F0F /* VehicleOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7035ED15EBFD3E00084F0F /* VehicleOverlay.m */; };
 		3A7035FF15EBFFC900084F0F /* PlacesSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7035FE15EBFFC900084F0F /* PlacesSearchViewController.m */; };
@@ -126,6 +125,9 @@
 		3AD92B7215D982060033204F /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD92B7115D982060033204F /* start.png */; };
 		3AD92B7515D987AC0033204F /* arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD92B7315D987AC0033204F /* arrow_right.png */; };
 		3AD92B7615D987AC0033204F /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD92B7415D987AC0033204F /* noise.png */; };
+		3ADA5FE215ED338000395D6B /* PlaceAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA5FE115ED338000395D6B /* PlaceAnnotation.m */; };
+		3ADA5FE615ED35BE00395D6B /* PlaceOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA5FE515ED35BE00395D6B /* PlaceOverlay.m */; };
+		3ADA5FEA15ED533F00395D6B /* bookLegend.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ADA5FE915ED533F00395D6B /* bookLegend.png */; };
 		3ADF991215E805F200798464 /* UIViewPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADF991115E805F200798464 /* UIViewPopover.m */; };
 		3ADF991415E80E4B00798464 /* arrow_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ADF991315E80E4B00798464 /* arrow_up.png */; };
 		3ADF991A15E8155D00798464 /* outlets.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ADF991915E8155D00798464 /* outlets.png */; };
@@ -283,8 +285,6 @@
 		3A40E75C1551D0B9009A0A68 /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
 		3A7035E615EBFD3E00084F0F /* LegendOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LegendOverlay.h; sourceTree = "<group>"; };
 		3A7035E715EBFD3E00084F0F /* LegendOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LegendOverlay.m; sourceTree = "<group>"; };
-		3A7035E815EBFD3E00084F0F /* OvermapButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OvermapButton.h; sourceTree = "<group>"; };
-		3A7035E915EBFD3E00084F0F /* OvermapButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OvermapButton.m; sourceTree = "<group>"; };
 		3A7035EA15EBFD3E00084F0F /* VehicleAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VehicleAnnotation.h; sourceTree = "<group>"; };
 		3A7035EB15EBFD3E00084F0F /* VehicleAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VehicleAnnotation.m; sourceTree = "<group>"; };
 		3A7035EC15EBFD3E00084F0F /* VehicleOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VehicleOverlay.h; sourceTree = "<group>"; };
@@ -339,6 +339,11 @@
 		3AD92B7115D982060033204F /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 		3AD92B7315D987AC0033204F /* arrow_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_right.png; sourceTree = "<group>"; };
 		3AD92B7415D987AC0033204F /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noise.png; sourceTree = "<group>"; };
+		3ADA5FE015ED338000395D6B /* PlaceAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceAnnotation.h; sourceTree = "<group>"; };
+		3ADA5FE115ED338000395D6B /* PlaceAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceAnnotation.m; sourceTree = "<group>"; };
+		3ADA5FE415ED35BE00395D6B /* PlaceOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceOverlay.h; sourceTree = "<group>"; };
+		3ADA5FE515ED35BE00395D6B /* PlaceOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceOverlay.m; sourceTree = "<group>"; };
+		3ADA5FE915ED533F00395D6B /* bookLegend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookLegend.png; sourceTree = "<group>"; };
 		3ADF991015E805F200798464 /* UIViewPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewPopover.h; sourceTree = "<group>"; };
 		3ADF991115E805F200798464 /* UIViewPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewPopover.m; sourceTree = "<group>"; };
 		3ADF991315E80E4B00798464 /* arrow_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_up.png; sourceTree = "<group>"; };
@@ -357,7 +362,6 @@
 		3AE417BD15EC4FB700E316D2 /* PlaceOnMapDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceOnMapDelegate.h; sourceTree = "<group>"; };
 		3AE417BE15EC4FB700E316D2 /* PopoverActionMenuItemDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverActionMenuItemDelegate.h; sourceTree = "<group>"; };
 		3AE417BF15EC4FB700E316D2 /* PopoverFocusDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverFocusDelegate.h; sourceTree = "<group>"; };
-		3AE417C015EC504800E316D2 /* ToggleButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToggleButton.h; sourceTree = "<group>"; };
 		3AE417C115EC5D7200E316D2 /* UITableViewCellForPlaceRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellForPlaceRow.h; sourceTree = "<group>"; };
 		3AE417C215EC5D7200E316D2 /* UITableViewCellForPlaceRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellForPlaceRow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -442,6 +446,7 @@
 		3A0ECDDC154895F700919614 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3ADA5FE915ED533F00395D6B /* bookLegend.png */,
 				3ADF991B15E8159600798464 /* assault.png */,
 				3ADF991915E8155D00798464 /* outlets.png */,
 				3ADF991315E80E4B00798464 /* arrow_up.png */,
@@ -618,12 +623,14 @@
 			children = (
 				3A7035E615EBFD3E00084F0F /* LegendOverlay.h */,
 				3A7035E715EBFD3E00084F0F /* LegendOverlay.m */,
-				3A7035E815EBFD3E00084F0F /* OvermapButton.h */,
-				3A7035E915EBFD3E00084F0F /* OvermapButton.m */,
 				3A7035EA15EBFD3E00084F0F /* VehicleAnnotation.h */,
 				3A7035EB15EBFD3E00084F0F /* VehicleAnnotation.m */,
 				3A7035EC15EBFD3E00084F0F /* VehicleOverlay.h */,
 				3A7035ED15EBFD3E00084F0F /* VehicleOverlay.m */,
+				3ADA5FE015ED338000395D6B /* PlaceAnnotation.h */,
+				3ADA5FE115ED338000395D6B /* PlaceAnnotation.m */,
+				3ADA5FE415ED35BE00395D6B /* PlaceOverlay.h */,
+				3ADA5FE515ED35BE00395D6B /* PlaceOverlay.m */,
 			);
 			path = MapComponents;
 			sourceTree = "<group>";
@@ -772,7 +779,6 @@
 				3AE417BD15EC4FB700E316D2 /* PlaceOnMapDelegate.h */,
 				3AE417BE15EC4FB700E316D2 /* PopoverActionMenuItemDelegate.h */,
 				3AE417BF15EC4FB700E316D2 /* PopoverFocusDelegate.h */,
-				3AE417C015EC504800E316D2 /* ToggleButton.h */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -893,6 +899,7 @@
 				3ADF991C15E8159600798464 /* assault.png in Resources */,
 				3ADF991E15E8224400798464 /* routes.png in Resources */,
 				3ADF992015E8228F00798464 /* places.png in Resources */,
+				3ADA5FEA15ED533F00395D6B /* bookLegend.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -989,12 +996,13 @@
 				3ADF991215E805F200798464 /* UIViewPopover.m in Sources */,
 				3ADF992315E82A3700798464 /* ReactiveFocusView.m in Sources */,
 				3A7035EE15EBFD3E00084F0F /* LegendOverlay.m in Sources */,
-				3A7035EF15EBFD3E00084F0F /* OvermapButton.m in Sources */,
 				3A7035F015EBFD3E00084F0F /* VehicleAnnotation.m in Sources */,
 				3A7035F115EBFD3E00084F0F /* VehicleOverlay.m in Sources */,
 				3A7035FF15EBFFC900084F0F /* PlacesSearchViewController.m in Sources */,
 				3AE417BB15EC4A9C00E316D2 /* SelectedVehicleTuple.m in Sources */,
 				3AE417C315EC5D7200E316D2 /* UITableViewCellForPlaceRow.m in Sources */,
+				3ADA5FE215ED338000395D6B /* PlaceAnnotation.m in Sources */,
+				3ADA5FE615ED35BE00395D6B /* PlaceOverlay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

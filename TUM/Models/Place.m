@@ -10,7 +10,7 @@
 
 @implementation Place
 
-@synthesize name, coordinate;
+@synthesize name, coordinate, category;
 
 - (id) initWithName:(NSString*)name_ andCoordinate:(CLLocationCoordinate2D)coordinate_
 {
@@ -18,9 +18,19 @@
     if (self) {
         [self setName:name_];
         [self setCoordinate:coordinate_];
+        [self setCategory: STOP];
     }
     
     return self;
+}
+
+- (NSString*) placeCategory
+{
+    if (self.category == STOP) {
+        return NSLocalizedString(@"stop", @"stop localized name");
+    } else {
+        return NSLocalizedString(@"other", @"other localized name");
+    }
 }
 
 

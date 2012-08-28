@@ -16,6 +16,12 @@
 "searches" = "Lugares";
 "dismiss_search" = "Cerrar";
 
+// Submenu entries
+"bookLegend" = "Leyenda";
+
+// Search view
+"stop" = "Parada";
+
 // Landing view
 "start_legend" = "Menú";
 "service_status_legend" = "Estado del Servicio";

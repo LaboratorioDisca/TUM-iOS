@@ -24,7 +24,6 @@
 
 #import "Routes.h"
 #import "Route.h"
-#import "OvermapButton.h"
 #import "Instant.h"
 #import "Vehicles.h"
 
@@ -43,6 +42,8 @@
 
 #import "PlacesSearchViewController.h"
 #import "PlaceOnMapDelegate.h"
+#import "PlaceAnnotation.h"
+#import "PlaceOverlay.h"
 
 #define zeroCoordComponent -1.0f
 
@@ -59,4 +60,5 @@
 - (void) destroyVehicleOverlay;
 
 - (void) toogleLegendVisibility;
+- (void) addOverlayForPlace:(Place*)place;
 @end

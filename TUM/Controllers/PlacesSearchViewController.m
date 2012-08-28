@@ -34,7 +34,6 @@
         
         [self.navigationItem setLeftBarButtonItem:cancelButton];
         searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 240, 44)];
-        //[searchBar setBarStyle:UIBarStyleBlackTranslucent];
         searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
         
         searchDisplayController.delegate = self;

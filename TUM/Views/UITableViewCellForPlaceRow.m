@@ -21,9 +21,13 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(30, 10, 300, 20)];
+        UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(30, 20, 300, 20)];
         [name setText:place.name];
-        [self applyStyleToLabel:name withFontSize:14];
+        [self applyStyleToLabel:name withFontSize:18];
+        
+        UILabel *type = [[UILabel alloc] initWithFrame:CGRectMake(30, 45, 300, 20)];
+        [type setText:[place placeCategory].uppercaseString];
+        [self applyStyleToLabel:type withFontSize:10];
         
         UIView *separator = [[UIView alloc] initWithFrame:CGRectMake(4, self.frame.size.height+35, self.frame.size.width-10, 0.5)];
         [separator setBackgroundColor:[UIColor colorWithHexString:@"0x3f4249"]];

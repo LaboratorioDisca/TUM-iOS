@@ -10,7 +10,6 @@
 
 @interface MapViewController () {
     NSMutableDictionary *cachedAnnotations;
-    OvermapButton *mapInstructions;
     LegendOverlay *legend;
     CLLocationManager *locationFetcher;
     AVAudioPlayer *player;
@@ -18,7 +17,8 @@
     
     VehicleOverlay* currentVehicleOverlay;
     UIViewPopover *popover;
-    RMAnnotation *currentPlace;
+    PlaceAnnotation *currentPlace;
+    PlaceOverlay *placeOverlay;
 }
 
 @property (nonatomic, assign) BOOL automaticInstantsFetch;
@@ -68,18 +68,14 @@
 
         [self mapCustomization];
 
-        mapInstructions = [[OvermapButton alloc] initWithImageNamed:@"grid.png"];
-        [self.view addSubview:mapInstructions];
-        [mapInstructions addTarget:self action:@selector(toogleLegendVisibility) forControlEvents:UIControlEventTouchUpInside];
         legend = [[LegendOverlay alloc] initWithFrame:CGRectMake(35, 80, 250, 320) withImageNamed:@"legend.png"];
         [self.view addSubview:legend];
-        [legend setDelegate:mapInstructions];
         
         [self setLeftButtonEnabled:YES];
         [self setRightButtonEnabled:YES];
         
         //[self drawStations];
-        popover = [[UIViewPopover alloc] initOnRightPositionWithItems:[NSArray arrayWithObjects:@"routes", @"places", nil]];
+        popover = [[UIViewPopover alloc] initOnRightPositionWithItems:[NSArray arrayWithObjects:@"routes", @"places", @"bookLegend", nil]];
         
         ReactiveFocusView *viewReact = [[ReactiveFocusView alloc] initWithFrame:[ApplicationConfig viewBounds]];
         [viewReact setDelegate:popover];
@@ -233,11 +229,16 @@
 
 - (void) tapOnAnnotation:(RMAnnotation *)annotation onMap:(RMMapView *)map
 {
+    [legend hide];
+    
     if ([annotation class] == [VehicleAnnotation class]) {
         [self destroyVehicleOverlayWithMapRelocation:NO];
         [self addOrUpdateVehicleOverlay:(VehicleAnnotation*) annotation];
+        [placeOverlay hide];
+    } else if([annotation class] == [PlaceAnnotation class]) {
+        [self addOverlayForPlace:currentPlace.place];
     }
-    [legend hide];
+    
 }
 
 - (void) drawVehiclesInstantsOnMap
@@ -325,6 +326,7 @@
 {
     [super viewDidDisappear:animated];
     [self setAutomaticInstantsFetch:NO];
+    [placeOverlay hide];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -365,6 +367,8 @@
         
         UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:searchViewController];
         [self presentModalViewController:navigation animated:YES];
+    } else if (number == 3) {
+        [self toogleLegendVisibility];
     }
 }
 
@@ -383,9 +387,7 @@
     [self destroyVehicleOverlayWithMapRelocation:NO];
     [self setMapToCenter:place.coordinate withZoom:18];
     
-    UIImage *image = [UIImage imageNamed:@"stop.png"];
-    currentPlace = [[RMAnnotation alloc] initWithMapView:self.mapView coordinate:place.coordinate andTitle:@""];
-    [currentPlace setUserInfo:[[RMMarker alloc] initWithUIImage:image]];
+    currentPlace = [[PlaceAnnotation alloc] initWithMapView:self.mapView andPlace:place];
     [self.mapView addAnnotation:currentPlace];
 }
 
@@ -416,6 +418,13 @@
     } else {
         [legend hide];
     }
+}
+
+- (void) addOverlayForPlace:(Place *)place 
+{
+    [placeOverlay hide];   
+    placeOverlay = [[PlaceOverlay alloc] initWithPlace:place];
+    [self.view addSubview:placeOverlay];
 }
 
 @end

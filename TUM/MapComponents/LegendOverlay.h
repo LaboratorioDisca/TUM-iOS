@@ -8,14 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "ToggleButton.h"
-#import "OvermapButton.h"
 
-@interface LegendOverlay : UIView {
-    id<ToggleButton> delegate;
-}
-
-@property (nonatomic, strong) id<ToggleButton> delegate;
+@interface LegendOverlay : UIView 
 
 - (id) initWithFrame:(CGRect)frame withImageNamed:(NSString*)imageNamed;
 

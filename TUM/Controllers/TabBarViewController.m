@@ -20,8 +20,8 @@
 {
     self = [super init];
     if (self) {
-        navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, [ApplicationConfig viewBounds].size.width, 40)];
-        navigationBarTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [ApplicationConfig viewBounds].size.width, 40)];
+        navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, [ApplicationConfig viewBounds].size.width, 45)];
+        navigationBarTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [ApplicationConfig viewBounds].size.width, 45)];
         [navigationBarTitle setBackgroundColor:[UIColor clearColor]];
         [navigationBarTitle setFont:[UIFont fontWithName:@"Arial-BoldMT" size:16]];
         [navigationBarTitle.layer setShadowOpacity:0.6];
@@ -65,11 +65,11 @@
     [navigationBar setBarStyle:UIBarStyleBlackOpaque];
     //[navigationBar setTintColor:[UIColor colorWithHexString:@"0x5485f9"]];
     
-    rightButton = [[UIButton alloc] initWithFrame:CGRectMake([ApplicationConfig viewBounds].size.width-50, 2.5, 40, 33)];
+    rightButton = [[UIButton alloc] initWithFrame:CGRectMake([ApplicationConfig viewBounds].size.width-45, 5, 40, 33)];
     [rightButton setImage:[UIImage imageNamed:@"location.png"] forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(onRightControlActivate) forControlEvents:UIControlEventTouchUpInside];
     
-    leftButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 2.1, 40, 36)];
+    leftButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 5, 40, 36)];
     [leftButton setImage:[UIImage imageNamed:@"list.png"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(onLeftControlActivate) forControlEvents:UIControlEventTouchUpInside];
     

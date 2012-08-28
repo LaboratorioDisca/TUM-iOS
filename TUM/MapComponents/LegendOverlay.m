@@ -10,8 +10,6 @@
 
 @implementation LegendOverlay
 
-@synthesize delegate;
-
 - (id)initWithFrame:(CGRect)frame withImageNamed:(NSString *)imageNamed
 {
     self = [super initWithFrame:frame];
@@ -38,13 +36,11 @@
         [self setAlpha:0.1];
     } completion:^(BOOL finished) {
         [self setHidden:YES];
-        [delegate show];
     }];
 }
 
 - (void) show
 {
-    [delegate hide];
     [self setHidden:NO];
     [self setAlpha:0.1];
     [UIView animateWithDuration:0.6 animations:^{

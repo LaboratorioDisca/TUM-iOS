@@ -14,6 +14,8 @@
 - (void) restoreButtonBright:(id)button;
 - (void) routesSelected;
 - (void) placesSelected;
+- (void) bookLegendSelected;
+
 @end
 
 @implementation UIViewPopover
@@ -116,8 +118,8 @@
 
 - (void) increaseButtonBright:(id)button
 {
-    [button setBackgroundColor:[UIColor colorWithHexString:@"0D2942"]];
-    //    [button setBackgroundColor:[UIColor colorWithHexString:@"0x555757"]];
+    //[button setBackgroundColor:[UIColor colorWithHexString:@"0D2942"]];
+    [button setBackgroundColor:[UIColor colorWithHexString:@"0x464747"]];
 
 }
 
@@ -137,5 +139,13 @@
     [self.delegate reactToPopoverItemSelectedWith:2];
     [self disappearAnimated:NO];
 }
+
+- (void) bookLegendSelected
+{
+    [self.delegate reactToPopoverItemSelectedWith:3];
+    [self disappearAnimated:NO];
+}
+
+
 
 @end
