@@ -23,7 +23,7 @@
         navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, [ApplicationConfig viewBounds].size.width, 45)];
         navigationBarTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [ApplicationConfig viewBounds].size.width, 45)];
         [navigationBarTitle setBackgroundColor:[UIColor clearColor]];
-        [navigationBarTitle setFont:[UIFont fontWithName:@"Arial-BoldMT" size:16]];
+        [navigationBarTitle setFont:[UIFont fontWithName:@"Helvetica-Bold" size:19]];
         [navigationBarTitle.layer setShadowOpacity:0.6];
         [navigationBarTitle.layer setShadowOffset:CGSizeMake(0.0, -1.0)];
         [navigationBarTitle.layer setShadowColor:[UIColor blackColor].CGColor];
@@ -62,7 +62,8 @@
 
 - (void) navBarCustomization
 {
-    [navigationBar setBarStyle:UIBarStyleBlackOpaque];
+    [navigationBar setTintColor:[UIColor colorWithHexString:@"0x0E223D"]];
+
     //[navigationBar setTintColor:[UIColor colorWithHexString:@"0x5485f9"]];
     
     rightButton = [[UIButton alloc] initWithFrame:CGRectMake([ApplicationConfig viewBounds].size.width-45, 5, 40, 33)];

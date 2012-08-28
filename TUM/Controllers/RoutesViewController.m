@@ -127,7 +127,7 @@ static RoutesViewController* current;
     UIBarButtonItem *title = [[UIBarButtonItem alloc] initWithCustomView:titleLabel];
 
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, [ApplicationConfig viewBounds].size.width, 40)];
-    [toolbar setTintColor:[UIColor blackColor]];
+    [toolbar setTintColor:[UIColor colorWithHexString:@"183A69"]];
     [self.tableView setTableHeaderView:toolbar];
     [toolbar setItems:[NSArray arrayWithObjects:spacer, title, spacer2, nil] animated:YES];
 }
