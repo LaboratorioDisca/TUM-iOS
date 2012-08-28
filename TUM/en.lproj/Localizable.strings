@@ -12,6 +12,8 @@
 "places" = "Places";
 "help" = "How to use this app?";
 "schedules" = "Schedules";
+"searches" = "Places";
+"dismiss_search" = "Close";
 
 // Landing view
 "start_legend" = "Menu";

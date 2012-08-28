@@ -31,13 +31,11 @@
 		17A28A0D155F447E00CEBAC1 /* alert.png in Resources */ = {isa = PBXBuildFile; fileRef = 17A28A0C155F447E00CEBAC1 /* alert.png */; };
 		17A2A2961555812200B83317 /* RoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A2A2951555812200B83317 /* RoutesViewController.m */; };
 		17A817F515BC632500E2E773 /* grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 17A817F415BC632500E2E773 /* grid.png */; };
-		17A817F815BC699000E2E773 /* OverlayLegend.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A817F715BC699000E2E773 /* OverlayLegend.m */; };
 		17A817FC15BC73E400E2E773 /* legend.png in Resources */ = {isa = PBXBuildFile; fileRef = 17A817FB15BC73E400E2E773 /* legend.png */; };
 		17D6C98315B9E3D4008FD431 /* HelpButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D6C98215B9E3D4008FD431 /* HelpButton.m */; };
 		17D6C98815BA01A8008FD431 /* routes.json in Resources */ = {isa = PBXBuildFile; fileRef = 17D6C98715BA01A8008FD431 /* routes.json */; };
 		17D9F8111558E95100737392 /* Routes.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D9F8101558E95100737392 /* Routes.m */; };
 		17D9F8141558E97C00737392 /* Vehicles.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D9F8131558E97C00737392 /* Vehicles.m */; };
-		17DF31F41558B657002B1DBD /* OvermapButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DF31F31558B657002B1DBD /* OvermapButton.m */; };
 		17DF31F61558B66A002B1DBD /* localize.png in Resources */ = {isa = PBXBuildFile; fileRef = 17DF31F51558B66A002B1DBD /* localize.png */; };
 		17DF32031558BF56002B1DBD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DF32011558BF4C002B1DBD /* AVFoundation.framework */; };
 		3A0ECDE0154895F700919614 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0ECDDD154895F700919614 /* home.png */; };
@@ -84,9 +82,14 @@
 		3A0ECF2D1548BE7000919614 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0ECF2C1548BE7000919614 /* libz.dylib */; };
 		3A17CA7415E4049F00B0AEAD /* stations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A17CA7315E4049F00B0AEAD /* stations.plist */; };
 		3A17CA7715E404AF00B0AEAD /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A17CA7615E404AF00B0AEAD /* stop.png */; };
-		3A17CA7A15E4064400B0AEAD /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A17CA7915E4064400B0AEAD /* Station.m */; };
-		3A17CA7D15E4070F00B0AEAD /* Stations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A17CA7C15E4070F00B0AEAD /* Stations.m */; };
+		3A17CA7A15E4064400B0AEAD /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A17CA7915E4064400B0AEAD /* Place.m */; };
+		3A17CA7D15E4070F00B0AEAD /* Places.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A17CA7C15E4070F00B0AEAD /* Places.m */; };
 		3A40E75D1551D0B9009A0A68 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A40E75C1551D0B9009A0A68 /* Route.m */; };
+		3A7035EE15EBFD3E00084F0F /* LegendOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7035E715EBFD3E00084F0F /* LegendOverlay.m */; };
+		3A7035EF15EBFD3E00084F0F /* OvermapButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7035E915EBFD3E00084F0F /* OvermapButton.m */; };
+		3A7035F015EBFD3E00084F0F /* VehicleAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7035EB15EBFD3E00084F0F /* VehicleAnnotation.m */; };
+		3A7035F115EBFD3E00084F0F /* VehicleOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7035ED15EBFD3E00084F0F /* VehicleOverlay.m */; };
+		3A7035FF15EBFFC900084F0F /* PlacesSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7035FE15EBFFC900084F0F /* PlacesSearchViewController.m */; };
 		3A7382D015BF0D9E00E3E87A /* MapBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7382CF15BF0D9E00E3E87A /* MapBox.framework */; };
 		3A73E5D015546C8000279135 /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A73E5CF15546C8000279135 /* UIColor-Expanded.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3A8681BC1541D01C00C9EE6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8681BB1541D01C00C9EE6F /* UIKit.framework */; };
@@ -112,11 +115,8 @@
 		3ABFF72015D9D1C100608A9A /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABFF71E15D9D1C100608A9A /* location.png */; };
 		3ABFF72115D9D1C100608A9A /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABFF71F15D9D1C100608A9A /* list.png */; };
 		3AD230AA15CC6B1E0081434C /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD230A915CC6B1E0081434C /* info.png */; };
-		3AD230AD15CC8FE20081434C /* VehicleOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD230AC15CC8FE20081434C /* VehicleOverlay.m */; };
 		3AD2B5F915D9CC2C003C6745 /* arrow_right_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD2B5F715D9CC2C003C6745 /* arrow_right_2.png */; };
 		3AD2B5FA15D9CC2C003C6745 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD2B5F815D9CC2C003C6745 /* back.png */; };
-		3AD78C5615DD9FB60067A27E /* SelectedVehicleTuple.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD78C5515DD9FB60067A27E /* SelectedVehicleTuple.m */; };
-		3AD78C5B15DDA6080067A27E /* VehicleAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD78C5A15DDA6080067A27E /* VehicleAnnotation.m */; };
 		3AD92B5D15D96EC60033204F /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD92B5C15D96EC60033204F /* close.png */; };
 		3AD92B5F15D9776C0033204F /* bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD92B5E15D9776C0033204F /* bus.png */; };
 		3AD92B6515D97DF70033204F /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD92B6215D97DF70033204F /* IIViewDeckController.m */; };
@@ -136,6 +136,8 @@
 		3ADFF7B615544F8C003BACB6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADFF7B515544F8C003BACB6 /* CoreLocation.framework */; };
 		3AE25A1515CB0267000A7262 /* Gradients.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE25A1415CB0267000A7262 /* Gradients.m */; };
 		3AE25A1715CB0BC4000A7262 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AE25A1615CB0BC4000A7262 /* logo.png */; };
+		3AE417BB15EC4A9C00E316D2 /* SelectedVehicleTuple.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE417BA15EC4A9C00E316D2 /* SelectedVehicleTuple.m */; };
+		3AE417C315EC5D7200E316D2 /* UITableViewCellForPlaceRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE417C215EC5D7200E316D2 /* UITableViewCellForPlaceRow.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,10 +182,7 @@
 		17A2A2941555812200B83317 /* RoutesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoutesViewController.h; sourceTree = "<group>"; };
 		17A2A2951555812200B83317 /* RoutesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutesViewController.m; sourceTree = "<group>"; };
 		17A817F415BC632500E2E773 /* grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grid.png; sourceTree = "<group>"; };
-		17A817F615BC699000E2E773 /* OverlayLegend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayLegend.h; sourceTree = "<group>"; };
-		17A817F715BC699000E2E773 /* OverlayLegend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayLegend.m; sourceTree = "<group>"; };
 		17A817FB15BC73E400E2E773 /* legend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legend.png; sourceTree = "<group>"; };
-		17A817FD15BC7FEA00E2E773 /* ActionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionButton.h; sourceTree = SOURCE_ROOT; };
 		17D6C98115B9E3D4008FD431 /* HelpButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpButton.h; sourceTree = "<group>"; };
 		17D6C98215B9E3D4008FD431 /* HelpButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpButton.m; sourceTree = "<group>"; };
 		17D6C98715BA01A8008FD431 /* routes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = routes.json; sourceTree = "<group>"; };
@@ -191,8 +190,6 @@
 		17D9F8101558E95100737392 /* Routes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Routes.m; sourceTree = "<group>"; };
 		17D9F8121558E97C00737392 /* Vehicles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vehicles.h; sourceTree = "<group>"; };
 		17D9F8131558E97C00737392 /* Vehicles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vehicles.m; sourceTree = "<group>"; };
-		17DF31F21558B657002B1DBD /* OvermapButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OvermapButton.h; sourceTree = "<group>"; };
-		17DF31F31558B657002B1DBD /* OvermapButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OvermapButton.m; sourceTree = "<group>"; };
 		17DF31F51558B66A002B1DBD /* localize.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = localize.png; sourceTree = "<group>"; };
 		17DF32011558BF4C002B1DBD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3A0ECDDD154895F700919614 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
@@ -278,12 +275,22 @@
 		3A0ECF2C1548BE7000919614 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		3A17CA7315E4049F00B0AEAD /* stations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = stations.plist; sourceTree = "<group>"; };
 		3A17CA7615E404AF00B0AEAD /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
-		3A17CA7815E4064400B0AEAD /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
-		3A17CA7915E4064400B0AEAD /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
-		3A17CA7B15E4070F00B0AEAD /* Stations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stations.h; sourceTree = "<group>"; };
-		3A17CA7C15E4070F00B0AEAD /* Stations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stations.m; sourceTree = "<group>"; };
+		3A17CA7815E4064400B0AEAD /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		3A17CA7915E4064400B0AEAD /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		3A17CA7B15E4070F00B0AEAD /* Places.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Places.h; sourceTree = "<group>"; };
+		3A17CA7C15E4070F00B0AEAD /* Places.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Places.m; sourceTree = "<group>"; };
 		3A40E75B1551D0B9009A0A68 /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
 		3A40E75C1551D0B9009A0A68 /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
+		3A7035E615EBFD3E00084F0F /* LegendOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LegendOverlay.h; sourceTree = "<group>"; };
+		3A7035E715EBFD3E00084F0F /* LegendOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LegendOverlay.m; sourceTree = "<group>"; };
+		3A7035E815EBFD3E00084F0F /* OvermapButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OvermapButton.h; sourceTree = "<group>"; };
+		3A7035E915EBFD3E00084F0F /* OvermapButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OvermapButton.m; sourceTree = "<group>"; };
+		3A7035EA15EBFD3E00084F0F /* VehicleAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VehicleAnnotation.h; sourceTree = "<group>"; };
+		3A7035EB15EBFD3E00084F0F /* VehicleAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VehicleAnnotation.m; sourceTree = "<group>"; };
+		3A7035EC15EBFD3E00084F0F /* VehicleOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VehicleOverlay.h; sourceTree = "<group>"; };
+		3A7035ED15EBFD3E00084F0F /* VehicleOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VehicleOverlay.m; sourceTree = "<group>"; };
+		3A7035FD15EBFFC900084F0F /* PlacesSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesSearchViewController.h; sourceTree = "<group>"; };
+		3A7035FE15EBFFC900084F0F /* PlacesSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesSearchViewController.m; sourceTree = "<group>"; };
 		3A7382CF15BF0D9E00E3E87A /* MapBox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapBox.framework; path = TUM/Libraries/MapBox.framework; sourceTree = "<group>"; };
 		3A73E5CE15546C8000279135 /* UIColor-Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-Expanded.h"; sourceTree = "<group>"; };
 		3A73E5CF15546C8000279135 /* UIColor-Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-Expanded.m"; sourceTree = "<group>"; };
@@ -317,14 +324,8 @@
 		3ABFF71E15D9D1C100608A9A /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
 		3ABFF71F15D9D1C100608A9A /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
 		3AD230A915CC6B1E0081434C /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
-		3AD230AB15CC8FE20081434C /* VehicleOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VehicleOverlay.h; sourceTree = "<group>"; };
-		3AD230AC15CC8FE20081434C /* VehicleOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VehicleOverlay.m; sourceTree = "<group>"; };
 		3AD2B5F715D9CC2C003C6745 /* arrow_right_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_right_2.png; sourceTree = "<group>"; };
 		3AD2B5F815D9CC2C003C6745 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
-		3AD78C5415DD9FB60067A27E /* SelectedVehicleTuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectedVehicleTuple.h; path = ../Delegates/SelectedVehicleTuple.h; sourceTree = "<group>"; };
-		3AD78C5515DD9FB60067A27E /* SelectedVehicleTuple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectedVehicleTuple.m; path = ../Delegates/SelectedVehicleTuple.m; sourceTree = "<group>"; };
-		3AD78C5915DDA6080067A27E /* VehicleAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VehicleAnnotation.h; sourceTree = "<group>"; };
-		3AD78C5A15DDA6080067A27E /* VehicleAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VehicleAnnotation.m; sourceTree = "<group>"; };
 		3AD92B5C15D96EC60033204F /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		3AD92B5E15D9776C0033204F /* bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus.png; sourceTree = "<group>"; };
 		3AD92B6115D97DF70033204F /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
@@ -347,12 +348,18 @@
 		3ADF991F15E8228F00798464 /* places.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = places.png; sourceTree = "<group>"; };
 		3ADF992115E82A3700798464 /* ReactiveFocusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactiveFocusView.h; sourceTree = "<group>"; };
 		3ADF992215E82A3700798464 /* ReactiveFocusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactiveFocusView.m; sourceTree = "<group>"; };
-		3ADF992415E82AAB00798464 /* PopoverFocusDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PopoverFocusDelegate.h; sourceTree = "<group>"; };
-		3ADF992515E83FFC00798464 /* PopoverActionMenuItemDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PopoverActionMenuItemDelegate.h; sourceTree = "<group>"; };
 		3ADFF7B515544F8C003BACB6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3AE25A1315CB0267000A7262 /* Gradients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gradients.h; sourceTree = "<group>"; };
 		3AE25A1415CB0267000A7262 /* Gradients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gradients.m; sourceTree = "<group>"; };
 		3AE25A1615CB0BC4000A7262 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		3AE417B915EC4A9C00E316D2 /* SelectedVehicleTuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedVehicleTuple.h; sourceTree = "<group>"; };
+		3AE417BA15EC4A9C00E316D2 /* SelectedVehicleTuple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedVehicleTuple.m; sourceTree = "<group>"; };
+		3AE417BD15EC4FB700E316D2 /* PlaceOnMapDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceOnMapDelegate.h; sourceTree = "<group>"; };
+		3AE417BE15EC4FB700E316D2 /* PopoverActionMenuItemDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverActionMenuItemDelegate.h; sourceTree = "<group>"; };
+		3AE417BF15EC4FB700E316D2 /* PopoverFocusDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverFocusDelegate.h; sourceTree = "<group>"; };
+		3AE417C015EC504800E316D2 /* ToggleButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToggleButton.h; sourceTree = "<group>"; };
+		3AE417C115EC5D7200E316D2 /* UITableViewCellForPlaceRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellForPlaceRow.h; sourceTree = "<group>"; };
+		3AE417C215EC5D7200E316D2 /* UITableViewCellForPlaceRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellForPlaceRow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -388,39 +395,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		17406682155C963000E2DE86 /* Delegates */ = {
-			isa = PBXGroup;
-			children = (
-				3ADF992515E83FFC00798464 /* PopoverActionMenuItemDelegate.h */,
-				17A817FD15BC7FEA00E2E773 /* ActionButton.h */,
-				3ADF992415E82AAB00798464 /* PopoverFocusDelegate.h */,
-			);
-			path = Delegates;
-			sourceTree = "<group>";
-		};
 		1786B9941557B5CA004082C7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				17D6C98115B9E3D4008FD431 /* HelpButton.h */,
 				17D6C98215B9E3D4008FD431 /* HelpButton.m */,
-				17DF31F21558B657002B1DBD /* OvermapButton.h */,
-				17DF31F31558B657002B1DBD /* OvermapButton.m */,
 				1786B9951557B5CA004082C7 /* UITableViewCellForRouteRow.h */,
 				1786B9961557B5CA004082C7 /* UITableViewCellForRouteRow.m */,
-				17A817F615BC699000E2E773 /* OverlayLegend.h */,
-				17A817F715BC699000E2E773 /* OverlayLegend.m */,
 				3AE25A1315CB0267000A7262 /* Gradients.h */,
 				3AE25A1415CB0267000A7262 /* Gradients.m */,
-				3AD230AB15CC8FE20081434C /* VehicleOverlay.h */,
-				3AD230AC15CC8FE20081434C /* VehicleOverlay.m */,
 				3AD92B6A15D97F5A0033204F /* UITableViewCellMenu.h */,
 				3AD92B6B15D97F5A0033204F /* UITableViewCellMenu.m */,
-				3AD78C5915DDA6080067A27E /* VehicleAnnotation.h */,
-				3AD78C5A15DDA6080067A27E /* VehicleAnnotation.m */,
 				3ADF991015E805F200798464 /* UIViewPopover.h */,
 				3ADF991115E805F200798464 /* UIViewPopover.m */,
 				3ADF992115E82A3700798464 /* ReactiveFocusView.h */,
 				3ADF992215E82A3700798464 /* ReactiveFocusView.m */,
+				3AE417C115EC5D7200E316D2 /* UITableViewCellForPlaceRow.h */,
+				3AE417C215EC5D7200E316D2 /* UITableViewCellForPlaceRow.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -442,8 +433,8 @@
 				17D9F8131558E97C00737392 /* Vehicles.m */,
 				1740667C155C43EB00E2DE86 /* Instants.h */,
 				1740667D155C43EB00E2DE86 /* Instants.m */,
-				3A17CA7B15E4070F00B0AEAD /* Stations.h */,
-				3A17CA7C15E4070F00B0AEAD /* Stations.m */,
+				3A17CA7B15E4070F00B0AEAD /* Places.h */,
+				3A17CA7C15E4070F00B0AEAD /* Places.m */,
 			);
 			path = Collections;
 			sourceTree = "<group>";
@@ -501,8 +492,8 @@
 				1740667A155C356D00E2DE86 /* Vehicle.m */,
 				1740667F155C4AC500E2DE86 /* Instant.h */,
 				17406680155C4AC500E2DE86 /* Instant.m */,
-				3A17CA7815E4064400B0AEAD /* Station.h */,
-				3A17CA7915E4064400B0AEAD /* Station.m */,
+				3A17CA7815E4064400B0AEAD /* Place.h */,
+				3A17CA7915E4064400B0AEAD /* Place.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -622,6 +613,21 @@
 			path = S3;
 			sourceTree = "<group>";
 		};
+		3A7035E515EBFD3E00084F0F /* MapComponents */ = {
+			isa = PBXGroup;
+			children = (
+				3A7035E615EBFD3E00084F0F /* LegendOverlay.h */,
+				3A7035E715EBFD3E00084F0F /* LegendOverlay.m */,
+				3A7035E815EBFD3E00084F0F /* OvermapButton.h */,
+				3A7035E915EBFD3E00084F0F /* OvermapButton.m */,
+				3A7035EA15EBFD3E00084F0F /* VehicleAnnotation.h */,
+				3A7035EB15EBFD3E00084F0F /* VehicleAnnotation.m */,
+				3A7035EC15EBFD3E00084F0F /* VehicleOverlay.h */,
+				3A7035ED15EBFD3E00084F0F /* VehicleOverlay.m */,
+			);
+			path = MapComponents;
+			sourceTree = "<group>";
+		};
 		3A73E5CD15546C8000279135 /* UIColor+Expanded */ = {
 			isa = PBXGroup;
 			children = (
@@ -672,8 +678,9 @@
 		3A8681C11541D01C00C9EE6F /* TUM */ = {
 			isa = PBXGroup;
 			children = (
-				3AD78C5815DDA0000067A27E /* Helpers */,
-				17406682155C963000E2DE86 /* Delegates */,
+				3AE417BC15EC4FB700E316D2 /* Delegates */,
+				3AE417B815EC4A9C00E316D2 /* Helpers */,
+				3A7035E515EBFD3E00084F0F /* MapComponents */,
 				17D9F80E1558E95100737392 /* Collections */,
 				1786B9941557B5CA004082C7 /* Views */,
 				3A0ECE831548B62F00919614 /* Libraries */,
@@ -723,6 +730,8 @@
 				3ABC796215D301FE00364C5A /* TabBarViewController.m */,
 				3AD92B6715D97EF30033204F /* MenuViewController.h */,
 				3AD92B6815D97EF30033204F /* MenuViewController.m */,
+				3A7035FD15EBFFC900084F0F /* PlacesSearchViewController.h */,
+				3A7035FE15EBFFC900084F0F /* PlacesSearchViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -737,15 +746,6 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		3AD78C5815DDA0000067A27E /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				3AD78C5415DD9FB60067A27E /* SelectedVehicleTuple.h */,
-				3AD78C5515DD9FB60067A27E /* SelectedVehicleTuple.m */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		3AD92B6015D97DF70033204F /* ViewDeck */ = {
 			isa = PBXGroup;
 			children = (
@@ -755,6 +755,26 @@
 				3AD92B6415D97DF70033204F /* WrapController.m */,
 			);
 			path = ViewDeck;
+			sourceTree = "<group>";
+		};
+		3AE417B815EC4A9C00E316D2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3AE417B915EC4A9C00E316D2 /* SelectedVehicleTuple.h */,
+				3AE417BA15EC4A9C00E316D2 /* SelectedVehicleTuple.m */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3AE417BC15EC4FB700E316D2 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				3AE417BD15EC4FB700E316D2 /* PlaceOnMapDelegate.h */,
+				3AE417BE15EC4FB700E316D2 /* PopoverActionMenuItemDelegate.h */,
+				3AE417BF15EC4FB700E316D2 /* PopoverFocusDelegate.h */,
+				3AE417C015EC504800E316D2 /* ToggleButton.h */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -949,7 +969,6 @@
 				17A2A2961555812200B83317 /* RoutesViewController.m in Sources */,
 				17A166EE15563A3C006CBD0D /* FrontViewController.m in Sources */,
 				1786B9971557B5CA004082C7 /* UITableViewCellForRouteRow.m in Sources */,
-				17DF31F41558B657002B1DBD /* OvermapButton.m in Sources */,
 				17D9F8111558E95100737392 /* Routes.m in Sources */,
 				17D9F8141558E97C00737392 /* Vehicles.m in Sources */,
 				1740667B155C356D00E2DE86 /* Vehicle.m in Sources */,
@@ -957,9 +976,7 @@
 				17406681155C4AC500E2DE86 /* Instant.m in Sources */,
 				17A28A09155F433300CEBAC1 /* ReportsViewController.m in Sources */,
 				17D6C98315B9E3D4008FD431 /* HelpButton.m in Sources */,
-				17A817F815BC699000E2E773 /* OverlayLegend.m in Sources */,
 				3AE25A1515CB0267000A7262 /* Gradients.m in Sources */,
-				3AD230AD15CC8FE20081434C /* VehicleOverlay.m in Sources */,
 				3ABC795415D2F2FE00364C5A /* HelpViewController.m in Sources */,
 				3ABC795715D2F3F300364C5A /* SchedulesViewController.m in Sources */,
 				3ABC796315D301FE00364C5A /* TabBarViewController.m in Sources */,
@@ -967,12 +984,17 @@
 				3AD92B6615D97DF70033204F /* WrapController.m in Sources */,
 				3AD92B6915D97EF30033204F /* MenuViewController.m in Sources */,
 				3AD92B6C15D97F5A0033204F /* UITableViewCellMenu.m in Sources */,
-				3AD78C5615DD9FB60067A27E /* SelectedVehicleTuple.m in Sources */,
-				3AD78C5B15DDA6080067A27E /* VehicleAnnotation.m in Sources */,
-				3A17CA7A15E4064400B0AEAD /* Station.m in Sources */,
-				3A17CA7D15E4070F00B0AEAD /* Stations.m in Sources */,
+				3A17CA7A15E4064400B0AEAD /* Place.m in Sources */,
+				3A17CA7D15E4070F00B0AEAD /* Places.m in Sources */,
 				3ADF991215E805F200798464 /* UIViewPopover.m in Sources */,
 				3ADF992315E82A3700798464 /* ReactiveFocusView.m in Sources */,
+				3A7035EE15EBFD3E00084F0F /* LegendOverlay.m in Sources */,
+				3A7035EF15EBFD3E00084F0F /* OvermapButton.m in Sources */,
+				3A7035F015EBFD3E00084F0F /* VehicleAnnotation.m in Sources */,
+				3A7035F115EBFD3E00084F0F /* VehicleOverlay.m in Sources */,
+				3A7035FF15EBFFC900084F0F /* PlacesSearchViewController.m in Sources */,
+				3AE417BB15EC4A9C00E316D2 /* SelectedVehicleTuple.m in Sources */,
+				3AE417C315EC5D7200E316D2 /* UITableViewCellForPlaceRow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

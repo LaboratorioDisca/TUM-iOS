@@ -24,6 +24,7 @@
 @property (nonatomic, strong) UILabel *navigationBarTitle;
 @property (nonatomic, assign) BOOL rightButtonEnabled;
 @property (nonatomic, assign) BOOL leftButtonEnabled;
+@property (nonatomic, strong) UINavigationBar *navigationBar;
 
 - (void) navBarCustomization;
 - (void) onLeftControlActivate;

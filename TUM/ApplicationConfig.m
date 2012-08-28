@@ -24,7 +24,7 @@ static NSDictionary* routes;
 
 + (CLLocationCoordinate2D) coordinates
 {
-    return CLLocationCoordinate2DMake(19.322675, -99.192080);
+    return CLLocationCoordinate2DMake(19.3271, -99.1857);
 }
 
 + (NSString*) backendURL

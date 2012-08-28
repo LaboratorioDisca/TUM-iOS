@@ -1,5 +1,5 @@
 //
-//  Stations.h
+//  Places.h
 //  TUM
 //
 //  Created by Alejandro on 21/08/12.
@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Station.h"
+#import "Place.h"
 
-@interface Stations : NSObject {
+@interface Places : NSObject {
     NSDictionary *collection;
 }
 

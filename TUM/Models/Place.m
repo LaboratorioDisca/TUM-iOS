@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 UNAM IIMAS Disca. All rights reserved.
 //
 
-#import "Station.h"
+#import "Place.h"
 
-@implementation Station
+@implementation Place
 
 @synthesize name, coordinate;
 

@@ -1,15 +1,15 @@
 //
-//  Stations.m
+//  Places.m
 //  TUM
 //
 //  Created by Alejandro on 21/08/12.
 //  Copyright (c) 2012 UNAM IIMAS Disca. All rights reserved.
 //
 
-#import "Stations.h"
+#import "Places.h"
 
-@implementation Stations
-static Stations *singleton;
+@implementation Places
+static Places *singleton;
 
 @synthesize collection;
 
@@ -17,7 +17,7 @@ static Stations *singleton;
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"stations" ofType:@"plist"];
     if (singleton == NULL) {
-        singleton = [[Stations alloc] initWithDictionary:[[NSDictionary alloc] initWithContentsOfFile:path]];
+        singleton = [[Places alloc] initWithDictionary:[[NSDictionary alloc] initWithContentsOfFile:path]];
     }
     return singleton;
 }
@@ -34,10 +34,10 @@ static Stations *singleton;
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         for (NSNumber* key in [dictionary allKeys]) {
             NSDictionary *subdict = [dictionary objectForKey:key];
-            Station *station = [[Station alloc] initWithName:[subdict objectForKey:@"name"] 
+            Place *place = [[Place alloc] initWithName:[subdict objectForKey:@"name"] 
                                                andCoordinate:CLLocationCoordinate2DMake([[subdict objectForKey:@"latitude"] floatValue], 
                                                                                         [[subdict objectForKey:@"longitude"] floatValue])];
-            [dict setObject:station forKey:key];
+            [dict setObject:place forKey:key];
         }
         [self setCollection:dict];
     }

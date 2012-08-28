@@ -31,11 +31,6 @@
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-}
-
 - (void) setTextLabel:(NSString *)textlabel
 {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 200, 40)];

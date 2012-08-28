@@ -30,26 +30,33 @@
 
 #import "SBJson.h"
 #import "Instants.h"
-#import "OverlayLegend.h"
+#import "LegendOverlay.h"
 #import "Vehicle.h"
 #import "VehicleOverlay.h"
 
 #import "SelectedVehicleTuple.h"
-#import "Stations.h"
+#import "Places.h"
 #import "UIViewPopover.h"
 #import "ReactiveFocusView.h"
 #import "PopoverFocusDelegate.h"
 #import "PopoverActionMenuItemDelegate.h"
 
+#import "PlacesSearchViewController.h"
+#import "PlaceOnMapDelegate.h"
 
 #define zeroCoordComponent -1.0f
 
-@interface MapViewController : TabBarViewController<RMMapViewDelegate, CLLocationManagerDelegate, ASIHTTPRequestDelegate, PopoverActionMenuItemDelegate>
+@interface MapViewController : TabBarViewController<RMMapViewDelegate, CLLocationManagerDelegate, ASIHTTPRequestDelegate, PopoverActionMenuItemDelegate, PlaceOnMapDelegate>
 
 @property (strong, nonatomic) RMMapView *mapView;
 - (void) fetchVehicles;
 - (void) drawVehiclesInstantsOnMap;
-- (void) instructionsDisplay;
 - (void) prepareDrawables;
 - (void) addOrUpdateVehicleOverlay:(VehicleAnnotation*)annotation;
+- (void) setMapToCenter:(CLLocationCoordinate2D)coordinate withZoom:(int)zoom;
+- (void) setMapToDefaultCenterWithZoom:(int)zoom;
+- (void) destroyVehicleOverlayWithMapRelocation:(BOOL)relocate;
+- (void) destroyVehicleOverlay;
+
+- (void) toogleLegendVisibility;
 @end

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface Station : NSObject {
+@interface Place : NSObject {
     NSString *name;
     CLLocationCoordinate2D coordinate;
 }

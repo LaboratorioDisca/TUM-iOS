@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Route.h"
+#import "UIColor-Expanded.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface UITableViewCellForRouteRow : UITableViewCell
 

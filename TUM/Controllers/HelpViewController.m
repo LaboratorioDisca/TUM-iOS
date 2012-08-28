@@ -27,7 +27,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.viewDeckController setPanningMode:IIViewDeckNoPanning];
+    [self.viewDeckController setPanningMode:IIViewDeckFullViewPanning];
 
     UILabel *one = [[UILabel alloc] initWithFrame:CGRectMake(0, 70, [ApplicationConfig viewBounds].size.width, 40)];
     [one setTextAlignment:UITextAlignmentRight];

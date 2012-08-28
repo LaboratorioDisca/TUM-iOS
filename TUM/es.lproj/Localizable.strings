@@ -13,6 +13,8 @@
 "help" = "¿Cómo usar esta app?";
 "schedules" = "Horarios";
 "report" = "Reporta";
+"searches" = "Lugares";
+"dismiss_search" = "Cerrar";
 
 // Landing view
 "start_legend" = "Menú";

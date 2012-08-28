@@ -14,7 +14,7 @@
 
 @implementation TabBarViewController
 
-@synthesize navigationBarTitle, leftButtonEnabled, rightButtonEnabled;
+@synthesize navigationBarTitle, leftButtonEnabled, rightButtonEnabled, navigationBar;
 
 - (id) init
 {

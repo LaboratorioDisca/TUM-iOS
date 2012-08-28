@@ -11,13 +11,14 @@
 @interface MapViewController () {
     NSMutableDictionary *cachedAnnotations;
     OvermapButton *mapInstructions;
-    OverlayLegend *legend;
+    LegendOverlay *legend;
     CLLocationManager *locationFetcher;
     AVAudioPlayer *player;
     BOOL automaticInstantsFetch;
     
     VehicleOverlay* currentVehicleOverlay;
     UIViewPopover *popover;
+    RMAnnotation *currentPlace;
 }
 
 @property (nonatomic, assign) BOOL automaticInstantsFetch;
@@ -26,7 +27,6 @@
 - (void) mapCustomization;
 - (void) displayAnnotation:(RMAnnotation*)annotation forRoute:(Route*)route;
 - (void) updateVehiclesInstants;
-- (void) drawStations;
 
 @end
 
@@ -57,21 +57,21 @@
         
         self.mapView = [[RMMapView alloc] initWithFrame:self.view.bounds 
                                           andTilesource:offlineSource 
-                                       centerCoordinate:[ApplicationConfig coordinates] zoomLevel:18 maxZoomLevel:20 minZoomLevel:9
+                                       centerCoordinate:[ApplicationConfig coordinates] zoomLevel:15 maxZoomLevel:20 minZoomLevel:9
                                         backgroundImage:nil];
         
         [self.mapView setDelegate:self];
         [self.view addSubview:mapView];
         
         [self.mapView setShowsUserLocation:YES];
-        [self.mapView setUserTrackingMode:RMUserTrackingModeFollowWithHeading animated:YES];
+        //[self.mapView setUserTrackingMode:RMUserTrackingModeFollowWithHeading animated:YES];
 
         [self mapCustomization];
 
         mapInstructions = [[OvermapButton alloc] initWithImageNamed:@"grid.png"];
         [self.view addSubview:mapInstructions];
-        [mapInstructions addTarget:self action:@selector(instructionsDisplay) forControlEvents:UIControlEventTouchUpInside];
-        legend = [[OverlayLegend alloc] initWithFrame:CGRectMake(35, 80, 250, 320) withImageNamed:@"legend.png"];
+        [mapInstructions addTarget:self action:@selector(toogleLegendVisibility) forControlEvents:UIControlEventTouchUpInside];
+        legend = [[LegendOverlay alloc] initWithFrame:CGRectMake(35, 80, 250, 320) withImageNamed:@"legend.png"];
         [self.view addSubview:legend];
         [legend setDelegate:mapInstructions];
         
@@ -164,19 +164,6 @@
     }
 }
 
-- (void) drawStations
-{
-    UIImage *image = [UIImage imageNamed:@"stop.png"];
-    NSDictionary *stations = [[Stations currentCollection] collection];
-    for (NSNumber *key in [stations allKeys]) {
-        Station *station = [stations objectForKey:key];
-        
-        RMAnnotation *annotation = [[RMAnnotation alloc] initWithMapView:self.mapView coordinate:station.coordinate andTitle:@""];
-        [annotation setUserInfo:[[RMMarker alloc] initWithUIImage:image]];
-        [self.mapView addAnnotation:annotation];
-    }
-}
-
 /*
  * Loads the given routes into the map
  */
@@ -239,7 +226,7 @@
         NSNumber *routeId = [[[currentVehicleOverlay annotation] route] identifier];
         RMAnnotation *annotation = [cachedAnnotations objectForKey:[NSString stringWithFormat:@"R-%d", [routeId intValue]]];
         if(annotation != nil && ![[mapView annotations] containsObject:annotation]) {
-            [self destroyVehicleOverlay];
+            [self destroyVehicleOverlayWithMapRelocation:YES];
         }
     }
 }
@@ -247,9 +234,10 @@
 - (void) tapOnAnnotation:(RMAnnotation *)annotation onMap:(RMMapView *)map
 {
     if ([annotation class] == [VehicleAnnotation class]) {
-        [self destroyVehicleOverlay];
+        [self destroyVehicleOverlayWithMapRelocation:NO];
         [self addOrUpdateVehicleOverlay:(VehicleAnnotation*) annotation];
     }
+    [legend hide];
 }
 
 - (void) drawVehiclesInstantsOnMap
@@ -277,32 +265,23 @@
         
         int vehicleId = [[[currentVehicleOverlay annotation].instant vehicleId] intValue];
         VehicleAnnotation *annotation = [cachedAnnotations objectForKey:[NSString stringWithFormat:@"V-%d", vehicleId]];
-        [self destroyVehicleOverlay];
         if ([[mapView annotations] containsObject:annotation]) {
             [self addOrUpdateVehicleOverlay:annotation];
-        } 
+        } else {
+            [self destroyVehicleOverlayWithMapRelocation:NO];
+        }
     }
     
 }
 
 - (void) addOrUpdateVehicleOverlay:(VehicleAnnotation *)annotation
 {
-    [self destroyVehicleOverlay];
+    [self destroyVehicleOverlayWithMapRelocation:NO];
     
     currentVehicleOverlay = [VehicleOverlay overlayForAnnotation:annotation];
     [currentVehicleOverlay wireDestroyActionTo:self];
     [self.view addSubview:currentVehicleOverlay];
-    [self.mapView setZoom:18.0f];
-    [self.mapView setCenterCoordinate:[annotation instant].coordinates animated:YES];
-}
-
-- (void) destroyVehicleOverlay
-{
-    if (currentVehicleOverlay != NULL) {
-        [currentVehicleOverlay destroy];
-        currentVehicleOverlay = NULL;
-        [self.mapView setZoom:15.0f];
-    }
+    [self setMapToCenter:[annotation instant].coordinates withZoom:18];
 }
 
 - (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation {
@@ -315,7 +294,18 @@
     [self updateVehiclesInstants];
     
     [self drawRoutes];
-    [locationFetcher startUpdatingLocation];
+    //[locationFetcher startUpdatingLocation];
+}
+
+- (void) setMapToCenter:(CLLocationCoordinate2D)coordinate withZoom:(int)zoom
+{
+    [self.mapView setZoom:zoom];
+    [self.mapView setCenterCoordinate:coordinate animated:YES];
+}
+
+- (void) setMapToDefaultCenterWithZoom:(int)zoom
+{
+    [self setMapToCenter:[ApplicationConfig coordinates] withZoom:zoom];
 }
 
 - (void)viewDidUnload
@@ -335,12 +325,6 @@
 {
     [super viewDidDisappear:animated];
     [self setAutomaticInstantsFetch:NO];
-}
-     
-- (void) instructionsDisplay
-{
-    [self destroyVehicleOverlay];
-    [legend show];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -376,13 +360,62 @@
         self.viewDeckController.rightController = [RoutesViewController controller];
         [self.viewDeckController toggleRightViewAnimated:YES];
     } else if (number == 2) {
-        NSLog(@"Places list show");
+        PlacesSearchViewController *searchViewController = [[PlacesSearchViewController alloc] init];
+        [searchViewController setDelegate:self];
+        
+        UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:searchViewController];
+        [self presentModalViewController:navigation animated:YES];
     }
 }
 
 - (void) clearViewForPopover
 {
-    [self destroyVehicleOverlay];
+    [legend hide];
+    [self destroyVehicleOverlayWithMapRelocation:NO];
+}
+
+- (void) setPlaceOnMap:(Place *)place
+{
+    if (currentPlace != NULL) {
+        [self.mapView removeAnnotation:currentPlace];
+    }
+    
+    [self destroyVehicleOverlayWithMapRelocation:NO];
+    [self setMapToCenter:place.coordinate withZoom:18];
+    
+    UIImage *image = [UIImage imageNamed:@"stop.png"];
+    currentPlace = [[RMAnnotation alloc] initWithMapView:self.mapView coordinate:place.coordinate andTitle:@""];
+    [currentPlace setUserInfo:[[RMMarker alloc] initWithUIImage:image]];
+    [self.mapView addAnnotation:currentPlace];
+}
+
+/* Overlays hidders */
+
+- (void) destroyVehicleOverlay
+{
+    [self destroyVehicleOverlayWithMapRelocation:YES];
+}
+
+- (void) destroyVehicleOverlayWithMapRelocation:(BOOL)relocate
+{
+    if (currentVehicleOverlay != NULL) {
+        [currentVehicleOverlay destroy];
+        currentVehicleOverlay = NULL;
+        if (relocate) {
+            [self setMapToDefaultCenterWithZoom:16];
+        }
+    }
+}
+
+- (void) toogleLegendVisibility
+{
+    if ([legend isHidden]) {
+        [popover disappearAnimated:NO];
+        [self destroyVehicleOverlayWithMapRelocation:NO];
+        [legend show];
+    } else {
+        [legend hide];
+    }
 }
 
 @end

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 UNAM IIMAS Disca. All rights reserved.
 //
 
-#import "OverlayLegend.h"
+#import "LegendOverlay.h"
 
-@implementation OverlayLegend
+@implementation LegendOverlay
 
 @synthesize delegate;
 

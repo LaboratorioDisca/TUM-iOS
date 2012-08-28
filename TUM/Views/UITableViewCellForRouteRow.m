@@ -7,8 +7,6 @@
 //
 
 #import "UITableViewCellForRouteRow.h"
-#import "UIColor-Expanded.h"
-#import <QuartzCore/QuartzCore.h>
 
 #define kLeftMargin 100
 @interface UITableViewCellForRouteRow() {

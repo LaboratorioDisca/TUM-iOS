@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "ApplicationConfig.h"
 #import <QuartzCore/QuartzCore.h>
-#import "ActionButton.h"
+#import "ToggleButton.h"
 
-@interface OvermapButton : UIButton<ActionButton>
+@interface OvermapButton : UIButton<ToggleButton>
 
 - (id) initWithImageNamed:(NSString*)imageName;
 

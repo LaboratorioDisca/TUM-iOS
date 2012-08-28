@@ -21,7 +21,7 @@
     
     [RoutesViewController controller];
     
-    [Stations loadStationsFromFile];
+    [Places loadStationsFromFile];
     
     MapViewController *map = [[MapViewController alloc] init];
     map.title = NSLocalizedString(@"map", @"");
