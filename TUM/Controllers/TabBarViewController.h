@@ -14,19 +14,24 @@
 @interface TabBarViewController : UIViewController {
     UINavigationBar *navigationBar;
     UIButton *rightButton;
+    UIButton *secondRightButton;
     UIButton *leftButton;
     UILabel *navigationBarTitle;
     
     BOOL rightButtonEnabled;
     BOOL leftButtonEnabled;
+    BOOL secondRightButtonEnabled;
 }
 
 @property (nonatomic, strong) UILabel *navigationBarTitle;
 @property (nonatomic, assign) BOOL rightButtonEnabled;
+@property (nonatomic, assign) BOOL secondRightButtonEnabled;
 @property (nonatomic, assign) BOOL leftButtonEnabled;
 @property (nonatomic, strong) UINavigationBar *navigationBar;
 
 - (void) navBarCustomization;
 - (void) onLeftControlActivate;
 - (void) onRightControlActivate;
+- (void) onSecondRightControlActivate;
+
 @end

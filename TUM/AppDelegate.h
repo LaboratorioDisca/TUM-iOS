@@ -19,9 +19,13 @@
 #import "IIViewDeckController.h"
 #import "Places.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate> {
+    BOOL memoryWarningReceived;
+    MapViewController *map;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) IIViewDeckController *controllerManager;
+@property (nonatomic, assign) BOOL memoryWarningReceived;
 
 @end

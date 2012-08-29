@@ -24,7 +24,6 @@
 
 @property (nonatomic, assign) BOOL automaticInstantsFetch;
 
-- (void) drawRoutes;
 - (void) mapCustomization;
 - (void) displayAnnotation:(RMAnnotation*)annotation forRoute:(Route*)route;
 - (void) updateVehiclesInstants;
@@ -39,7 +38,7 @@
 - (id) initWithTileSource:(RMMBTilesSource *)tileSource
 {
     if((self = [super init])) {
-        automaticInstantsFetch = YES;
+        automaticInstantsFetch = NO;
         [self fetchVehicles];
         
         // annotations cache
@@ -50,6 +49,7 @@
         [locationFetcher setDelegate:self];
         [locationFetcher setDesiredAccuracy:kCLLocationAccuracyBest];
         
+        
         self.mapView = [[RMMapView alloc] initWithFrame:self.view.bounds 
                                           andTilesource:tileSource 
                                        centerCoordinate:[ApplicationConfig coordinates] 
@@ -57,23 +57,22 @@
                                            maxZoomLevel:20 
                                            minZoomLevel:9
                                         backgroundImage:nil];
-        [AnnotationsGroups startWithMap:self.mapView];
-
-        [self.mapView setDelegate:self];
-        [self.view addSubview:mapView];
         
+        [AnnotationsGroups startWithMap:self.mapView];
+        
+        [self.mapView setDelegate:self];
         [self.mapView setShowsUserLocation:YES];
-        //[self.mapView setUserTrackingMode:RMUserTrackingModeFollowWithHeading animated:YES];
-
         [self mapCustomization];
+
+        [self.view addSubview:mapView];
 
         legend = [[LegendOverlay alloc] initWithFrame:CGRectMake(35, 80, 250, 320) withImageNamed:@"legend.png"];
         [self.view addSubview:legend];
         
         [self setLeftButtonEnabled:YES];
         [self setRightButtonEnabled:YES];
+        [self setSecondRightButtonEnabled:YES];
         
-        //[self drawStations];
         popover = [[UIViewPopover alloc] initOnRightPositionWithItems:[NSArray arrayWithObjects:@"routes", @"places", @"bookLegend", nil]];
         
         viewReact = [[ReactiveFocusView alloc] initWithFrame:[ApplicationConfig viewBounds]];
@@ -102,7 +101,7 @@
 }
 
 /*
- * Decides if an annotation should be displayed or not
+ * Decides wether an annotation should be displayed or not
  */
 - (void) displayAnnotation:(RMAnnotation *)annotation forRoute:(Route *)route
 {    
@@ -142,11 +141,7 @@
     }
 }
 
-- (void)requestFailed:(ASIHTTPRequest *)request
-{
-    // Retrieve from local storage (TODO)
-    //NSError *error = [request error];
-}
+- (void)requestFailed:(ASIHTTPRequest *)request { }
 
 /* End requests section */
 
@@ -156,20 +151,6 @@
     if ([self automaticInstantsFetch]) {
         [self performSelector:@selector(updateVehiclesInstants) withObject:nil afterDelay:kInstantsUpdateOverhead];
         NSLog(@"Just reloaded vehicle positions");
-    }
-}
-
-/*
- * Loads the given routes into the map
- */
-- (void) drawRoutes
-{    
-    if(currentVehicleOverlay != nil) {
-        NSNumber *routeId = [[[currentVehicleOverlay annotation] route] identifier];
-        RMAnnotation *annotation = [AnnotationsGroups retrieveRouteAnnotationWithIdentifier:routeId.stringValue];
-        if(annotation != nil && ![[mapView annotations] containsObject:annotation]) {
-            [self destroyVehicleOverlayWithMapRelocation:YES];
-        }
     }
 }
 
@@ -235,6 +216,16 @@
     return annotation.userInfo;
 }
 
+
+- (void) prepareDrawables
+{
+    [self setAutomaticInstantsFetch:YES];
+    [self updateVehiclesInstants];
+}
+
+#pragma Map positioning methods
+/* Begins map positioning methods */
+
 - (void) setMapToCenter:(CLLocationCoordinate2D)coordinate withZoom:(int)zoom
 {
     [self.mapView setZoom:zoom];
@@ -245,6 +236,11 @@
 {
     [self setMapToCenter:[ApplicationConfig coordinates] withZoom:zoom];
 }
+
+/* Ends map positioning methods */
+
+#pragma View management default methods
+/* Begins View management default methods */
 
 - (void)viewDidUnload
 {
@@ -270,22 +266,19 @@
 {
     [super viewDidDisappear:animated];
     [self setAutomaticInstantsFetch:NO];
-    [placeOverlay hide];
+    //[placeOverlay hide];
 }
 
-- (void) prepareDrawables
-{
-    [self setAutomaticInstantsFetch:YES];
-    [self updateVehiclesInstants];
-    
-    [self drawRoutes];
-    //[locationFetcher startUpdatingLocation];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+/* Ends view default methods */
+
+#pragma NavigationBar buttons actions
+/* Begins NavigationBar buttons actions */
 
 - (void) onLeftControlActivate
 {
@@ -295,14 +288,20 @@
 
 - (void) onRightControlActivate
 {
+    [locationFetcher startUpdatingLocation];
+}
+
+- (void) onSecondRightControlActivate
+{
     if ([popover superview] == NULL) {
         [self.view addSubview:popover];
         [popover appearAnimated:YES];
     } else {
         [popover disappearAnimated:YES];
     }
-    
 }
+
+/* Ends NavigationBar buttons actions */
 
 - (void) viewDeckControllerDidCloseRightView:(IIViewDeckController *)viewDeckController animated:(BOOL)animated {
     [self prepareDrawables];
@@ -340,7 +339,8 @@
     [self addOverlayForPlace:place];
 }
 
-/* Overlays hidders */
+#pragma Overlays hidders
+/* Begins Overlays hidders */
 
 - (void) clearViewForPopover
 {
@@ -382,5 +382,7 @@
     [self.view addSubview:placeOverlay];
     [self setMapToCenter:place.coordinate withZoom:kDefaultZoom];
 }
+
+/* Ends Overlays hidders */
 
 @end

@@ -14,7 +14,7 @@
 
 @implementation TabBarViewController
 
-@synthesize navigationBarTitle, leftButtonEnabled, rightButtonEnabled, navigationBar;
+@synthesize navigationBarTitle, leftButtonEnabled, secondRightButtonEnabled, rightButtonEnabled, navigationBar;
 
 - (id) init
 {
@@ -66,12 +66,28 @@
 
     //[navigationBar setTintColor:[UIColor colorWithHexString:@"0x5485f9"]];
     
-    rightButton = [[UIButton alloc] initWithFrame:CGRectMake([ApplicationConfig viewBounds].size.width-45, 5, 40, 33)];
-    [rightButton setImage:[UIImage imageNamed:@"location.png"] forState:UIControlStateNormal];
+    UIImage *pinImg = [UIImage imageNamed:@"right_buttons.png"];
+    CGImageRef imageRef = CGImageCreateWithImageInRect([pinImg CGImage], CGRectMake(0, 0, 32.5, 32));
+    // or use the UIImage wherever you like
+    pinImg = [UIImage imageWithCGImage:imageRef]; 
+    CGImageRelease(imageRef);
+    
+    UIImage *settingsImg = [UIImage imageNamed:@"right_buttons.png"];
+    rightButton = [[UIButton alloc] initWithFrame:CGRectMake([ApplicationConfig viewBounds].size.width-80, 7, 40, 33)];
+    [rightButton setImage:pinImg forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(onRightControlActivate) forControlEvents:UIControlEventTouchUpInside];
     
-    leftButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 5, 40, 36)];
-    [leftButton setImage:[UIImage imageNamed:@"list.png"] forState:UIControlStateNormal];
+    CGImageRef imageRefTwo = CGImageCreateWithImageInRect([settingsImg CGImage], CGRectMake(32.5, 0, 32.5, 32));
+    // or use the UIImage wherever you like
+    settingsImg = [UIImage imageWithCGImage:imageRefTwo]; 
+    CGImageRelease(imageRefTwo);
+    
+    secondRightButton = [[UIButton alloc] initWithFrame:CGRectMake([ApplicationConfig viewBounds].size.width-48, 7, 40, 33)];
+    [secondRightButton setImage:settingsImg forState:UIControlStateNormal];
+    [secondRightButton addTarget:self action:@selector(onSecondRightControlActivate) forControlEvents:UIControlEventTouchUpInside];
+    
+    leftButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 3, 40, 36)];
+    [leftButton setImage:[UIImage imageNamed:@"menu_button.png"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(onLeftControlActivate) forControlEvents:UIControlEventTouchUpInside];
     
     [navigationBarTitle setText:self.title];
@@ -85,6 +101,10 @@
     
     if (rightButtonEnabled) {
         [navigationBar addSubview:rightButton];
+    }
+    
+    if (secondRightButtonEnabled) {
+        [navigationBar addSubview:secondRightButton];
     }
 }
 
@@ -100,6 +120,11 @@
 }
 
 - (void) onRightControlActivate
+{
+    
+}
+
+- (void) onSecondRightControlActivate
 {
     
 }

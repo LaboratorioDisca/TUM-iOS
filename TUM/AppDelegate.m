@@ -11,7 +11,7 @@
 @implementation AppDelegate
 
 @synthesize controllerManager;
-@synthesize window = _window;
+@synthesize window = _window, memoryWarningReceived;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -27,7 +27,7 @@
     // load tiles from SQLlite db
     NSURL *tilesURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"UNAMCU" 
                                                                              ofType:@"mbtiles"]];    
-    MapViewController *map = [[MapViewController alloc] initWithTileSource:
+    map = [[MapViewController alloc] initWithTileSource:
                               [[RMMBTilesSource alloc] initWithTileSetURL:tilesURL]];
     map.title = NSLocalizedString(@"map", @"");
     
@@ -78,11 +78,23 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    if (memoryWarningReceived) {
+        // load tiles from SQLlite db
+        NSURL *tilesURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"UNAMCU" 
+                                                                                 ofType:@"mbtiles"]];    
+        map = [[MapViewController alloc] initWithTileSource:
+               [[RMMBTilesSource alloc] initWithTileSetURL:tilesURL]];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void) applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+    [self setMemoryWarningReceived:YES];
 }
 
 @end

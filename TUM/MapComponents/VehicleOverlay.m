@@ -18,7 +18,7 @@
 
 + (id) overlayForAnnotation:(VehicleAnnotation *)annotation
 {
-    VehicleOverlay *overlay = [[self alloc] initWithFrame:CGRectMake(0, 40, [ApplicationConfig viewBounds].size.width, 55) 
+    VehicleOverlay *overlay = [[self alloc] initWithFrame:CGRectMake(0, 45, [ApplicationConfig viewBounds].size.width, 55) 
                                     withVehicleAnnotation:annotation];
     
     UIView *banFlag = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [ApplicationConfig viewBounds].size.width, 5)];

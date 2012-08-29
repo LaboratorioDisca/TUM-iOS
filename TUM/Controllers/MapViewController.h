@@ -50,7 +50,7 @@
 #define kDefaultZoom 18
 #define kInitialZoom 16
 
-#define kInstantsUpdateOverhead 20
+#define kInstantsUpdateOverhead 15
 
 @interface MapViewController : TabBarViewController<RMMapViewDelegate, CLLocationManagerDelegate, ASIHTTPRequestDelegate, PopoverActionMenuItemDelegate, PlaceOnMapDelegate>
 

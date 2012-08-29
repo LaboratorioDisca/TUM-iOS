@@ -19,16 +19,11 @@ static Vehicles *singleton;
 @end
 
 @implementation Vehicles
-@synthesize linesVehicles, vehicleLines, vehicles;
+@synthesize vehicleLines, vehicles;
 
 + (void) loadWithVehiclesCollection:(NSArray *)newCollection
 {
     singleton = [[Vehicles alloc] initWithVehiclesCollection:newCollection];
-}
-
-+ (NSArray*) vehiclesForLine:(NSNumber *)lineId
-{
-    return [[singleton linesVehicles] objectForKey:lineId];
 }
 
 + (NSNumber*) routeForVehicleId:(NSNumber *)identifier
@@ -87,7 +82,6 @@ static Vehicles *singleton;
         [dictionaryForVehicles setObject:vehicle forKey:identifier];
     }
 
-    linesVehicles = dictionaryForLinesVehicles;
     vehicleLines = dictionaryForVehicleLine;
     vehicles = dictionaryForVehicles;
     
