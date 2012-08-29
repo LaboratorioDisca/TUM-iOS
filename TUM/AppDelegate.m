@@ -25,28 +25,25 @@
     
     MapViewController *map = [[MapViewController alloc] init];
     map.title = NSLocalizedString(@"map", @"");
-    [map.tabBarItem setImage:[UIImage imageNamed:@"map.png"]];
     
     ReportsViewController *reports = [[ReportsViewController alloc]  init];
     reports.title = NSLocalizedString(@"report", @"");
-    [reports.tabBarItem setImage:[UIImage imageNamed:@"alert.png"]];
 
     FrontViewController *home = [[FrontViewController alloc] init];
     home.title = NSLocalizedString(@"home", @"");
-    [home.tabBarItem setImage:[UIImage imageNamed:@"home.png"]];
     
-    HelpViewController *help = [[HelpViewController alloc] init];
+    /*HelpViewController *help = [[HelpViewController alloc] init];
     help.title = NSLocalizedString(@"help", @"");
-    [help.tabBarItem setImage:[UIImage imageNamed:@"info.png"]];
+    [help.tabBarItem setImage:[UIImage imageNamed:@"info.png"]];*/
     
     SchedulesViewController *schedules = [[SchedulesViewController alloc] init];
     schedules.title =NSLocalizedString(@"schedules", @"");
-    [schedules.tabBarItem setImage:[UIImage imageNamed:@"info.png"]];
     
     //[tabBarController setViewControllers:[NSArray arrayWithObjects:home, map, routes, help, schedules, nil] animated:YES];
-
+    AboutViewController *about = [[AboutViewController alloc] init];
+    about.title = NSLocalizedString(@"about", @"");
     
-    MenuViewController *menu = [[MenuViewController alloc] initWithControllers:[NSArray arrayWithObjects:home, map, help, schedules, nil]];
+    MenuViewController *menu = [[MenuViewController alloc] initWithControllers:[NSArray arrayWithObjects:home, map, schedules, about, nil]];
     controllerManager = [[IIViewDeckController alloc] initWithCenterViewController:home 
                                                                 leftViewController:menu 
                                                                rightViewController:nil];

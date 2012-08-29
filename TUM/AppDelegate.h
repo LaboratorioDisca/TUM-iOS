@@ -15,6 +15,7 @@
 #import "HelpViewController.h"
 #import "SchedulesViewController.h"
 #import "MenuViewController.h"
+#import "AboutViewController.h"
 #import "IIViewDeckController.h"
 #import "Places.h"
 

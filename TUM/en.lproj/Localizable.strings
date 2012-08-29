@@ -14,7 +14,7 @@
 "schedules" = "Schedules";
 "searches" = "Places";
 "dismiss_search" = "Close";
-
+"about" = "About";
 // Submenu entries
 "bookLegend" = "Legend";
 
@@ -46,6 +46,8 @@
 "help_instruction_two" = "Go to the map and observe the real time location for each pumabus on any of the routes selected";
 "help_instruction_three" = "Localize the pumabus closer to your location (shown as a blue circle). On tapping one, extra info will be displayed";
 
+// About view
+"developed_by" = "Under active development by:";
 
 "vehicle" = "PUMABUS";
 "received" = "Received on";
