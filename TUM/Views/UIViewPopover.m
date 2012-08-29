@@ -28,11 +28,11 @@
     self = [super initWithFrame:dimensions];
     if (self) {
         [self.layer setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"assault"]].CGColor];
-        [self.layer setBorderWidth:2];
+        [self.layer setBorderWidth:4];
         [self.layer setCornerRadius:4];
         [self.layer setShadowOpacity:2];
         [self.layer setShadowOffset:CGSizeMake(2, 1)];
-        [self.layer setBorderColor:[UIColor colorWithHexString:@"0x2A2B2B"].CGColor];
+        [self.layer setBorderColor:[UIColor colorWithHexString:@"0x0E223D"].CGColor];
                 
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow_up"]];
         [imageView setCenter:CGPointMake(self.frame.size.width-20, -7)];
@@ -66,7 +66,7 @@
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(55, 5, kWidth-60, 30)];
         [label setText:NSLocalizedString(item, @"Item Section")];
         [label setBackgroundColor:[UIColor clearColor]];
-        [label setTextColor:[UIColor colorWithHexString:@"0x999D9E"]];
+        [label setTextColor:[UIColor colorWithHexString:@"0xB9BEBF"]];
         [label setFont:[UIFont fontWithName:@"Helvetica-Bold" size:12]];
         [button addSubview:label];
         

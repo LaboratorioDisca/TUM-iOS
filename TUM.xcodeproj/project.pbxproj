@@ -106,6 +106,12 @@
 		3ABC796315D301FE00364C5A /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABC796215D301FE00364C5A /* TabBarViewController.m */; };
 		3ABF55C115EE89FC00860F81 /* menu_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABF55BF15EE89FC00860F81 /* menu_button.png */; };
 		3ABF55C215EE89FC00860F81 /* right_buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABF55C015EE89FC00860F81 /* right_buttons.png */; };
+		3ABF55D315EEB25400860F81 /* HeadingAngleSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABF55CD15EEB25400860F81 /* HeadingAngleSmall.png */; };
+		3ABF55D415EEB25400860F81 /* HeadingAngleSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABF55CE15EEB25400860F81 /* HeadingAngleSmall@2x.png */; };
+		3ABF55D515EEB25400860F81 /* TrackingDot.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABF55CF15EEB25400860F81 /* TrackingDot.png */; };
+		3ABF55D615EEB25400860F81 /* TrackingDot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABF55D015EEB25400860F81 /* TrackingDot@2x.png */; };
+		3ABF55D715EEB25400860F81 /* TrackingDotHalo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABF55D115EEB25400860F81 /* TrackingDotHalo.png */; };
+		3ABF55D815EEB25400860F81 /* TrackingDotHalo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABF55D215EEB25400860F81 /* TrackingDotHalo@2x.png */; };
 		3ABFF72015D9D1C100608A9A /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABFF71E15D9D1C100608A9A /* location.png */; };
 		3ABFF72115D9D1C100608A9A /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABFF71F15D9D1C100608A9A /* list.png */; };
 		3AD2B5F915D9CC2C003C6745 /* arrow_right_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD2B5F715D9CC2C003C6745 /* arrow_right_2.png */; };
@@ -312,6 +318,13 @@
 		3ABC796215D301FE00364C5A /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		3ABF55BF15EE89FC00860F81 /* menu_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_button.png; sourceTree = "<group>"; };
 		3ABF55C015EE89FC00860F81 /* right_buttons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_buttons.png; sourceTree = "<group>"; };
+		3ABF55C315EEA23100860F81 /* UNAM, Mexico City, Mexico.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "UNAM, Mexico City, Mexico.gpx"; path = "../UNAM, Mexico City, Mexico.gpx"; sourceTree = "<group>"; };
+		3ABF55CD15EEB25400860F81 /* HeadingAngleSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeadingAngleSmall.png; sourceTree = "<group>"; };
+		3ABF55CE15EEB25400860F81 /* HeadingAngleSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HeadingAngleSmall@2x.png"; sourceTree = "<group>"; };
+		3ABF55CF15EEB25400860F81 /* TrackingDot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrackingDot.png; sourceTree = "<group>"; };
+		3ABF55D015EEB25400860F81 /* TrackingDot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrackingDot@2x.png"; sourceTree = "<group>"; };
+		3ABF55D115EEB25400860F81 /* TrackingDotHalo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrackingDotHalo.png; sourceTree = "<group>"; };
+		3ABF55D215EEB25400860F81 /* TrackingDotHalo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrackingDotHalo@2x.png"; sourceTree = "<group>"; };
 		3ABFF71E15D9D1C100608A9A /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
 		3ABFF71F15D9D1C100608A9A /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
 		3AD2B5F715D9CC2C003C6745 /* arrow_right_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_right_2.png; sourceTree = "<group>"; };
@@ -442,6 +455,12 @@
 		3A0ECDDC154895F700919614 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3ABF55CD15EEB25400860F81 /* HeadingAngleSmall.png */,
+				3ABF55CE15EEB25400860F81 /* HeadingAngleSmall@2x.png */,
+				3ABF55CF15EEB25400860F81 /* TrackingDot.png */,
+				3ABF55D015EEB25400860F81 /* TrackingDot@2x.png */,
+				3ABF55D115EEB25400860F81 /* TrackingDotHalo.png */,
+				3ABF55D215EEB25400860F81 /* TrackingDotHalo@2x.png */,
 				3ABF55BF15EE89FC00860F81 /* menu_button.png */,
 				3ABF55C015EE89FC00860F81 /* right_buttons.png */,
 				3ADA5FEB15ED5DCA00395D6B /* background.png */,
@@ -697,6 +716,7 @@
 		3A8681C21541D01C00C9EE6F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3ABF55C315EEA23100860F81 /* UNAM, Mexico City, Mexico.gpx */,
 				3A17CA7315E4049F00B0AEAD /* stations.plist */,
 				3ABC795C15D2F73600364C5A /* Localizable.strings */,
 				17D6C98615BA0177008FD431 /* DefaultFiles */,
@@ -888,6 +908,12 @@
 				3AD556FA15ED8523004AA607 /* View.xib in Resources */,
 				3ABF55C115EE89FC00860F81 /* menu_button.png in Resources */,
 				3ABF55C215EE89FC00860F81 /* right_buttons.png in Resources */,
+				3ABF55D315EEB25400860F81 /* HeadingAngleSmall.png in Resources */,
+				3ABF55D415EEB25400860F81 /* HeadingAngleSmall@2x.png in Resources */,
+				3ABF55D515EEB25400860F81 /* TrackingDot.png in Resources */,
+				3ABF55D615EEB25400860F81 /* TrackingDot@2x.png in Resources */,
+				3ABF55D715EEB25400860F81 /* TrackingDotHalo.png in Resources */,
+				3ABF55D815EEB25400860F81 /* TrackingDotHalo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

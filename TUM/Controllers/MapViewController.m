@@ -19,7 +19,7 @@
     VehicleOverlay* currentVehicleOverlay;
     UIViewPopover *popover;
     PlaceAnnotation *currentPlace;
-    PlaceOverlay *placeOverlay;
+    PlaceOverlay *placeOverlay;    
 }
 
 @property (nonatomic, assign) BOOL automaticInstantsFetch;
@@ -27,6 +27,7 @@
 - (void) mapCustomization;
 - (void) displayAnnotation:(RMAnnotation*)annotation forRoute:(Route*)route;
 - (void) updateVehiclesInstants;
+- (void) animateLocationUpdating;
 
 @end
 
@@ -62,6 +63,7 @@
         
         [self.mapView setDelegate:self];
         [self.mapView setShowsUserLocation:YES];
+
         [self mapCustomization];
 
         [self.view addSubview:mapView];
@@ -98,6 +100,7 @@
 {
     [self.mapView setCenterCoordinate:[newLocation coordinate] animated:YES];
     [locationFetcher stopUpdatingLocation];
+    [rightButton.layer performSelector:@selector(removeAllAnimations) withObject:nil afterDelay:1.5f];
 }
 
 /*
@@ -260,6 +263,21 @@
     [self.viewDeckController setRightController:nil];
     [self.viewDeckController setPanningMode:IIViewDeckPanningViewPanning];
     [self.viewDeckController setPanningView:navigationBar];
+    
+    [rightButton addTarget:self action:@selector(animateLocationUpdating) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void) animateLocationUpdating
+{
+    CABasicAnimation *fadeOutAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    fadeOutAnimation.duration = 1.0f;
+    fadeOutAnimation.removedOnCompletion = NO;
+    fadeOutAnimation.fillMode = kCAFillModeForwards;
+    fadeOutAnimation.toValue = [NSNumber numberWithFloat:0.3f];
+    fadeOutAnimation.fromValue = [NSNumber numberWithFloat:1.0f];
+    fadeOutAnimation.autoreverses = YES;
+    fadeOutAnimation.repeatCount = 100;
+    [rightButton.layer addAnimation:fadeOutAnimation forKey:@"animateOpacity"];
 }
 
 - (void) viewDidDisappear:(BOOL)animated
