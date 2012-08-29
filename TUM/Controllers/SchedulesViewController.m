@@ -82,7 +82,7 @@
 {
     [super viewWillAppear:animated];
     [self.viewDeckController setPanningMode:IIViewDeckFullViewPanning];
-
+    [self.viewDeckController setRightController:nil];
 }
 
 - (void) onLeftControlActivate

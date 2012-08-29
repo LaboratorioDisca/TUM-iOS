@@ -14,6 +14,7 @@
     CLLocationManager *locationFetcher;
     AVAudioPlayer *player;
     BOOL automaticInstantsFetch;
+    ReactiveFocusView *viewReact;
     
     VehicleOverlay* currentVehicleOverlay;
     UIViewPopover *popover;
@@ -35,7 +36,7 @@
 
 @synthesize mapView, automaticInstantsFetch;
 
-- (id) init
+- (id) initWithTileSource:(RMMBTilesSource *)tileSource
 {
     if((self = [super init])) {
         automaticInstantsFetch = YES;
@@ -48,18 +49,16 @@
         locationFetcher = [[CLLocationManager alloc] init];
         [locationFetcher setDelegate:self];
         [locationFetcher setDesiredAccuracy:kCLLocationAccuracyBest];
-                
-                
-        // load tiles from SQLlite db
-        NSURL *tilesURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"UNAMCU" 
-                                                                                 ofType:@"mbtiles"]];
-        RMMBTilesSource *offlineSource = [[RMMBTilesSource alloc] initWithTileSetURL:tilesURL];
         
         self.mapView = [[RMMapView alloc] initWithFrame:self.view.bounds 
-                                          andTilesource:offlineSource 
-                                       centerCoordinate:[ApplicationConfig coordinates] zoomLevel:15 maxZoomLevel:20 minZoomLevel:9
+                                          andTilesource:tileSource 
+                                       centerCoordinate:[ApplicationConfig coordinates] 
+                                              zoomLevel:kInitialZoom 
+                                           maxZoomLevel:20 
+                                           minZoomLevel:9
                                         backgroundImage:nil];
-        
+        [AnnotationsGroups startWithMap:self.mapView];
+
         [self.mapView setDelegate:self];
         [self.view addSubview:mapView];
         
@@ -77,7 +76,7 @@
         //[self drawStations];
         popover = [[UIViewPopover alloc] initOnRightPositionWithItems:[NSArray arrayWithObjects:@"routes", @"places", @"bookLegend", nil]];
         
-        ReactiveFocusView *viewReact = [[ReactiveFocusView alloc] initWithFrame:[ApplicationConfig viewBounds]];
+        viewReact = [[ReactiveFocusView alloc] initWithFrame:[ApplicationConfig viewBounds]];
         [viewReact setDelegate:popover];
         [popover setDelegate:self];
         [self.view addSubview:viewReact];
@@ -155,7 +154,7 @@
 {
     [self fetchInstants];
     if ([self automaticInstantsFetch]) {
-        [self performSelector:@selector(updateVehiclesInstants) withObject:nil afterDelay:10];
+        [self performSelector:@selector(updateVehiclesInstants) withObject:nil afterDelay:kInstantsUpdateOverhead];
         NSLog(@"Just reloaded vehicle positions");
     }
 }
@@ -164,63 +163,10 @@
  * Loads the given routes into the map
  */
 - (void) drawRoutes
-{
-    NSDictionary *routes = [[Routes currentCollection] collection];
-    // index are the keys of the routes collection, the keys are id's on the corresponding backend database model
-    for (NSNumber *index in [routes keyEnumerator]) {
-        Route *route = [routes objectForKey:index];
-        // store the cached route under a namespace
-        NSString *cachedRouteId = [NSString stringWithFormat:@"R-%d", route.identifier];
-        RMAnnotation *annotation = [cachedAnnotations objectForKey:cachedRouteId];
-        
-        // Create an annotation if none is registered for the route with index id
-        if (annotation == nil) {
-            RMShape *path = [[RMShape alloc] initWithView:self.mapView];
-            [path setLineColor:[UIColor colorWithHexString:route.color]];
-            [path setLineWidth:3];
-            
-            // store first coordinates for annotation positioning
-            double latF = zeroCoordComponent;
-            double lonF = zeroCoordComponent;
-            
-            double lat = zeroCoordComponent;
-            double lon = zeroCoordComponent;
-            
-            NSMutableArray *locations = [NSMutableArray array];
-            for (NSDictionary *coordinates in [route coordinates]) {
-                if (lat != zeroCoordComponent && lon != zeroCoordComponent) {
-                    [path moveToCoordinate:CLLocationCoordinate2DMake(lat, lon)];
-                }
-                
-                lat = [[coordinates objectForKey:@"lat"] doubleValue];
-                lon = [[coordinates objectForKey:@"lon"] doubleValue];
-                
-                if (latF == zeroCoordComponent && lonF == zeroCoordComponent) {
-                    latF = lat;
-                    lonF = lon;
-                }
-                
-                [path addLineToCoordinate:CLLocationCoordinate2DMake(lat, lon)];
-                [locations addObject:[[CLLocation alloc] initWithLatitude:lat longitude:lon]];
-            }
-            [path closePath];
-            
-            annotation = [[RMAnnotation alloc]initWithMapView:self.mapView 
-                                                   coordinate:CLLocationCoordinate2DMake(latF, lonF)
-                                                     andTitle:@""];
-            [annotation setUserInfo:path];
-            [annotation setHasBoundingBox:YES];
-            [annotation setBoundingBoxFromLocations:locations];
-                        
-            [cachedAnnotations setObject:annotation forKey:cachedRouteId];
-        }
-        
-        [self displayAnnotation:annotation forRoute:route];
-    }
-    
+{    
     if(currentVehicleOverlay != nil) {
         NSNumber *routeId = [[[currentVehicleOverlay annotation] route] identifier];
-        RMAnnotation *annotation = [cachedAnnotations objectForKey:[NSString stringWithFormat:@"R-%d", [routeId intValue]]];
+        RMAnnotation *annotation = [AnnotationsGroups retrieveRouteAnnotationWithIdentifier:routeId.stringValue];
         if(annotation != nil && ![[mapView annotations] containsObject:annotation]) {
             [self destroyVehicleOverlayWithMapRelocation:YES];
         }
@@ -282,20 +228,11 @@
     currentVehicleOverlay = [VehicleOverlay overlayForAnnotation:annotation];
     [currentVehicleOverlay wireDestroyActionTo:self];
     [self.view addSubview:currentVehicleOverlay];
-    [self setMapToCenter:[annotation instant].coordinates withZoom:18];
+    [self setMapToCenter:[annotation instant].coordinates withZoom:kDefaultZoom];
 }
 
 - (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation {
     return annotation.userInfo;
-}
-
-- (void) prepareDrawables
-{
-    [self setAutomaticInstantsFetch:YES];
-    [self updateVehiclesInstants];
-    
-    [self drawRoutes];
-    //[locationFetcher startUpdatingLocation];
 }
 
 - (void) setMapToCenter:(CLLocationCoordinate2D)coordinate withZoom:(int)zoom
@@ -315,11 +252,18 @@
     // Release any retained subviews of the main view.
 }
 
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    [self prepareDrawables];
+}
+
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.viewDeckController setPanningMode:IIViewDeckNoPanning];
-    [self prepareDrawables];
+    [self.viewDeckController setRightController:nil];
+    [self.viewDeckController setPanningMode:IIViewDeckPanningViewPanning];
+    [self.viewDeckController setPanningView:navigationBar];
 }
 
 - (void) viewDidDisappear:(BOOL)animated
@@ -327,6 +271,15 @@
     [super viewDidDisappear:animated];
     [self setAutomaticInstantsFetch:NO];
     [placeOverlay hide];
+}
+
+- (void) prepareDrawables
+{
+    [self setAutomaticInstantsFetch:YES];
+    [self updateVehiclesInstants];
+    
+    [self drawRoutes];
+    //[locationFetcher startUpdatingLocation];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -372,12 +325,6 @@
     }
 }
 
-- (void) clearViewForPopover
-{
-    [legend hide];
-    [self destroyVehicleOverlayWithMapRelocation:NO];
-}
-
 - (void) setPlaceOnMap:(Place *)place
 {
     if (currentPlace != NULL) {
@@ -389,9 +336,17 @@
     
     currentPlace = [[PlaceAnnotation alloc] initWithMapView:self.mapView andPlace:place];
     [self.mapView addAnnotation:currentPlace];
+    
+    [self addOverlayForPlace:place];
 }
 
 /* Overlays hidders */
+
+- (void) clearViewForPopover
+{
+    [legend hide];
+    [self destroyVehicleOverlayWithMapRelocation:NO];
+}
 
 - (void) destroyVehicleOverlay
 {
@@ -422,9 +377,10 @@
 
 - (void) addOverlayForPlace:(Place *)place 
 {
-    [placeOverlay hide];   
+    [placeOverlay removeFromSuperview];   
     placeOverlay = [[PlaceOverlay alloc] initWithPlace:place];
     [self.view addSubview:placeOverlay];
+    [self setMapToCenter:place.coordinate withZoom:kDefaultZoom];
 }
 
 @end

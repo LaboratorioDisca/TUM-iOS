@@ -83,6 +83,7 @@
         subview.backgroundColor = [UIColor colorWithHexString:[array objectAtIndex:i]];
         [scrollView addSubview:subview];
     }
+    [self.viewDeckController setRightController:nil];
 }
 
 

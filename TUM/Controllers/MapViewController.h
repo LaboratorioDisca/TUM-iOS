@@ -45,11 +45,19 @@
 #import "PlaceAnnotation.h"
 #import "PlaceOverlay.h"
 
-#define zeroCoordComponent -1.0f
+#import "AnnotationsGroups.h"
+
+#define kDefaultZoom 18
+#define kInitialZoom 16
+
+#define kInstantsUpdateOverhead 20
 
 @interface MapViewController : TabBarViewController<RMMapViewDelegate, CLLocationManagerDelegate, ASIHTTPRequestDelegate, PopoverActionMenuItemDelegate, PlaceOnMapDelegate>
 
 @property (strong, nonatomic) RMMapView *mapView;
+
+- (id) initWithTileSource:(RMMBTilesSource*) tileSource;
+
 - (void) fetchVehicles;
 - (void) drawVehiclesInstantsOnMap;
 - (void) prepareDrawables;

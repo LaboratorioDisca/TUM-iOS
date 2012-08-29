@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ASIHTTPRequestDelegate.h"
+#import "IIViewDeckController.h"
+#import "AnnotationsGroups.h"
 
 @interface RoutesViewController : UITableViewController<ASIHTTPRequestDelegate>
 

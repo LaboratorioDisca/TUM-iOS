@@ -102,11 +102,10 @@ static RoutesViewController* current;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Route* route = [cachedRoutes objectAtIndex:indexPath.row];
-    if ([route visibleOnMap]) {
-        [route setVisibleOnMap:NO];
-    } else {
-        [route setVisibleOnMap:YES];
-    }
+    
+    [route setVisibleOnMap:!route.visibleOnMap];
+    [AnnotationsGroups bathProcessRoute:route];
+
     [self.tableView reloadData];
 }
 
@@ -115,7 +114,7 @@ static RoutesViewController* current;
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0 , 11.0f, self.view.frame.size.width, 21.0f)];
-    [titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
+    [titleLabel setFont:[UIFont fontWithName:[ApplicationConfig defaultFont] size:18]];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
     [titleLabel setTextColor:[UIColor whiteColor]];
     [titleLabel setText:NSLocalizedString(@"routes", @"")];
@@ -138,6 +137,8 @@ static RoutesViewController* current;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.viewDeckController setCenterhiddenInteractivity:IIViewDeckCenterHiddenNotUserInteractiveWithTapToCloseBouncing];
+    
     cachedRoutes = [[Routes currentCollection] sortedCollection];
     self.navigationItem.title = @"Rutas";
     

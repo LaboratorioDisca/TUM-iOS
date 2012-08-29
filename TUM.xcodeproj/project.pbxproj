@@ -129,6 +129,7 @@
 		3ADF992015E8228F00798464 /* places.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ADF991F15E8228F00798464 /* places.png */; };
 		3ADF992315E82A3700798464 /* ReactiveFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADF992215E82A3700798464 /* ReactiveFocusView.m */; };
 		3ADFF7B615544F8C003BACB6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADFF7B515544F8C003BACB6 /* CoreLocation.framework */; };
+		3AE2346615EDE0A700CAAE04 /* AnnotationsGroups.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE2346515EDE0A700CAAE04 /* AnnotationsGroups.m */; };
 		3AE25A1515CB0267000A7262 /* Gradients.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE25A1415CB0267000A7262 /* Gradients.m */; };
 		3AE25A1715CB0BC4000A7262 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AE25A1615CB0BC4000A7262 /* logo.png */; };
 		3AE417BB15EC4A9C00E316D2 /* SelectedVehicleTuple.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE417BA15EC4A9C00E316D2 /* SelectedVehicleTuple.m */; };
@@ -341,6 +342,9 @@
 		3ADF992115E82A3700798464 /* ReactiveFocusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactiveFocusView.h; sourceTree = "<group>"; };
 		3ADF992215E82A3700798464 /* ReactiveFocusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactiveFocusView.m; sourceTree = "<group>"; };
 		3ADFF7B515544F8C003BACB6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3AE2346415EDE0A700CAAE04 /* AnnotationsGroups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationsGroups.h; sourceTree = "<group>"; };
+		3AE2346515EDE0A700CAAE04 /* AnnotationsGroups.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationsGroups.m; sourceTree = "<group>"; };
+		3AE2346815EDEABF00CAAE04 /* NSThread+Blocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSThread+Blocks.h"; sourceTree = "<group>"; };
 		3AE25A1315CB0267000A7262 /* Gradients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gradients.h; sourceTree = "<group>"; };
 		3AE25A1415CB0267000A7262 /* Gradients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gradients.m; sourceTree = "<group>"; };
 		3AE25A1615CB0BC4000A7262 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
@@ -610,6 +614,8 @@
 				3ADA5FE115ED338000395D6B /* PlaceAnnotation.m */,
 				3ADA5FE415ED35BE00395D6B /* PlaceOverlay.h */,
 				3ADA5FE515ED35BE00395D6B /* PlaceOverlay.m */,
+				3AE2346415EDE0A700CAAE04 /* AnnotationsGroups.h */,
+				3AE2346515EDE0A700CAAE04 /* AnnotationsGroups.m */,
 			);
 			path = MapComponents;
 			sourceTree = "<group>";
@@ -750,6 +756,7 @@
 			children = (
 				3AE417B915EC4A9C00E316D2 /* SelectedVehicleTuple.h */,
 				3AE417BA15EC4A9C00E316D2 /* SelectedVehicleTuple.m */,
+				3AE2346815EDEABF00CAAE04 /* NSThread+Blocks.h */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -977,6 +984,7 @@
 				3ADA5FE215ED338000395D6B /* PlaceAnnotation.m in Sources */,
 				3ADA5FE615ED35BE00395D6B /* PlaceOverlay.m in Sources */,
 				3AD556F715ED80EB004AA607 /* AboutViewController.m in Sources */,
+				3AE2346615EDE0A700CAAE04 /* AnnotationsGroups.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

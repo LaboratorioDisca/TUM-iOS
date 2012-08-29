@@ -32,7 +32,7 @@
 
 - (void) hide
 {
-    [UIView animateWithDuration:0.8 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         [self setAlpha:0.1];
     } completion:^(BOOL finished) {
         [self setHidden:YES];
@@ -43,7 +43,7 @@
 {
     [self setHidden:NO];
     [self setAlpha:0.1];
-    [UIView animateWithDuration:0.6 animations:^{
+    [UIView animateWithDuration:0.2 animations:^{
         [self setAlpha:1];
     }];
 }

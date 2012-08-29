@@ -55,7 +55,7 @@
         [self addSubview:vehicle];
         
         identifierLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 22, 170, self.frame.size.height-30)];
-        [identifierLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
+        [identifierLabel setFont:[UIFont fontWithName:[ApplicationConfig defaultFont] size:18]];
         [identifierLabel setBackgroundColor:[UIColor clearColor]];
         [identifierLabel setTextColor:[UIColor whiteColor]];
         [self addSubview:identifierLabel];

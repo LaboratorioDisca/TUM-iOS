@@ -23,7 +23,12 @@
     
     [Places loadStationsFromFile];
     
-    MapViewController *map = [[MapViewController alloc] init];
+    
+    // load tiles from SQLlite db
+    NSURL *tilesURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"UNAMCU" 
+                                                                             ofType:@"mbtiles"]];    
+    MapViewController *map = [[MapViewController alloc] initWithTileSource:
+                              [[RMMBTilesSource alloc] initWithTileSetURL:tilesURL]];
     map.title = NSLocalizedString(@"map", @"");
     
     ReportsViewController *reports = [[ReportsViewController alloc]  init];

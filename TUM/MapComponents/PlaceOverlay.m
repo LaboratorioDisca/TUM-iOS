@@ -17,21 +17,21 @@
         name = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, [ApplicationConfig viewBounds].size.width, kPlaceOverlayHeight/2)];
         [name setBackgroundColor:[UIColor clearColor]];
         [name setTextColor:[UIColor whiteColor]];
-        [name setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
+        [name setFont:[UIFont fontWithName:[ApplicationConfig defaultFont] size:18]];
         [name setText:place.name];
         [self addSubview:name];
         
         categoryName = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, [ApplicationConfig viewBounds].size.width, kPlaceOverlayHeight/2)];
         [categoryName setBackgroundColor:[UIColor clearColor]];
         [categoryName setTextColor:[UIColor whiteColor]];
-        [categoryName setFont:[UIFont fontWithName:@"Helvetica-Bold" size:11]];
+        [categoryName setFont:[UIFont fontWithName:[ApplicationConfig defaultFont] size:11]];
         [categoryName setText:place.placeCategory.uppercaseString];
         [self addSubview:categoryName];
         
         [self setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8]];
         
         UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [closeButton setFrame:CGRectMake([ApplicationConfig viewBounds].size.width-50, 10, 35, 35)];
+        [closeButton setFrame:CGRectMake([ApplicationConfig viewBounds].size.width-50, 15, 35, 35)];
         [closeButton setImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
         [closeButton addTarget:self action:@selector(removeFromSuperview) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:closeButton];

@@ -47,5 +47,10 @@ static NSDictionary* routes;
     }
 }
 
++ (NSString*) defaultFont
+{
+    return @"Helvetica-Bold";
+}
+
 
 @end

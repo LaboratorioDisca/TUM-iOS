@@ -65,13 +65,13 @@
     
     statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 150, 40)];
     [statusLabel setText:NSLocalizedString(@"service_status_legend", @"")];
-    [statusLabel setFont:[UIFont fontWithName:@"GillSans" size:14]];
+    [statusLabel setFont:[UIFont fontWithName:[ApplicationConfig defaultFont] size:12]];
     [statusLabel setTextColor:[UIColor colorWithWhite:1 alpha:0.6]];
     [statusLabel setBackgroundColor:[UIColor clearColor]];
     
-    statusValue = [[UILabel alloc] initWithFrame:CGRectMake(150, 5, 80, 40)];
+    statusValue = [[UILabel alloc] initWithFrame:CGRectMake(143, 5, 80, 40)];
     [statusValue setBackgroundColor:[UIColor clearColor]];
-    [statusValue setFont:[UIFont fontWithName:@"GillSans" size:14]];
+    [statusValue setFont:[UIFont fontWithName:[ApplicationConfig defaultFont] size:12]];
     
     
     [statusView addSubview:statusLabel];
@@ -96,7 +96,7 @@
     UILabel *startLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 90, 50)];
     [startLabel setText:NSLocalizedString(@"start_legend", @"Start legend")];
     [startLabel setTextColor:[UIColor whiteColor]];
-    [startLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
+    [startLabel setFont:[UIFont fontWithName:[ApplicationConfig defaultFont] size:16]];
     [startLabel setTextAlignment:UITextAlignmentRight];
     [startLabel setBackgroundColor:[UIColor clearColor]];
     [start addSubview:startLabel];
@@ -152,7 +152,7 @@
     } else if(value > 0 && value < 3) {
         [statusValue setText:NSLocalizedString(@"service_status_very_few", @"")];
         [statusValue setTextColor:[UIColor redColor]];
-    } else if(value == 0 && hour >= 21) {
+    } else if(value == 0 && (hour >= 21 || hour < 5)) {
         [statusValue setText:NSLocalizedString(@"service_status_stopped", @"")];
         [statusValue setTextColor:[UIColor blackColor]];
     } else {
@@ -195,7 +195,7 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    [self performSelector:@selector(updateStatusMessageWithValue:) withObject:[request responseString] afterDelay:2];
+    [self performSelector:@selector(updateStatusMessageWithValue:) withObject:[request responseString] afterDelay:1];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -209,6 +209,9 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [indicator startAnimating];
+    [self.viewDeckController setRightController:nil];
+    [self.viewDeckController setPanningMode:IIViewDeckFullViewPanning];
+
     [self fetchServiceStatus];
 }
 

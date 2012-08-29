@@ -18,5 +18,6 @@
 + (CGRect) viewBounds;
 + (NSString*) backendURL;
 + (NSString*) urlForResource:(NSString *)resource;
++ (NSString*) defaultFont;
 
 @end
