@@ -44,11 +44,6 @@
         
         // annotations cache
         cachedAnnotations = [NSMutableDictionary dictionary];
-
-        // retrieve a new location
-        locationFetcher = [[CLLocationManager alloc] init];
-        [locationFetcher setDelegate:self];
-        [locationFetcher setDesiredAccuracy:kCLLocationAccuracyBest];
         
         
         self.mapView = [[RMMapView alloc] initWithFrame:self.view.bounds 
@@ -265,6 +260,10 @@
     [self.viewDeckController setPanningView:navigationBar];
     
     [rightButton addTarget:self action:@selector(animateLocationUpdating) forControlEvents:UIControlEventTouchUpInside];
+    // retrieve a new location
+    locationFetcher = [[CLLocationManager alloc] init];
+    [locationFetcher setDelegate:self];
+    [locationFetcher setDesiredAccuracy:kCLLocationAccuracyBest];
 }
 
 - (void) animateLocationUpdating
@@ -285,6 +284,7 @@
     [super viewDidDisappear:animated];
     [self setAutomaticInstantsFetch:NO];
     //[placeOverlay hide];
+    locationFetcher = NULL;
 }
 
 
@@ -329,7 +329,7 @@
 {
     // routes
     if (number == 1) {
-        self.viewDeckController.rightController = [RoutesViewController controller];
+        self.viewDeckController.rightController = [RoutesViewController current];
         [self.viewDeckController toggleRightViewAnimated:YES];
     } else if (number == 2) {
         PlacesSearchViewController *searchViewController = [[PlacesSearchViewController alloc] init];

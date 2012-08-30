@@ -29,13 +29,18 @@
 static RoutesViewController* current;
 @synthesize cachedRoutes;
 
-+(id) controller
++(void) prepare
 {
     if (current == NULL) {
         RoutesViewController *routes = [[RoutesViewController alloc] initWithStyle:UITableViewStylePlain];
         routes.title = NSLocalizedString(@"routes", @""); 
         current = routes;
     }
+}
+
++ (id) current
+{
+    [RoutesViewController prepare];
     return current;
 }
 

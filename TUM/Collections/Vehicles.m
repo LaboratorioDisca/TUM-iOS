@@ -21,6 +21,11 @@ static Vehicles *singleton;
 @implementation Vehicles
 @synthesize vehicleLines, vehicles;
 
++ (void) prepareForCollection
+{
+    singleton = [[Vehicles alloc] initWithVehiclesCollection:[NSArray array]];
+}
+
 + (void) loadWithVehiclesCollection:(NSArray *)newCollection
 {
     singleton = [[Vehicles alloc] initWithVehiclesCollection:newCollection];

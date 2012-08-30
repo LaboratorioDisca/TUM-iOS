@@ -57,6 +57,8 @@
         UILabel *sundays_description = [[UILabel alloc] initWithFrame:CGRectMake(20, 240, 250, 30)];
         [self stylizeContentLabel:sundays_description withTranslationString:@"timetables_sundays_routes"];
         [container addSubview:sundays_description];
+        
+        [self.view setClipsToBounds:YES];
     }
     return self;
 }

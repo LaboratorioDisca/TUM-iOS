@@ -19,8 +19,8 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    [RoutesViewController controller];
-    
+    [RoutesViewController prepare];
+    [Vehicles prepareForCollection];
     [Places loadStationsFromFile];
     
     

@@ -18,10 +18,10 @@
 @property (nonatomic, readonly) NSDictionary *vehicles;
 
 + (void) loadWithVehiclesCollection:(NSArray*)collection;
++ (void) prepareForCollection;
 + (NSNumber*) routeForVehicleId:(NSNumber*)identifier;
 + (Vehicle*) getVehicleById:(NSNumber*)vehicleId;
 + (Vehicles*) all;
 
 - (id) initWithVehiclesCollection:(NSArray*)collection;
-
 @end
