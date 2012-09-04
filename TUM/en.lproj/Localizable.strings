@@ -47,7 +47,7 @@
 "help_instruction_three" = "Localize the pumabus closer to your location (shown as a blue circle). On tapping one, extra info will be displayed";
 
 // About view
-"developed_by" = "Credits:";
+"developed_by" = "Project under development by:";
 "about_main" = "The app for the Pumabus at UNAM with the real-time location of buses.";
 "plus_info" = "+ INFO";
 
