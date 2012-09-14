@@ -66,27 +66,7 @@
 
     //[navigationBar setTintColor:[UIColor colorWithHexString:@"0x5485f9"]];
     
-    UIImage *pinImg = [UIImage imageNamed:@"right_buttons.png"];
-    CGImageRef imageRef = CGImageCreateWithImageInRect([pinImg CGImage], CGRectMake(0, 0, 32.5, 32));
-    // or use the UIImage wherever you like
-    pinImg = [UIImage imageWithCGImage:imageRef]; 
-    CGImageRelease(imageRef);
-    
-    UIImage *settingsImg = [UIImage imageNamed:@"right_buttons.png"];
-    rightButton = [[UIButton alloc] initWithFrame:CGRectMake([ApplicationConfig viewBounds].size.width-80, 7, 40, 33)];
-    [rightButton setImage:pinImg forState:UIControlStateNormal];
-    [rightButton addTarget:self action:@selector(onRightControlActivate) forControlEvents:UIControlEventTouchUpInside];
-    
-    CGImageRef imageRefTwo = CGImageCreateWithImageInRect([settingsImg CGImage], CGRectMake(32.5, 0, 32.5, 32));
-    // or use the UIImage wherever you like
-    settingsImg = [UIImage imageWithCGImage:imageRefTwo]; 
-    CGImageRelease(imageRefTwo);
-    
-    secondRightButton = [[UIButton alloc] initWithFrame:CGRectMake([ApplicationConfig viewBounds].size.width-48, 7, 40, 33)];
-    [secondRightButton setImage:settingsImg forState:UIControlStateNormal];
-    [secondRightButton addTarget:self action:@selector(onSecondRightControlActivate) forControlEvents:UIControlEventTouchUpInside];
-    
-    leftButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 3, 40, 36)];
+    leftButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 3, 50, 38)];
     [leftButton setImage:[UIImage imageNamed:@"menu_button.png"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(onLeftControlActivate) forControlEvents:UIControlEventTouchUpInside];
     
@@ -95,16 +75,17 @@
     
     [self.view addSubview:navigationBar];
     
+
     if (leftButtonEnabled) {
         [navigationBar addSubview:leftButton];
     }
     
     if (rightButtonEnabled) {
-        [navigationBar addSubview:rightButton];
+        //[navigationBar addSubview:rightButton];
     }
     
     if (secondRightButtonEnabled) {
-        [navigationBar addSubview:secondRightButton];
+        //[navigationBar addSubview:secondRightButton];
     }
 }
 

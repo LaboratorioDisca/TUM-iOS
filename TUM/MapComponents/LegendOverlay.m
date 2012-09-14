@@ -10,7 +10,7 @@
 
 @implementation LegendOverlay
 
-- (id)initWithFrame:(CGRect)frame withImageNamed:(NSString *)imageNamed
+- (id)initWithFrame:(CGRect)frame forLanguage:(NSString *)lang
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -24,7 +24,12 @@
         [tapRecognize setNumberOfTapsRequired:1];
         [self addGestureRecognizer:tapRecognize];
         
-        [self addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:imageNamed]]];
+        if (![lang isEqualToString:@"es"]) {
+            lang = @"en";
+        }
+        NSString *imageFileName = [[@"legend_" stringByAppendingString:lang] stringByAppendingString:@".png"];
+        
+        [self addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:imageFileName]]];
         [self hide];
     }
     return self;

@@ -32,7 +32,7 @@
         [label setText:NSLocalizedString(@"developed_by", @"")];
         [label setTextColor:[UIColor colorWithHexString:@"0x63635F"]];
         [label setBackgroundColor:[UIColor clearColor]];
-        [label setFont:[UIFont fontWithName:[ApplicationConfig defaultFont] size:20]];
+        [label setFont:[UIFont fontWithName:[ApplicationConfig defaultFont] size:15]];
         [label setTextAlignment:UITextAlignmentCenter];
         [self.view addSubview:label];
         
@@ -56,6 +56,16 @@
         [pageControl setNumberOfPages:kPages];
         
         [pageControl addTarget:self action:@selector(pageChanged) forControlEvents:UIControlEventValueChanged];
+        
+        rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"info_navbar.png"]];
+        [rightButton addSubview:imgView];
+        [rightButton setFrame:CGRectMake(280, 0, 40, 40)];
+        [imgView setCenter:CGPointMake(15, 22)];
+
+        [navigationBar addSubview:rightButton];
+        [rightButton addTarget:self action:@selector(onRightControlActivate) forControlEvents:UIControlEventTouchUpInside];
 
     }
     return self;
@@ -66,7 +76,7 @@
     [super viewWillAppear:animated];
     pageControl.currentPage = 0;
     
-    NSArray *array = [NSArray arrayWithObjects:@"0x222526", @"0x49d32", @"0x482dd", nil];
+    NSArray *array = [NSArray arrayWithObjects:@"0x222526", @"0xFFFFFF", @"0x030C1F", nil];
     for (int i = 0; i < array.count; i++) {
         CGRect frame;
         frame.origin.x = scrollView.frame.size.width * i;
@@ -75,9 +85,24 @@
         
         UIView *subview = [[UIView alloc] initWithFrame:frame];
         subview.backgroundColor = [UIColor colorWithHexString:[array objectAtIndex:i]];
+        if (i == 0) {
+            UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UNAM_logo.png"]];
+            [imgView setCenter:CGPointMake(frame.size.width/2, frame.size.height/2)];
+            [subview addSubview:imgView];
+        } else if (i == 1) {
+            UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IIMAS_logo.jpg"]];
+            [imgView setCenter:CGPointMake(frame.size.width/2, frame.size.height/2)];
+            [subview addSubview:imgView];
+        } else if (i == 2) {
+            UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PUMABUS_logo.png"]];
+            [imgView setCenter:CGPointMake(frame.size.width/2, frame.size.height/2)];
+            [subview addSubview:imgView];
+        }
         [scrollView addSubview:subview];
     }
     [self.viewDeckController setRightController:nil];
+    [self.viewDeckController setCenterhiddenInteractivity:IIViewDeckCenterHiddenNotUserInteractiveWithTapToCloseBouncing];
+
 }
 
 - (void) viewDidUnload
@@ -94,6 +119,12 @@
 - (void) onLeftControlActivate
 {
     [self.viewDeckController openLeftView];
+}
+
+- (void) onRightControlActivate
+{
+    ExtendedAboutViewController *extendedAbout = [[ExtendedAboutViewController alloc] init];
+    [self presentModalViewController:extendedAbout animated:YES];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender {

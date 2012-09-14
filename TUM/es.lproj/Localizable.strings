@@ -48,11 +48,18 @@
 "help_instruction_three" = "Localiza el pumabus más cercano a tu ubicación (círculo azul). Al hacer tap en alguno, se mostrará información adicional";
 
 // About view
-"developed_by" = "Proyecto desarrollado por:";
+"developed_by" = "Proyecto desarrollado con el apoyo de:";
 "about_main" = "La app del Pumabus de la UNAM con la ubicación en tiempo real de los buses.";
 "disclaimer" = "A ciertas horas del día, la precisión del reporte de ubicación puede verse afectada por la carga de tráfico de la red GSM";
 "plus_info" = "+ INFO";
 
+// More Info view
+"more_info" = "Más información";
+"app_version" = "Versión 1.0";
+"disclaimer_beta" = "Esta aplicación y la infraestructura de telecomunicaciones incorporada a cada Pumabús están en proceso de mejora:";
+"disclaimer" = "En ciertas horas del día (7-9 AM y 2-4 PM), por la saturación de la red GSM cercana al campus, la ubicación reportada por algunos pumabuses podría no estar disponible o estarlo con un tiempo de retraso considerable.";
+
+// Map view
 "vehicle" = "PUMABUS";
 "received" = "Recibido el";
 "speed" = "Velocidad";

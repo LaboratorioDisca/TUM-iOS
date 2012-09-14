@@ -47,7 +47,7 @@
 - (void) drawStatusControls
 {
     UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
-    [imgView setCenter:CGPointMake([ApplicationConfig viewBounds].size.width/2, 150)];
+    [imgView setCenter:CGPointMake([ApplicationConfig viewBounds].size.width/2, 180)];
     [self.view addSubview:imgView];
     
     indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
@@ -90,7 +90,7 @@
     [start.layer setShadowColor:[UIColor blackColor].CGColor];    
     
     startIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"start.png"]];
-    [startIcon setCenter:CGPointMake(22, 25)];
+    [startIcon setCenter:CGPointMake(28, 25)];
     [start addSubview:startIcon];
     
     UILabel *startLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 90, 50)];

@@ -19,7 +19,9 @@
     VehicleOverlay* currentVehicleOverlay;
     UIViewPopover *popover;
     PlaceAnnotation *currentPlace;
-    PlaceOverlay *placeOverlay;    
+    PlaceOverlay *placeOverlay;
+    
+    UISegmentedControl * segmentedCtrl;
 }
 
 @property (nonatomic, assign) BOOL automaticInstantsFetch;
@@ -28,7 +30,8 @@
 - (void) displayAnnotation:(RMAnnotation*)annotation forRoute:(Route*)route;
 - (void) updateVehiclesInstants;
 - (void) animateLocationUpdating;
-
+- (void) drawSegmentedControls;
+- (void) segmentedControlTapped:(id)sender;
 @end
 
 
@@ -63,7 +66,8 @@
 
         [self.view addSubview:mapView];
 
-        legend = [[LegendOverlay alloc] initWithFrame:CGRectMake(35, 80, 250, 320) withImageNamed:@"legend.png"];
+        NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
+        legend = [[LegendOverlay alloc] initWithFrame:CGRectMake(35, 80, 250, 320) forLanguage:language];
         [self.view addSubview:legend];
         
         [self setLeftButtonEnabled:YES];
@@ -76,8 +80,49 @@
         [viewReact setDelegate:popover];
         [popover setDelegate:self];
         [self.view addSubview:viewReact];
+        
+        [self drawSegmentedControls];
     }
     return self;
+}
+
+- (void) drawSegmentedControls
+{
+    segmentedCtrl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"", @"", nil]];
+    [segmentedCtrl setFrame:CGRectMake(240, 3, 75, 37)];
+    segmentedCtrl.segmentedControlStyle = UISegmentedControlStylePlain;
+    [segmentedCtrl setBackgroundImage:[UIImage imageNamed:@"right_buttons.png"]
+                             forState:UIControlStateNormal
+                           barMetrics:UIBarMetricsDefault];
+    [segmentedCtrl setBackgroundImage:[UIImage imageNamed:@"right_buttons_selected.png"]
+                             forState:UIControlStateSelected
+                           barMetrics:UIBarMetricsDefault];
+    [segmentedCtrl setDividerImage:[UIImage imageNamed:@"right_buttons_separator.png"]
+               forLeftSegmentState:UIControlStateSelected
+                 rightSegmentState:UIControlStateNormal
+                        barMetrics:UIBarMetricsDefault];
+    [segmentedCtrl addTarget:self
+                         action:@selector(segmentedControlTapped:)
+               forControlEvents:UIControlEventValueChanged];
+    [segmentedCtrl setMomentary:YES];
+}
+
+- (void) segmentedControlTapped:(id)sender
+{
+    UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
+    if ([segmentedControl selectedSegmentIndex] == 0) {
+        if ([popover superview] != NULL) {
+            [popover disappearAnimated:YES];
+        }
+        [locationFetcher startUpdatingLocation];
+    } else {
+        if ([popover superview] == NULL) {
+            [self.view addSubview:popover];
+            [popover appearAnimated:YES];
+        } else {
+            [popover disappearAnimated:YES];
+        }
+    }
 }
 
 /*
@@ -184,7 +229,6 @@
         [cachedAnnotations setObject:annotation forKey:cachedVehicleId];
 
         [self displayAnnotation:annotation forRoute:route];
-        
     }
     
     if (currentVehicleOverlay != nil) {
@@ -258,12 +302,15 @@
     [self.viewDeckController setRightController:nil];
     [self.viewDeckController setPanningMode:IIViewDeckPanningViewPanning];
     [self.viewDeckController setPanningView:navigationBar];
-    
+    [self.viewDeckController setCenterhiddenInteractivity:IIViewDeckCenterHiddenNotUserInteractiveWithTapToCloseBouncing];
+
     [rightButton addTarget:self action:@selector(animateLocationUpdating) forControlEvents:UIControlEventTouchUpInside];
     // retrieve a new location
     locationFetcher = [[CLLocationManager alloc] init];
     [locationFetcher setDelegate:self];
     [locationFetcher setDesiredAccuracy:kCLLocationAccuracyBest];
+    [navigationBar addSubview:segmentedCtrl];
+
 }
 
 - (void) animateLocationUpdating
@@ -284,7 +331,9 @@
     [super viewDidDisappear:animated];
     [self setAutomaticInstantsFetch:NO];
     //[placeOverlay hide];
+    
     locationFetcher = NULL;
+    [segmentedCtrl removeFromSuperview];
 }
 
 
@@ -300,23 +349,9 @@
 
 - (void) onLeftControlActivate
 {
-    [self.viewDeckController openLeftView];
+    [self.viewDeckController openLeftViewAnimated:YES];
     [popover disappearAnimated:NO];
-}
 
-- (void) onRightControlActivate
-{
-    [locationFetcher startUpdatingLocation];
-}
-
-- (void) onSecondRightControlActivate
-{
-    if ([popover superview] == NULL) {
-        [self.view addSubview:popover];
-        [popover appearAnimated:YES];
-    } else {
-        [popover disappearAnimated:YES];
-    }
 }
 
 /* Ends NavigationBar buttons actions */

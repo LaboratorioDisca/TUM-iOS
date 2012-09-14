@@ -11,7 +11,7 @@
 
 @interface LegendOverlay : UIView 
 
-- (id) initWithFrame:(CGRect)frame withImageNamed:(NSString*)imageNamed;
+- (id) initWithFrame:(CGRect)frame forLanguage:(NSString*)lang;
 
 - (void) hide;
 - (void) show;

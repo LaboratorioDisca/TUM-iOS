@@ -10,6 +10,7 @@
 #import "TabBarViewController.h"
 #import "IIViewDeckController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ExtendedAboutViewController.h"
 
 #define kPages 3
 
