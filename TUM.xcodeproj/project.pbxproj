@@ -158,6 +158,8 @@
 		3ADF992015E8228F00798464 /* places.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ADF991F15E8228F00798464 /* places.png */; };
 		3ADF992315E82A3700798464 /* ReactiveFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADF992215E82A3700798464 /* ReactiveFocusView.m */; };
 		3ADFF7B615544F8C003BACB6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADFF7B515544F8C003BACB6 /* CoreLocation.framework */; };
+		3AE075001603E92E0035AFF5 /* icono-app.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AE074F71603E2550035AFF5 /* icono-app.png */; };
+		3AE075011603E9340035AFF5 /* icono-app@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AE074F81603E2550035AFF5 /* icono-app@2x.png */; };
 		3AE2346615EDE0A700CAAE04 /* AnnotationsGroups.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE2346515EDE0A700CAAE04 /* AnnotationsGroups.m */; };
 		3AE25A1515CB0267000A7262 /* Gradients.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE25A1415CB0267000A7262 /* Gradients.m */; };
 		3AE25A1715CB0BC4000A7262 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AE25A1615CB0BC4000A7262 /* logo.png */; };
@@ -335,7 +337,7 @@
 		3A7382CF15BF0D9E00E3E87A /* MapBox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapBox.framework; path = TUM/Libraries/MapBox.framework; sourceTree = "<group>"; };
 		3A73E5CE15546C8000279135 /* UIColor-Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-Expanded.h"; sourceTree = "<group>"; };
 		3A73E5CF15546C8000279135 /* UIColor-Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-Expanded.m"; sourceTree = "<group>"; };
-		3A8681B71541D01C00C9EE6F /* TUM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TUM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A8681B71541D01C00C9EE6F /* Pumabus Movil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pumabus Movil.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8681BB1541D01C00C9EE6F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3A8681BD1541D01C00C9EE6F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3A8681BF1541D01C00C9EE6F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -403,6 +405,8 @@
 		3ADF992115E82A3700798464 /* ReactiveFocusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactiveFocusView.h; sourceTree = "<group>"; };
 		3ADF992215E82A3700798464 /* ReactiveFocusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactiveFocusView.m; sourceTree = "<group>"; };
 		3ADFF7B515544F8C003BACB6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3AE074F71603E2550035AFF5 /* icono-app.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icono-app.png"; sourceTree = "<group>"; };
+		3AE074F81603E2550035AFF5 /* icono-app@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icono-app@2x.png"; sourceTree = "<group>"; };
 		3AE2346415EDE0A700CAAE04 /* AnnotationsGroups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationsGroups.h; sourceTree = "<group>"; };
 		3AE2346515EDE0A700CAAE04 /* AnnotationsGroups.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationsGroups.m; sourceTree = "<group>"; };
 		3AE2346815EDEABF00CAAE04 /* NSThread+Blocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSThread+Blocks.h"; sourceTree = "<group>"; };
@@ -499,6 +503,8 @@
 		3A0ECDDC154895F700919614 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3AE074F71603E2550035AFF5 /* icono-app.png */,
+				3AE074F81603E2550035AFF5 /* icono-app@2x.png */,
 				3A171E051602512E00FAB01C /* legend_en.png */,
 				3A171E061602512E00FAB01C /* legend_en@2x.png */,
 				3A171DFB160243F300FAB01C /* logo@2x.png */,
@@ -733,7 +739,7 @@
 		3A8681B81541D01C00C9EE6F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3A8681B71541D01C00C9EE6F /* TUM.app */,
+				3A8681B71541D01C00C9EE6F /* Pumabus Movil.app */,
 				3A8681D21541D01C00C9EE6F /* TUMTests.octest */,
 			);
 			name = Products;
@@ -881,7 +887,7 @@
 			);
 			name = TUM;
 			productName = TUM;
-			productReference = 3A8681B71541D01C00C9EE6F /* TUM.app */;
+			productReference = 3A8681B71541D01C00C9EE6F /* Pumabus Movil.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3A8681D11541D01C00C9EE6F /* TUMTests */ = {
@@ -1001,6 +1007,8 @@
 				3A171E371602C9E800FAB01C /* close.png in Resources */,
 				3A171E3A1602EF6200FAB01C /* pumabus_project.png in Resources */,
 				3A171E3B1602EF6200FAB01C /* pumabus_project@2x.png in Resources */,
+				3AE075001603E92E0035AFF5 /* icono-app.png in Resources */,
+				3AE075011603E9340035AFF5 /* icono-app@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1171,6 +1179,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "Pumabus Movil";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1190,6 +1199,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_NAME = "Pumabus Movil";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1224,7 +1234,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pumabus Movil";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -1261,7 +1271,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pumabus Movil";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = NO;
