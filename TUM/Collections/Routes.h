@@ -20,6 +20,7 @@
 + (void) loadWithRoutesCollection:(NSArray*)collection;
 + (Routes*) currentCollection;
 + (Route*) fetchRouteWithId:(NSNumber*)routeId;
++ (BOOL) areRoutesSelected;
 - (id) initWithRoutesCollection:(NSArray*)collection;
 
 @end

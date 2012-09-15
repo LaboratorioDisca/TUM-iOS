@@ -190,14 +190,15 @@
 - (void) updateVehiclesInstants
 {
     if ([self automaticInstantsFetch]) {
-        if ([Vehicles haveBeenSynchronized]) {
-            [self fetchInstants];
-            NSLog(@"Just reloaded vehicle positions");
+        if ([Vehicles areSynchronized]) {
+            if ([Routes areRoutesSelected]) {
+                [self fetchInstants];
+                NSLog(@"Just reloaded vehicle positions");
+            }
         } else {
             [self fetchVehicles];
             NSLog(@"Attempting to synchronize vehicles");
         }
-        
         [self performSelector:@selector(updateVehiclesInstants) withObject:nil afterDelay:kInstantsUpdateOverhead];
     }
 }
@@ -267,6 +268,7 @@
 - (void) prepareDrawables
 {
     [self setAutomaticInstantsFetch:YES];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(updateVehiclesInstants) object:nil];
     [self updateVehiclesInstants];
 }
 

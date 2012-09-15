@@ -46,7 +46,7 @@ static Vehicles *singleton;
     return singleton;
 }
 
-+ (BOOL) haveBeenSynchronized
++ (BOOL) areSynchronized
 {
     return [[singleton vehicles] count] > 0;
 }

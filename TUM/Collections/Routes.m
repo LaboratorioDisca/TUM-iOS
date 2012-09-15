@@ -37,6 +37,18 @@ static Routes *singleton;
     return [[singleton collection] objectForKey:routeId];
 }
 
++ (BOOL) areRoutesSelected
+{    
+    BOOL oneSelected = NO;
+    for (Route *route in [[singleton collection] allValues]) {
+        if ([route  visibleOnMap]) {
+            oneSelected = YES;
+            break;
+        }
+    }
+    return oneSelected;
+}
+
 - (id) initWithRoutesCollection:(NSArray *)newCollection
 {
     if ((self = [self init])) {

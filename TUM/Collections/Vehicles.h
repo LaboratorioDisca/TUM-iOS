@@ -23,7 +23,7 @@
 + (Vehicle*) getVehicleById:(NSNumber*)vehicleId;
 + (Vehicles*) all;
 
-+ (BOOL) haveBeenSynchronized;
++ (BOOL) areSynchronized;
 
 - (id) initWithVehiclesCollection:(NSArray*)collection;
 @end
