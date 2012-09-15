@@ -46,6 +46,11 @@ static Vehicles *singleton;
     return singleton;
 }
 
++ (BOOL) haveBeenSynchronized
+{
+    return [[singleton vehicles] count] > 0;
+}
+
 - (id) initWithVehiclesCollection:(NSArray *)collection_
 {
     self = [self init];
@@ -56,7 +61,6 @@ static Vehicles *singleton;
 }
 
 - (void) applyCollection:(NSArray*)collection_ {
-    NSMutableDictionary *dictionaryForLinesVehicles = [NSMutableDictionary dictionary];
     NSMutableDictionary *dictionaryForVehicleLine = [NSMutableDictionary dictionary];
     NSMutableDictionary *dictionaryForVehicles = [NSMutableDictionary dictionary];
 
@@ -74,22 +78,13 @@ static Vehicles *singleton;
                                                  withLineId:lineId
                                           withVehicleNumber:publicNumber];
         
-        // *** For quick lookup:
-        // Insert in lines-vehicles dictionary
-        if ([dictionaryForLinesVehicles objectForKey:lineId] == nil) {
-            [dictionaryForLinesVehicles setObject:[NSMutableArray array] forKey:lineId];
-        } 
-        
-        [[dictionaryForLinesVehicles objectForKey:lineId] addObject:vehicle];
-        
         // Insert in vehicle-line dictionary
         [dictionaryForVehicleLine setObject:lineId forKey:identifier];
         [dictionaryForVehicles setObject:vehicle forKey:identifier];
     }
 
     vehicleLines = dictionaryForVehicleLine;
-    vehicles = dictionaryForVehicles;
-    
+    vehicles = dictionaryForVehicles;    
 }
 
 

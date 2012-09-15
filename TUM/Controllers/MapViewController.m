@@ -43,7 +43,6 @@
 {
     if((self = [super init])) {
         automaticInstantsFetch = NO;
-        [self fetchVehicles];
         
         // annotations cache
         cachedAnnotations = [NSMutableDictionary dictionary];
@@ -89,7 +88,7 @@
 - (void) drawSegmentedControls
 {
     segmentedCtrl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"", @"", nil]];
-    [segmentedCtrl setFrame:CGRectMake(237, 3, 75, 37)];
+    [segmentedCtrl setFrame:CGRectMake(237, 4, 75, 37)];
     segmentedCtrl.segmentedControlStyle = UISegmentedControlStylePlain;
     [segmentedCtrl setBackgroundImage:[UIImage imageNamed:@"right_buttons.png"]
                              forState:UIControlStateNormal
@@ -190,10 +189,16 @@
 
 - (void) updateVehiclesInstants
 {
-    [self fetchInstants];
     if ([self automaticInstantsFetch]) {
+        if ([Vehicles haveBeenSynchronized]) {
+            [self fetchInstants];
+            NSLog(@"Just reloaded vehicle positions");
+        } else {
+            [self fetchVehicles];
+            NSLog(@"Attempting to synchronize vehicles");
+        }
+        
         [self performSelector:@selector(updateVehiclesInstants) withObject:nil afterDelay:kInstantsUpdateOverhead];
-        NSLog(@"Just reloaded vehicle positions");
     }
 }
 
@@ -293,7 +298,6 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    [self prepareDrawables];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -310,7 +314,8 @@
     [locationFetcher setDelegate:self];
     [locationFetcher setDesiredAccuracy:kCLLocationAccuracyBest];
     [navigationBar addSubview:segmentedCtrl];
-
+    
+    [self prepareDrawables];
 }
 
 - (void) animateLocationUpdating
