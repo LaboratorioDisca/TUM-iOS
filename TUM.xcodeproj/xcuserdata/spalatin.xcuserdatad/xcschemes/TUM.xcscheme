@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3A8681B61541D01C00C9EE6F"
-               BuildableName = "TUM.app"
+               BuildableName = "Pumabus Movil.app"
                BlueprintName = "TUM"
                ReferencedContainer = "container:TUM.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3A8681B61541D01C00C9EE6F"
-            BuildableName = "TUM.app"
+            BuildableName = "Pumabus Movil.app"
             BlueprintName = "TUM"
             ReferencedContainer = "container:TUM.xcodeproj">
          </BuildableReference>
@@ -63,7 +63,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3A8681B61541D01C00C9EE6F"
-            BuildableName = "TUM.app"
+            BuildableName = "Pumabus Movil.app"
             BlueprintName = "TUM"
             ReferencedContainer = "container:TUM.xcodeproj">
          </BuildableReference>
@@ -81,7 +81,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3A8681B61541D01C00C9EE6F"
-            BuildableName = "TUM.app"
+            BuildableName = "Pumabus Movil.app"
             BlueprintName = "TUM"
             ReferencedContainer = "container:TUM.xcodeproj">
          </BuildableReference>

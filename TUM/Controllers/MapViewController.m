@@ -89,7 +89,7 @@
 - (void) drawSegmentedControls
 {
     segmentedCtrl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"", @"", nil]];
-    [segmentedCtrl setFrame:CGRectMake(240, 3, 75, 37)];
+    [segmentedCtrl setFrame:CGRectMake(237, 3, 75, 37)];
     segmentedCtrl.segmentedControlStyle = UISegmentedControlStylePlain;
     [segmentedCtrl setBackgroundImage:[UIImage imageNamed:@"right_buttons.png"]
                              forState:UIControlStateNormal

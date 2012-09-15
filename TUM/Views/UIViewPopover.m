@@ -27,15 +27,15 @@
     CGRect dimensions = CGRectMake([ApplicationConfig viewBounds].size.width-kWidth-kMarignLeft, kMarginTop, kWidth, kHeight);
     self = [super initWithFrame:dimensions];
     if (self) {
-        [self.layer setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"assault"]].CGColor];
-        [self.layer setBorderWidth:4];
+        [self.layer setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"noise.png"]].CGColor];
+        [self.layer setBorderWidth:2];
         [self.layer setCornerRadius:4];
         [self.layer setShadowOpacity:2];
         [self.layer setShadowOffset:CGSizeMake(2, 1)];
-        [self.layer setBorderColor:[UIColor colorWithHexString:@"0x0E223D"].CGColor];
+        [self.layer setBorderColor:[UIColor whiteColor].CGColor];
                 
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow_up"]];
-        [imageView setCenter:CGPointMake(self.frame.size.width-20, -7)];
+        [imageView setCenter:CGPointMake(self.frame.size.width-17, -4)];
         [self addSubview:imageView];
         
         [self bringSubviewToFront:imageView];
@@ -48,34 +48,40 @@
 - (void) addIconsForItems:(NSArray *)items
 {
     int yIncrement = 50;
-    int yPos = 10;
-    int xPos = 10;
-    for (NSString *item in items) {
+    int yPos = 5;
+    int xPos = 0;
+    
+    for (int i = 0; i < items.count; i++) {
+        NSString *item = [items objectAtIndex:i];
+        
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setFrame:CGRectMake(xPos, yPos, kWidth-20, 40)];
-        [button setBackgroundColor:[UIColor colorWithHexString:@"0x2F3030"]];
-        [button.layer setCornerRadius:5];
-        [button.layer setShadowOpacity:2];
-        [button.layer setShadowOffset:CGSizeMake(1, 1)];
+        [button setFrame:CGRectMake(xPos, yPos, kWidth, 50)];
         [button.titleLabel setText:item];
         
         [button addTarget:self action:@selector(increaseButtonBright:) forControlEvents:UIControlEventTouchDown];
         [button addTarget:self action:@selector(restoreButtonBright:) forControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside|UIControlEventTouchCancel|UIControlEventTouchDragOutside];
         [button addTarget:self action:NSSelectorFromString([item stringByAppendingString:@"Selected"]) forControlEvents:UIControlEventTouchUpInside];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(55, 5, kWidth-60, 30)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(60, 10, kWidth-60, 30)];
         [label setText:NSLocalizedString(item, @"Item Section")];
         [label setBackgroundColor:[UIColor clearColor]];
         [label setTextColor:[UIColor colorWithHexString:@"0xB9BEBF"]];
-        [label setFont:[UIFont fontWithName:@"Helvetica-Bold" size:12]];
+        [label setFont:[UIFont fontWithName:@"Helvetica-Bold" size:13]];
         [button addSubview:label];
         
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:item]];
-        [imageView setCenter:CGPointMake(25,20)];
+        [imageView setCenter:CGPointMake(30,25)];
         [button addSubview:imageView];
         [self addSubview:button];
         
         yPos = yPos+yIncrement;
+        
+        if (i != items.count-1) {
+            UIView *decorator = [[UIView alloc] initWithFrame:CGRectMake(5, yPos-1, kWidth-10, 1)];
+            [decorator setBackgroundColor:[UIColor colorWithHexString:@"0x525151"]];
+            [self addSubview:decorator];
+        }
+
     }
 }
 
@@ -125,7 +131,7 @@
 
 - (void) restoreButtonBright:(id)button
 {
-    [button setBackgroundColor:[UIColor colorWithHexString:@"2F3030"]];
+    [button setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void) routesSelected

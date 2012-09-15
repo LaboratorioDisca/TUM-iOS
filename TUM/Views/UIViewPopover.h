@@ -14,7 +14,7 @@
 #import "PopoverActionMenuItemDelegate.h"
 
 #define kWidth 135
-#define kHeight 160
+#define kHeight 158
 #define kMarginTop 55
 #define kMarignLeft 10
 
