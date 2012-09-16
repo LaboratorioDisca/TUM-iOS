@@ -21,7 +21,21 @@
 "bookLegend" = "Leyenda";
 
 // Search view
-"stop" = "Parada";
+
+"school" = "Escuela";
+"faculty" = "Facultad";
+"institute" = "Instituto";
+"library" = "Biblioteca";
+"museum" = "Edificio Cultural";
+"sportCenter" = "Espacio Deportivo";
+"foodStore" = "Tiendita";
+"restaurant" = "Restaurante";
+"laboratory" = "Laboratorio";
+"pumabusStop" = "Parada del Pumabús";
+"bicipumaStation" = "Estación Bicipuma";
+"otherBuilding" = "Otro";
+"openSpace" = "Espacio Abierto";
+
 
 // Landing view
 "start_legend" = "Menú";

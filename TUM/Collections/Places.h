@@ -10,15 +10,14 @@
 #import "Place.h"
 
 @interface Places : NSObject {
-    NSDictionary *collection;
+    NSArray *collection;
 }
 
-@property (nonatomic, strong) NSDictionary *collection;
+@property (nonatomic, strong) NSArray *collection;
 
-+ (id) loadStationsFromFile;
++ (id) loadAllPlaces;
 + (id) currentCollection;
 
-
-- (id) initWithDictionary:(NSDictionary*)dictionary;
-
+- (void) sort;
+- (id) initWithStops:(NSArray*)array andPlaces:(NSArray*)places;
 @end

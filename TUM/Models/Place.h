@@ -10,18 +10,17 @@
 #import <CoreLocation/CoreLocation.h>
 
 @interface Place : NSObject {
-    enum Category { STOP, FACULTY, LIBRARY, STORE };
     NSString *name;
     CLLocationCoordinate2D coordinate;
-    enum Category *category;
+    NSNumber* category;
 }
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
-@property (nonatomic, assign) enum Category *category;
+@property (nonatomic, strong) NSNumber* category;
 
 
-- (id) initWithName:(NSString*)name andCoordinate:(CLLocationCoordinate2D)coordinate;
+- (id) initWithName:(NSString*)name andCoordinate:(CLLocationCoordinate2D)coordinate andCategory:(NSNumber*)placeCategory;
 
 - (NSString*) placeCategory;
 

@@ -20,7 +20,19 @@
 
 
 // Search view
-"stop" = "Stop";
+"school" = "School";
+"faculty" = "Faculty";
+"institute" = "Institute";
+"library" = "Library";
+"museum" = "Cultural building";
+"sportCenter" = "Sports building";
+"foodStore" = "Grocery Store";
+"restaurant" = "Restaurant";
+"laboratory" = "Laboratory";
+"pumabusStop" = "Pumabús Stop";
+"bicipumaStation" = "Bicipuma Station";
+"otherBuilding" = "Other";
+"openSpace" = "Open Space";
 
 // Landing view
 "start_legend" = "Menu";

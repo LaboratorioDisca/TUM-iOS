@@ -21,7 +21,7 @@
 {
     self = [super init];
     if (self) {
-        places = [[[Places currentCollection] collection] allValues];
+        places = [[Places currentCollection] collection];
         temporaryPlaces = [NSMutableArray arrayWithArray:places];
         
         self.title =NSLocalizedString(@"searches", @"");

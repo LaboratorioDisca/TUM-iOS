@@ -8,16 +8,24 @@
 
 #import "Places.h"
 
+@interface Places()
+
+- (void) buildPlaceInstancesWithFetchedPlaces:(NSArray *)array onTempArrayCollection:(NSMutableArray*)tmpCollection ignoringCategory:(BOOL)ignoreCategory;
+
+@end
+
 @implementation Places
 static Places *singleton;
 
 @synthesize collection;
 
- + (id) loadStationsFromFile
+ + (id) loadAllPlaces
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"stations" ofType:@"plist"];
     if (singleton == NULL) {
-        singleton = [[Places alloc] initWithDictionary:[[NSDictionary alloc] initWithContentsOfFile:path]];
+        NSString *stopsPath = [[NSBundle mainBundle] pathForResource:@"stations" ofType:@"plist"];
+        NSString *placesPath = [[NSBundle mainBundle] pathForResource:@"places" ofType:@"plist"];
+        singleton = [[Places alloc] initWithStops:[[[NSDictionary alloc] initWithContentsOfFile:stopsPath] allValues]
+                                        andPlaces:[[[NSDictionary alloc] initWithContentsOfFile:placesPath] allValues]];
     }
     return singleton;
 }
@@ -27,21 +35,45 @@ static Places *singleton;
     return singleton;
 }
 
-- (id) initWithDictionary:(NSDictionary *)dictionary
+- (void) sort
+{
+    [self setCollection:[collection sortedArrayUsingComparator:^(id a, id b) {
+        return [[(Place*) a name] compare:[(Place*) b name]];
+    }]];
+}
+
+- (id) initWithStops:(NSArray *)stops andPlaces:(NSArray *)places
 {
     self = [super init];
+    NSMutableArray *tmpCollection = [NSMutableArray array];
+
     if (self) {
-        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-        for (NSNumber* key in [dictionary allKeys]) {
-            NSDictionary *subdict = [dictionary objectForKey:key];
-            Place *place = [[Place alloc] initWithName:[subdict objectForKey:@"name"] 
-                                               andCoordinate:CLLocationCoordinate2DMake([[subdict objectForKey:@"latitude"] floatValue], 
-                                                                                        [[subdict objectForKey:@"longitude"] floatValue])];
-            [dict setObject:place forKey:key];
-        }
-        [self setCollection:dict];
+        [self buildPlaceInstancesWithFetchedPlaces:stops onTempArrayCollection:tmpCollection ignoringCategory:YES];
+        [self buildPlaceInstancesWithFetchedPlaces:places onTempArrayCollection:tmpCollection ignoringCategory:NO];
+        [self setCollection:tmpCollection];
+        [self sort];
     }
     return self;
+}
+
+- (void) buildPlaceInstancesWithFetchedPlaces:(NSArray *)array
+                        onTempArrayCollection:(NSMutableArray *)tmpCollection
+                             ignoringCategory:(BOOL)ignoreCategory
+{
+    NSLog([NSString stringWithFormat:@"Count: %d", array.count]);
+    for (NSDictionary * dictionary in array) {
+        
+        NSNumber *category = NULL;
+        if (!ignoreCategory) {
+            category = [dictionary objectForKey:@"category"];
+        }
+        
+        Place *place = [[Place alloc] initWithName:[dictionary objectForKey:@"name"]
+                                     andCoordinate:CLLocationCoordinate2DMake([[dictionary objectForKey:@"latitude"] floatValue],
+                                                                              [[dictionary objectForKey:@"longitude"] floatValue])
+                                       andCategory:category];
+        [tmpCollection addObject:place];
+    }
 }
 
 @end

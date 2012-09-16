@@ -9,12 +9,6 @@
 #import "AnnotationsGroups.h"
 #import "NSThread+Blocks.h"
 
-@interface AnnotationsGroups () {
-    
-}
-
-@end
-
 @implementation AnnotationsGroups
 @synthesize routesAnnotations, map;
 

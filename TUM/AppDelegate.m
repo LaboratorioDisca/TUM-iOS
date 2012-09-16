@@ -21,7 +21,7 @@
     
     [RoutesViewController prepare];
     [Vehicles prepareForCollection];
-    [Places loadStationsFromFile];
+    [Places loadAllPlaces];
     
     
     // load tiles from SQLlite db
