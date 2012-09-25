@@ -50,14 +50,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 70;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
-    UIViewController *controller = [controllers objectAtIndex:indexPath.row];    
+    id<ControllerIconDelegate> controller = [controllers objectAtIndex:indexPath.row];
     UITableViewCellMenu *cell = [[UITableViewCellMenu alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell.menu"];
-    [cell setTextLabel:controller.title];
+    [cell setTextLabel:[controller title] andIcon:[controller iconImageName]];
     return cell;
 }
 

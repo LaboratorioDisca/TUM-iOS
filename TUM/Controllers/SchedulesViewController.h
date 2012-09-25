@@ -11,7 +11,8 @@
 #import "IIViewDeckController.h"
 #import "ApplicationConfig.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ControllerIconDelegate.h"
 
-@interface SchedulesViewController : TabBarViewController
+@interface SchedulesViewController : TabBarViewController<ControllerIconDelegate>
 
 @end

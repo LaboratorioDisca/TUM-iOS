@@ -11,10 +11,11 @@
 #import "IIViewDeckController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ExtendedAboutViewController.h"
+#import "ControllerIconDelegate.h"
 
 #define kPages 3
 
-@interface AboutViewController : TabBarViewController<UIScrollViewDelegate>
+@interface AboutViewController : TabBarViewController<UIScrollViewDelegate, ControllerIconDelegate>
 
 - (void) pageChanged;
 

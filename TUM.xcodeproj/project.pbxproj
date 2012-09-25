@@ -110,6 +110,10 @@
 		3A7035FF15EBFFC900084F0F /* PlacesSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7035FE15EBFFC900084F0F /* PlacesSearchViewController.m */; };
 		3A7382D015BF0D9E00E3E87A /* MapBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7382CF15BF0D9E00E3E87A /* MapBox.framework */; };
 		3A73E5D015546C8000279135 /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A73E5CF15546C8000279135 /* UIColor-Expanded.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3A7F1B1B16117BB3005984BC /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A7F1B1A16117BB3005984BC /* home.png */; };
+		3A7F1B2316117F38005984BC /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A7F1B2216117F38005984BC /* map.png */; };
+		3A7F1B2516117F52005984BC /* schedules.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A7F1B2416117F52005984BC /* schedules.png */; };
+		3A7F1B2B16117FA2005984BC /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A7F1B2A16117FA2005984BC /* about.png */; };
 		3A8681BC1541D01C00C9EE6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8681BB1541D01C00C9EE6F /* UIKit.framework */; };
 		3A8681BE1541D01C00C9EE6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8681BD1541D01C00C9EE6F /* Foundation.framework */; };
 		3A8681C01541D01C00C9EE6F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8681BF1541D01C00C9EE6F /* CoreGraphics.framework */; };
@@ -129,6 +133,10 @@
 		3ABC795715D2F3F300364C5A /* SchedulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABC795615D2F3F300364C5A /* SchedulesViewController.m */; };
 		3ABC795E15D2F73600364C5A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3ABC795C15D2F73600364C5A /* Localizable.strings */; };
 		3ABC796315D301FE00364C5A /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABC796215D301FE00364C5A /* TabBarViewController.m */; };
+		3ABEA5741611F88D00558D94 /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABEA5731611F88D00558D94 /* home@2x.png */; };
+		3ABEA5771611F8A500558D94 /* about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABEA5761611F8A500558D94 /* about@2x.png */; };
+		3ABEA5791611F8B700558D94 /* schedules@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABEA5781611F8B700558D94 /* schedules@2x.png */; };
+		3ABEA57B1611F8C900558D94 /* map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABEA57A1611F8C900558D94 /* map@2x.png */; };
 		3ABF55C115EE89FC00860F81 /* menu_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABF55BF15EE89FC00860F81 /* menu_button.png */; };
 		3ABF55C215EE89FC00860F81 /* right_buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABF55C015EE89FC00860F81 /* right_buttons.png */; };
 		3ABF55D315EEB25400860F81 /* HeadingAngleSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABF55CD15EEB25400860F81 /* HeadingAngleSmall.png */; };
@@ -345,6 +353,11 @@
 		3A7382CF15BF0D9E00E3E87A /* MapBox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapBox.framework; path = TUM/Libraries/MapBox.framework; sourceTree = "<group>"; };
 		3A73E5CE15546C8000279135 /* UIColor-Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-Expanded.h"; sourceTree = "<group>"; };
 		3A73E5CF15546C8000279135 /* UIColor-Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-Expanded.m"; sourceTree = "<group>"; };
+		3A7F1B1A16117BB3005984BC /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		3A7F1B1F16117D34005984BC /* ControllerIconDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ControllerIconDelegate.h; sourceTree = "<group>"; };
+		3A7F1B2216117F38005984BC /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
+		3A7F1B2416117F52005984BC /* schedules.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schedules.png; sourceTree = "<group>"; };
+		3A7F1B2A16117FA2005984BC /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
 		3A8681B71541D01C00C9EE6F /* Pumabus Movil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pumabus Movil.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8681BB1541D01C00C9EE6F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3A8681BD1541D01C00C9EE6F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -372,6 +385,10 @@
 		3ABC795F15D2F73E00364C5A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3ABC796115D301FE00364C5A /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		3ABC796215D301FE00364C5A /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
+		3ABEA5731611F88D00558D94 /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
+		3ABEA5761611F8A500558D94 /* about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about@2x.png"; sourceTree = "<group>"; };
+		3ABEA5781611F8B700558D94 /* schedules@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "schedules@2x.png"; sourceTree = "<group>"; };
+		3ABEA57A1611F8C900558D94 /* map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map@2x.png"; sourceTree = "<group>"; };
 		3ABF55BF15EE89FC00860F81 /* menu_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_button.png; sourceTree = "<group>"; };
 		3ABF55C015EE89FC00860F81 /* right_buttons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_buttons.png; sourceTree = "<group>"; };
 		3ABF55C315EEA23100860F81 /* UNAM, Mexico City, Mexico.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "UNAM, Mexico City, Mexico.gpx"; path = "../UNAM, Mexico City, Mexico.gpx"; sourceTree = "<group>"; };
@@ -515,6 +532,14 @@
 		3A0ECDDC154895F700919614 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3ABEA57A1611F8C900558D94 /* map@2x.png */,
+				3ABEA5781611F8B700558D94 /* schedules@2x.png */,
+				3ABEA5731611F88D00558D94 /* home@2x.png */,
+				3ABEA5761611F8A500558D94 /* about@2x.png */,
+				3A7F1B2A16117FA2005984BC /* about.png */,
+				3A7F1B2416117F52005984BC /* schedules.png */,
+				3A7F1B2216117F38005984BC /* map.png */,
+				3A7F1B1A16117BB3005984BC /* home.png */,
 				3AD9ED4016053BD70061A182 /* routes@2x.png */,
 				3AE074F71603E2550035AFF5 /* icono-app.png */,
 				3AE074F81603E2550035AFF5 /* icono-app@2x.png */,
@@ -881,6 +906,7 @@
 		3AE417BC15EC4FB700E316D2 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
+				3A7F1B1F16117D34005984BC /* ControllerIconDelegate.h */,
 				3AE417BD15EC4FB700E316D2 /* PlaceOnMapDelegate.h */,
 				3AE417BE15EC4FB700E316D2 /* PopoverActionMenuItemDelegate.h */,
 				3AE417BF15EC4FB700E316D2 /* PopoverFocusDelegate.h */,
@@ -1033,6 +1059,14 @@
 				3AD9ED4116053BD70061A182 /* routes@2x.png in Resources */,
 				3AD9ED4316053CFE0061A182 /* bookLegend@2x.png in Resources */,
 				3AD9ED4516053E880061A182 /* places@2x.png in Resources */,
+				3A7F1B1B16117BB3005984BC /* home.png in Resources */,
+				3A7F1B2316117F38005984BC /* map.png in Resources */,
+				3A7F1B2516117F52005984BC /* schedules.png in Resources */,
+				3A7F1B2B16117FA2005984BC /* about.png in Resources */,
+				3ABEA5741611F88D00558D94 /* home@2x.png in Resources */,
+				3ABEA5771611F8A500558D94 /* about@2x.png in Resources */,
+				3ABEA5791611F8B700558D94 /* schedules@2x.png in Resources */,
+				3ABEA57B1611F8C900558D94 /* map@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

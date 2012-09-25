@@ -71,7 +71,7 @@
 "more_info" = "Más información";
 "app_version" = "Versión 1.0";
 "disclaimer_beta" = "Esta aplicación y la infraestructura de telecomunicaciones incorporada a cada Pumabús están en proceso de mejora:";
-"disclaimer" = "En ciertas horas del día (7-9 AM y 2-4 PM), por la saturación de la red GSM cercana al campus, la ubicación reportada por algunos pumabuses podría no estar disponible o estarlo con un tiempo de retraso considerable.";
+"disclaimer" = "En ciertas horas del día, por la saturación de la red GSM cercana al campus, la ubicación reportada por algunos pumabuses podría no estar disponible o estarlo con un tiempo de retraso considerable.";
 
 // Map view
 "vehicle" = "PUMABUS";

@@ -14,8 +14,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIColor-Expanded.h"
 #import "IIViewDeckController.h"
+#import "ControllerIconDelegate.h"
 
-@interface FrontViewController : UIViewController<ASIHTTPRequestDelegate>
+@interface FrontViewController : UIViewController<ASIHTTPRequestDelegate, ControllerIconDelegate>
 
 - (void) updateStatusMessageWithValue:(NSString*)message;
 - (void) fetchServiceStatus;

@@ -10,6 +10,6 @@
 
 @interface UITableViewCellMenu : UITableViewCell
 
-- (void) setTextLabel:(NSString*)label;
+- (void) setTextLabel:(NSString *)textlabel andIcon:(NSString*) iconName;
 
 @end

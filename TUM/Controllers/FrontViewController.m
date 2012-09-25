@@ -227,4 +227,11 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+// Icon image name enforced by protocol ControllerIconDelegate
+
+- (NSString*) iconImageName
+{
+    return @"home";
+}
+
 @end

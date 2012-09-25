@@ -45,6 +45,7 @@
 #import "PlaceAnnotation.h"
 #import "PlaceOverlay.h"
 
+#import "ControllerIconDelegate.h"
 #import "AnnotationsGroups.h"
 
 #define kDefaultZoom 18
@@ -52,7 +53,7 @@
 
 #define kInstantsUpdateOverhead 15
 
-@interface MapViewController : TabBarViewController<RMMapViewDelegate, CLLocationManagerDelegate, ASIHTTPRequestDelegate, PopoverActionMenuItemDelegate, PlaceOnMapDelegate>
+@interface MapViewController : TabBarViewController<RMMapViewDelegate, CLLocationManagerDelegate, ASIHTTPRequestDelegate, PopoverActionMenuItemDelegate, PlaceOnMapDelegate, ControllerIconDelegate>
 
 @property (strong, nonatomic) RMMapView *mapView;
 

@@ -445,4 +445,11 @@
 
 /* Ends Overlays hidders */
 
+// Icon image name enforced by protocol ControllerIconDelegate
+
+- (NSString*) iconImageName
+{
+    return @"map";
+}
+
 @end

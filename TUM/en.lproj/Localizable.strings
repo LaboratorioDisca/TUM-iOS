@@ -24,8 +24,8 @@
 "faculty" = "Faculty";
 "institute" = "Institute";
 "library" = "Library";
-"museum" = "Cultural building";
-"sportCenter" = "Sports building";
+"museum" = "Cultural Building";
+"sportCenter" = "Sports Building";
 "foodStore" = "Grocery Store";
 "restaurant" = "Restaurant";
 "laboratory" = "Laboratory";
@@ -67,7 +67,7 @@
 "more_info" = "More Info";
 "app_version" = "Version 1.0";
 "disclaimer_beta" = "This app and the telecommunication infrastructure embedded on every Pumabús are under constant improvement:";
-"disclaimer" = "At certain times along the day (7-9 AM & 2-4 PM) due campus nearby GSM network saturation, the reported location by some pumabuses could be not available or could it be with a considerable delay.";
+"disclaimer" = "At certain times along the day due campus nearby GSM network saturation, the reported location by some pumabuses could be not available or could it be with a considerable delay.";
 // Map view
 "vehicle" = "PUMABUS";
 "received" = "Received on";

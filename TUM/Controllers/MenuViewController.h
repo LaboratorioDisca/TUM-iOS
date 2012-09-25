@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "IIViewDeckController.h"
 #import "UItableViewCellMenu.h"
+#import "ControllerIconDelegate.h"
 
 @interface MenuViewController : UITableViewController {
     NSArray *controllers;

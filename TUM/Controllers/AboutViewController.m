@@ -159,4 +159,11 @@
 
 }
 
+// Icon image name enforced by protocol ControllerIconDelegate
+
+- (NSString*) iconImageName
+{
+    return @"about";
+}
+
 @end
